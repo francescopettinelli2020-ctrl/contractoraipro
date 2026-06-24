@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ContractorAIPro™</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+:root{--bg:#0A0A0C;--panel:#141418;--panel2:#1B1B20;--line:#26262C;--ink:#F4F3EF;--muted:#8A8A93;--gold:#2E7DFF;--gold2:#5C9CFF;--soft:#2E7DFF1A;--ok:#43B581;--warn:#E0A93B;--red:#E0685F}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);display:flex;min-height:100vh;overflow-x:hidden}
+.sg{font-family:'Space Grotesk',sans-serif}.gold{color:var(--gold)}
+::-webkit-scrollbar{width:7px;height:7px}::-webkit-scrollbar-thumb{background:#2c2c33;border-radius:8px}
+button{font-family:inherit;cursor:pointer}
+input,textarea,select{font-family:inherit}
+
+/* SIDEBAR */
+.side{width:236px;background:#08080A;border-right:1px solid var(--line);flex-shrink:0;height:100vh;position:fixed;left:0;top:0;transform:translateX(-100%);transition:.25s;display:flex;flex-direction:column;z-index:50}
+.side.open{transform:none}
+.brand{padding:24px 22px 18px;font-size:18px;font-weight:700;letter-spacing:-.01em}
+.logomark{width:26px;height:26px;border-radius:8px;background:radial-gradient(circle at 32% 28%,#CFE2FF,#2E7DFF 55%,#143A78);box-shadow:0 0 16px rgba(46,125,255,.45);flex-shrink:0;display:inline-block}
+.topbrand{display:flex;font-size:15px;font-weight:700;letter-spacing:-.01em;align-items:center;gap:8px;cursor:pointer}
+.brand sup{font-size:8px;color:var(--muted)}
+.nav{flex:1;padding:6px 12px}
+.nv{display:flex;align-items:center;gap:13px;padding:12px 14px;border-radius:13px;color:var(--muted);font-size:14px;font-weight:500;cursor:pointer;margin-bottom:3px;transition:.15s}
+.nv .ic{font-size:17px;width:20px;text-align:center}
+.nv:hover{background:var(--panel);color:var(--ink)}
+.nv.sel{background:var(--soft);color:var(--gold);font-weight:600}
+.sfoot{padding:12px}
+
+/* MAIN */
+.main{flex:1;min-width:0;display:flex;flex-direction:column;max-width:720px;margin:0 auto;width:100%}
+.top{height:64px;display:flex;align-items:center;gap:14px;padding:0 26px;position:sticky;top:0;background:rgba(10,10,12,.7);backdrop-filter:blur(12px);z-index:30}
+.burger{display:block;font-size:21px;background:none;border:none;color:var(--ink)}
+.top .date{color:var(--muted);font-size:13px;font-weight:500;margin-left:auto}
+.avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#1E5FE0);color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.wrap{padding:8px 26px 120px;max-width:1180px;width:100%;margin:0 auto;animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.h1{font-size:30px;font-weight:700;letter-spacing:-.02em}
+.ph{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px}
+.sub{color:var(--muted);font-size:14px;margin:4px 0 22px;line-height:1.5;max-width:620px}
+
+/* CARDS */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;transition:.2s}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr}.g3{grid-template-columns:1fr}
+.ct{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.ct .r{color:var(--gold);cursor:pointer;letter-spacing:0;text-transform:none;font-size:12px}
+.big{font-size:34px;font-weight:600;letter-spacing:-.02em;line-height:1}
+.li{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid #1f1f25}
+.li:last-child{border:none}.li .n{font-size:14px;font-weight:600}.li .s{font-size:12.5px;color:var(--muted);margin-top:2px}
+.pill{font-size:11px;font-weight:600;padding:4px 11px;border-radius:99px;white-space:nowrap}
+.bar{height:7px;background:#26262c;border-radius:99px;overflow:hidden;margin-top:9px}.bar>div{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.btn{background:var(--gold);color:#FFFFFF;border:none;border-radius:12px;padding:12px 18px;font-weight:700;font-size:13.5px}
+.ghost{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-weight:600;font-size:13.5px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat{background:var(--panel2);border-radius:15px;padding:15px}
+.stat .l{font-size:12px;color:var(--muted)}.stat .v{font-size:22px;font-weight:600;margin-top:6px}
+.tool{cursor:pointer;display:flex;flex-direction:column;gap:8px}.tool:hover{border-color:var(--gold);transform:translateY(-2px)}
+.tool .e{font-size:26px}.tool .t{font-size:16px;font-weight:600}.tool .d{font-size:12.5px;color:var(--muted)}
+.chip{display:inline-block;font-size:12px;color:var(--ink);background:var(--panel2);border:1px solid var(--line);border-radius:99px;padding:7px 13px;margin:0 6px 8px 0;cursor:pointer}
+.chip:hover{border-color:var(--gold);color:var(--gold)}
+.thumb{width:100%;height:120px;border-radius:13px;object-fit:cover;background:linear-gradient(135deg,#2E7DFF30,#2E7DFF0a)}
+.stars{color:var(--gold);font-size:13px;letter-spacing:1px}
+
+/* ORB */
+.orb{border-radius:50%;position:relative;flex-shrink:0;background:radial-gradient(circle at 36% 30%,#CFE2FF,#5C9CFF 34%,#2E7DFF 62%,#143A78 100%);box-shadow:0 0 50px 6px rgba(46,125,255,.4),inset 0 0 40px rgba(210,228,255,.55);animation:breathe 4.2s ease-in-out infinite}
+.orb::before{content:'';position:absolute;inset:-7px;border-radius:50%;background:conic-gradient(from 0deg,#2E7DFF,#CFE2FF,#2E7DFF,#143A78,#2E7DFF);filter:blur(15px);opacity:.5;z-index:-1;animation:spin 9s linear infinite}
+.orb.sp{animation:breathe 1.6s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.055)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wave{display:flex;gap:5px;align-items:center;height:34px;justify-content:center}
+.wave i{width:5px;height:10px;background:var(--gold);border-radius:3px;animation:wv 1s ease-in-out infinite}
+.wave i:nth-child(2){animation-delay:.15s}.wave i:nth-child(3){animation-delay:.3s}.wave i:nth-child(4){animation-delay:.45s}.wave i:nth-child(5){animation-delay:.6s}.wave i:nth-child(6){animation-delay:.2s}.wave i:nth-child(7){animation-delay:.4s}
+@keyframes wv{0%,100%{height:8px;opacity:.5}50%{height:30px;opacity:1}}
+
+/* TANYA DOCK + OVERLAY */
+.dock{position:fixed;right:22px;bottom:22px;width:60px;height:60px;z-index:60;cursor:pointer}
+.dock .orb{width:60px;height:60px}
+.dock .lbl{position:absolute;right:70px;top:50%;transform:translateY(-50%);background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:8px 14px;font-size:12.5px;font-weight:600;white-space:nowrap;opacity:0;transition:.2s;pointer-events:none}
+.dock:hover .lbl{opacity:1}
+.tanya{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 30%,#0B1322,#080809 70%);display:none;flex-direction:column;align-items:center;padding:30px 20px;overflow-y:auto}
+.tanya.on{display:flex;animation:fade .35s ease}
+.tanya .x{position:absolute;top:20px;right:24px;font-size:26px;color:var(--muted);background:none;border:none}
+.tanya .hello{font-size:15px;color:var(--muted);margin-top:8px}
+.tanya .orb{width:190px;height:190px;margin:38px 0 18px}
+.tname{font-size:26px;font-weight:700}
+.feed{width:100%;max-width:560px;margin:14px 0;display:flex;flex-direction:column;gap:12px}
+.bub{border-radius:16px;padding:13px 16px;font-size:14px;line-height:1.55;max-width:88%}
+.bub.t{background:var(--panel);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:5px;white-space:pre-wrap}
+.bub.u{background:var(--gold);color:#FFFFFF;align-self:flex-end;border-bottom-right-radius:5px;font-weight:600}
+.tbar{position:sticky;bottom:0;width:100%;max-width:560px;display:flex;gap:9px;padding-top:10px}
+.tbar input{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;color:var(--ink);font-size:14px;outline:none}
+.tchips{max-width:560px;text-align:center}
+
+.sheet{position:fixed;inset:0;z-index:80;display:none}
+.sheet.on{display:block}
+.sheetbg{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.sheetcard{position:absolute;left:0;right:0;bottom:0;max-height:88vh;overflow-y:auto;background:var(--panel);border-radius:24px 24px 0 0;border-top:1px solid var(--line);padding:24px 22px 30px;max-width:680px;margin:0 auto;animation:up .3s ease}
+@keyframes up{from{transform:translateY(40px);opacity:.5}to{transform:none;opacity:1}}
+.litem{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid #1f1f25}
+.litem:last-child{border:none}
+.scrim{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:45}
+@media(min-width:861px){
+ .side{position:sticky;transform:none;height:100vh;top:0;align-self:flex-start;z-index:5}
+ .burger{display:none}.topbrand{display:none}.scrim{display:none!important}
+ .main{max-width:none;margin:0}.wrap{max-width:1280px;padding-top:18px}
+}
+@media(max-width:860px){
+ .side{position:fixed;left:0;top:0;transform:translateX(-100%);transition:.25s}.side.open{transform:none}
+ .burger{display:block}.topbrand{display:flex}.g2,.g3,.row3{grid-template-columns:1fr}.scrim.show{display:block}
+ .wrap{padding:8px 16px 120px}.h1{font-size:25px}
+}
+</style>
+</head>
+<body>
+<aside class="side" id="side">
+  <div class="brand" id="brandHome" style="cursor:pointer"><div class="sg" style="font-size:19px;font-weight:800;letter-spacing:-.01em">Contractor<span class="gold">AI</span>Pro<sup style="font-size:.5em;top:-.7em">™</sup></div><div style="font-size:8px;letter-spacing:.17em;color:var(--muted);margin-top:7px;font-weight:700">AI · AUTOMATION · COACHING · RESULTS</div></div>
+  <div class="nav" id="nav"></div>
+  <div class="sfoot"><div class="nv" data-s="settings"><span class="ic">⚙</span>Settings</div></div>
+</aside>
+<div class="scrim" id="scrim"></div>
+
+<div class="main">
+  <div class="top">
+    <button class="burger" id="burger">☰</button>
+    <div class="topbrand sg" id="brandTop">Contractor<span class="gold">AI</span>Pro<sup>™</sup></div>
+    <div class="date" id="date"></div>
+    <div class="avatar">F</div>
+  </div>
+  <div class="wrap" id="wrap"></div>
+</div>
+
+<!-- Tanya dock -->
+<div class="dock" id="dock"><div class="orb"></div><div class="lbl">Ask Tanya</div></div>
+
+<!-- Tanya overlay -->
+<div class="tanya" id="tanya">
+  <button class="x" id="tx">✕</button>
+  <div id="tconn" style="position:absolute;top:24px;left:24px;font-size:11px;font-weight:700;color:var(--muted)">● Connecting…</div>
+  <div class="orb" id="torb" style="cursor:pointer"></div>
+  <div class="tname sg">Tanya<span class="gold">.</span></div>
+  <div class="hello">“Hi, I'm Tanya… Tanya with a Y.”</div>
+  <div class="tstatus" id="tstatus" style="font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-top:8px;min-height:16px"></div>
+  <div class="feed" id="feed"></div>
+  <div class="tchips" id="tchips"></div>
+  <div class="tbar"><input id="tin" placeholder="Ask Tanya anything…"><button class="btn" id="tsend">Ask</button></div>
+</div>
+
+<!-- Detail sheet -->
+<div class="sheet" id="sheet"><div class="sheetbg" id="sheetbg"></div><div class="sheetcard" id="sheetcard"></div></div>
+
+<script>
+var GOLD='#2E7DFF';
+function $(id){return document.getElementById(id);}
+$('date').textContent=new Date().toLocaleDateString('en-CA',{weekday:'long',month:'long',day:'numeric'});
+
+var NAV=[['Dashboard','🏠','dashboard'],['CRM','👥','crm'],['Design & Estimate','🎨','design'],['Projects','🏗','projects'],['Documents','📄','documents'],['Marketing','📈','marketing'],['Analytics','📊','analytics'],['AI Team','🤖','team']];
+
+/* DATA */
+var LEADS=[['Marcello D.','Custom pool + cabana · Oakville','★★★★★','$300K+'],['The Harveys','Backyard + pool · Oakville','★★★★★','$300K+'],['Priya S.','Interlock driveway · Burlington','★★★★','$25–75K'],['T. Okafor','Pool + landscape · Toronto','★★★★','$150–300K']];
+var PROJECTS=[['Wong patio + kitchen','Mississauga',72,'On track'],['Singh pool deck','Oakville',45,'Material delay'],['Andlauer estate','Oakville',20,'On track'],['Bianchi brick wall','Oakville',90,'Finishing']];
+var ORG=[
+ ['Executive',[['Atlas','CEO · runs the company day-to-day'],['Vera','COO · operations & delivery'],['Cole','CFO · margins, cash flow & finance'],['Mira','Chief of Staff · your priorities & follow-through']]],
+ ['Sales',[['Closer','AI Closer · calls, texts & books leads 24/7'],['Dana','Sales Director · pipeline & forecasts'],['Estimator','Prices jobs in seconds'],['Reed','Appointment Setter · fills your calendar'],['Sully','Follow-up · never lets a lead go cold']]],
+ ['Marketing',[['Nova','Marketing Director · the growth plan'],['Pixel','Content & Social · posts, reels & blogs'],['Ranker','SEO & Ads · ranks you and runs paid'],['Echo','Reviews & Referrals · review velocity']]],
+ ['Partnerships',[['Bridge','BD Director · realtors, builders & PMs'],['Scout','Partner Scout · finds & qualifies partners']]],
+ ['Operations',[['Forge','Ops Manager · on time & on budget'],['Tempo','Scheduler · crews, calendar & deliveries'],['Stock','Procurement · materials & suppliers'],['Guard','QA & Warranty · quality and callbacks']]],
+ ['Intelligence',[['Sage','Analyst · the numbers that matter'],['Watch','Competitor Watch · tracks every rival'],['Oracle','Forecasting · revenue & demand ahead']]],
+ ['Competitive Response',[['CI Director','Heads the out-market unit'],['Recon','Competitor Recon · profiles every rival'],['Ad Intel','Ad Intelligence · their Google & Meta ads'],['Social Intel','Social Intelligence · posts & cadence'],['Counter','Counter-Content · out-publishes them'],['Review War','Wins the review-velocity race']]]
+];
+var ROSTER=ORG.map(function(d){return d[0]+': '+d[1].map(function(a){return a[0]+' ('+a[1]+')';}).join('; ');}).join(' | ');
+var AZ='https://www.azoria.ca/craft-assets/products/MODELES_3D/_small/';
+var MATS=[['Bayfield 15×35',AZ+'97331/DOLPHIN_Bayfield_1535_15x35_RGB-PINK_low.webp'],['Kelowna 16×36',AZ+'97355/DOLPHIN_Kelowna_1636_16x36_RGB-PINK_low.webp'],['Sapphire 14×36',AZ+'92482/AQUARINO_Saphir_1436_14x36_RGB-Pink-low.webp'],['Tofino 16×40',AZ+'97378/DOLPHIN_Tofino_1640_16x40_RGB-PINK_low.webp'],['Oka 13×33',AZ+'97360/DOLPHIN_Oka_1333_13x33_RGB-PINK_low.webp'],['Florencia 15×34',AZ+'97346/DOLPHIN_Florencia_1534_15x34_RGB-PINK_low.webp']];
+var SUPPLIERS=[['Van Beek\'s Landscape Supply','Oakville · 905-842-5053 · live pricing',true],['Legends Landscape Supply','Burlington · pavers & natural stone',false],['Landscape Depot Supply','GTA · aggregates, soil & sod',false],['Acorn Landscape Supply','GTA · Unilock dealer',false],['Sid\'s Ponds','GTA · ponds, water features & aquatics',false],['Peel Landscape Depot','Peel · aggregates, stone & pavers',false]];
+var PRICELIST=[
+ ['Aggregates',[['Limestone Screening','$5.15–$140'],['3/4" Clear Gravel','$5.15–$148'],['HPB Bedding','$5.15–$148'],['Recycled Crush','$4.50–$135'],['Brick Sand','$4.85–$155'],['Concrete Sand','$4.85–$155'],['Limestone Crush','$4.99–$148']]],
+ ['Mulch',[['Black / Brown / Red / Pine','$4.95–$145'],['Cedar','$5.40–$159'],['Hemlock','$5.65–$165'],['Maple Wood Chips','$4.65–$140'],['Playground','$5.45–$158']]],
+ ['Decorative stone',[['Local Pea Stone','$6.25–$145'],['Black Lava','$25–$553'],['Polished Pebbles','$29.99 flat'],['Steel Blue Marble Boulder','$0.65 / lb']]]
+];
+var MANUFACTURERS=[
+ {id:1,n:'Techo-Bloc',t:'Pavers, walls, coping & fire — 2026 trade pricing',cat:[
+   {c:'Pavers & slabs',items:[{n:'Blu 60mm Smooth',p:'$5.09/sf'},{n:'Blu 80mm Smooth',p:'$6.71/sf'},{n:'Industria 600×600 Smooth',p:'$8.75/sf'},{n:'Antika Smooth',p:'$7.53/sf'},{n:'Para 250×500 Smooth',p:'$8.59/sf'},{n:'Hexa 60 Slab',p:'$8.75/sf'},{n:'Eva Slate',p:'$4.57/sf'},{n:'Aberdeen HD Slab',p:'$13.64/sf'},{n:'Travertina Raw HD Paver',p:'$15.48/sf'},{n:'Squadra 60mm',p:'$9.26/sf'},{n:'Villagio 60mm',p:'$6.64/sf'},{n:'Industria Polished',p:'$13.40/sf'}]},
+   {c:'Walls & steps',items:[{n:'Mini-Creta 3"',p:'$22.02/ff'},{n:'Brandon 180mm Wall',p:'$31.81/ff'},{n:'G-Force Wall',p:'$17.46 ea'},{n:'Raffinato Cap 14×28',p:'$30.26 ea'},{n:'Borealis Step 48"',p:'$145.67 ea'},{n:'Maya Step 48"',p:'$312.21 ea'}]},
+   {c:'Coping & caps',items:[{n:'Bullnose Cap Smooth Pool',p:'$4.43 ea'},{n:'Travertina Raw Cap 14×28',p:'$48.12 ea'},{n:'York Wall Cap',p:'$24.09/lf'}]},
+   {c:'Fire & accessories',items:[{n:'Prescott Firepit',p:'$1,074.49 ea'},{n:'Forno Pizza Oven',p:'$4,258.12 ea'},{n:'Gator Super Sand G2',p:'$34.46 ea'},{n:'Gator Maxx G2',p:'$41.81 ea'}]}
+ ]},
+ {id:2,n:'Unilock',t:'Interlock & wall systems — 2026 trade pricing',cat:[
+   {c:'Pavers & slabs',items:[{n:'Beacon Hill 6cm Smooth',p:'$6.53/sf'},{n:'Richcliff 6cm',p:'$12.99/sf'},{n:'Umbriano 7cm',p:'$11.48/sf'},{n:'Courtstone 6cm',p:'$12.99/sf'},{n:'Copthorne 6cm',p:'$12.99/sf'},{n:'Il Campo 7cm',p:'$8.10/sf'},{n:'Series 7cm',p:'$9.23/sf'},{n:'Mattoni 7cm',p:'$7.80/sf'},{n:'Hollandstone 6cm',p:'$3.69/sf'},{n:'Brussels Block Standard',p:'$5.69/sf'},{n:'Skyline Umbriano 50mm Slab',p:'$10.24/sf'},{n:'Trevia 60mm',p:'$5.52/sf'}]},
+   {c:'Permeable',items:[{n:'Eco-Priora 8cm',p:'$8.76/sf'},{n:'Town Hall 7cm Permeable',p:'$14.96/sf'},{n:'Turfstone 8cm',p:'$4.53/sf'}]},
+   {c:'Walls & steps',items:[{n:'Lineo Dimensional Wall',p:'$17.93/ff'},{n:'U-Cara 6" Smooth Fascia',p:'$10.20/sf'},{n:'Pisa2 Standard Wall',p:'$5.96 ea'},{n:'Rivercrest Std',p:'$22.28/ff'},{n:'Sienastone Std 500 Wall',p:'$67.19 ea'},{n:'Sienastone Step 72"',p:'$192.92 ea'}]},
+   {c:'Coping & accessories',items:[{n:'Ledgestone Coping 12×24',p:'$42.30 ea'},{n:'Universal Coping 14×19',p:'$13.34 ea'},{n:'Pisa Smooth Coping',p:'$7.92/lf'},{n:'Gator Super Sand G2',p:'$34.46 ea'},{n:'Gator Maxx G2',p:'$41.81 ea'}]}
+ ]},
+ {id:3,n:'Permacon',t:'Pavers, walls & masonry — 2026 trade pricing',cat:[
+   {c:'Pavers & slabs',items:[{n:'Melville 60mm Slab',p:'$6.49/sf'},{n:'Melville 80mm Paver',p:'$7.05/sf'},{n:'Cassara 60mm Paver',p:'$5.90/sf'},{n:'Mondrian Plus 60mm',p:'$5.32/sf'},{n:'Niagara 60mm 4×8',p:'$3.19/sf'},{n:'Capio 60mm',p:'$4.19/sf'},{n:'Vendome 60mm Paver',p:'$5.75/sf'},{n:'Trafalgar 60mm',p:'$5.22/sf'},{n:'Rosebel 60mm Slab',p:'$6.92/sf'},{n:'Mega-Melville 60mm Slab',p:'$6.39/sf'},{n:'City Slab 60mm',p:'$11.80/sf'},{n:'Eko 70mm Paver',p:'$4.80/sf'}]},
+   {c:'Walls & steps',items:[{n:'Grande Wall 375',p:'$42.08 ea'},{n:'Tandem Wall 90mm',p:'$11.74/ff'},{n:'Vario Wall 90mm',p:'$21.79/ff'},{n:'Orion Wall 8×32',p:'$17.57/ff'},{n:'Lafitt Plus Tandem 90 Step',p:'$19.06 ea'},{n:'Mega-Lafitt Plus Step',p:'$134.83 ea'}]},
+   {c:'Coping & curbs',items:[{n:'Laguna 60 Pool Coping 14×24',p:'$55.25 ea'},{n:'Marina 60mm Bullnose Coping',p:'$4.70 ea'},{n:'Lafitt Curb',p:'$9.52/lf'}]}
+ ]},
+ {id:4,n:'Banas Stones',t:'Natural stone — sandstone, limestone, granite',cat:[
+   {c:'Stone types',items:['Sandstone','Limestone','Granite','Travertine','French Limestone']},
+   {c:'Pavers & slabs',items:['Natural stone pavers','Flagstone','Jumbo Slabs','Stone Circles']},
+   {c:'Coping',items:['1" Coping','Rebated Coping','Pool Coping','Pier Caps']},
+   {c:'Steps · walls · curbs',items:['Steps & Risers','Wall Stone','Curbs']}
+ ]},
+ {id:5,n:'Azoria Pools',t:'Fibreglass inground pool shells · 30+ models',cat:[
+   {c:'Rectangular',items:[['Bayfield 15×35',AZ+'97331/DOLPHIN_Bayfield_1535_15x35_RGB-PINK_low.webp'],['Britannia 16×35',AZ+'97334/DOLPHIN_Britannia_1635_16x35_RGB-PINK_low.webp'],['Diamond 8×10',AZ+'92542/AQUARINO_Diamant_810_8x10_RGB-Pink-low.webp'],['Elora 12×18',AZ+'97343/DOLPHIN_Elora_1218_12x18_RGB-PINK_low.webp'],['Jade 10×20',AZ+'92469/AQUARINO_Jade_1020_10x20_RGB-Pink-low.webp'],['Kelowna 16×36',AZ+'97355/DOLPHIN_Kelowna_1636_16x36_RGB-PINK_low.webp'],['Larimar 10×25',AZ+'92506/AQUARINO_Larimar_1025_10x25_RGB-Pink-low.webp'],['Lazuli 12×28',AZ+'92503/AQUARINO_Lazuli_1228_12x28_RGB-Pink-low.webp'],['Opal 8×16',AZ+'92509/AQUARINO_Opale_816_8x16_RGB-Pink-low.webp'],['Perla 12×24',AZ+'92471/AQUARINO_Perla_1224b_12x24b_RGB-Pink-low.webp'],['Quartz 14×31',AZ+'92485/AQUARINO_Quartz_1431_14x31_RGB-Pink-low.webp'],['Sandbanks 12×26',AZ+'97369/DOLPHIN_Sandbanks_1226_12x26_RGB-PINK_low.webp'],['Sapphire 14×36',AZ+'92482/AQUARINO_Saphir_1436_14x36_RGB-Pink-low.webp'],['Sauble 16×41',AZ+'97372/DOLPHIN_Sauble_1641_16x41_RGB-PINK_low.webp'],['South Hampton 14×30',AZ+'97375/DOLPHIN_SouthHampton_1430_14x30_RGB-PINK_low.webp'],['Tofino 16×40',AZ+'97378/DOLPHIN_Tofino_1640_16x40_RGB-PINK_low.webp'],['Topaze 8×14',AZ+'92473/AQUARINO_Topaze_814_8x14_RGB-Pink-low.webp'],['Zircon 12×22',AZ+'97328/AQUARINO_Zircon_1222_12x22_RGB-PINK_low.webp']]},
+   {c:'Freeform',items:[['Darlington 12×25',AZ+'97337/DOLPHIN_Darlington_1225_12x25_RGB-PINK_low.webp'],['Dover 16×38',AZ+'97340/DOLPHIN_Dover_1638_16x38_RGB-PINK_low.webp'],['Hopewell 15×35',AZ+'97352/DOLPHIN_Hopewell_1535_15x35_RGB-PINK_low.webp'],['Oka 13×33',AZ+'97360/DOLPHIN_Oka_1333_13x33_RGB-PINK_low.webp'],['Wasaga 14×32',AZ+'92527/DOLPHIN_Wasaga_1432_14x32_RGB-PINK-low.webp']]},
+   {c:'Oval',items:[['Florencia 15×34',AZ+'97346/DOLPHIN_Florencia_1534_15x34_RGB-PINK_low.webp'],['Leamy 12×29',AZ+'92530/DOLPHIN_Leamy_1229_12x29_PINK-low.webp'],['Roseway 10×24',AZ+'97363/DOLPHIN_Roseway_1024_10x24_RGB-PINK_low.webp']]},
+   {c:'Relaxation module',items:[['Swanson 9×9','https://www.azoria.ca/craft-assets/general/models/_small/21102/DOLPHIN_Swanson_9x9_web.webp'],['Tanza',AZ+'98354/Tanza2_low-web.webp']]},
+   {c:'Spa',items:[['Hollow 8×8',AZ+'97349/DOLPHIN_Hollow_8x8_8x8_RGB-PINK_low.webp'],['Roslyn 7×7',AZ+'97366/DOLPHIN_Roslyn_7x7_RGB-PINK_low.webp'],['Trent 8×8',AZ+'92555/DOLPHIN_Trent_8x8_8x8_RGB-PINK-low.webp'],['York 8×11',AZ+'92552/DOLPHIN_York_8x11_RGB-PINK-low.webp']]}
+ ]},
+ {id:6,n:'MOVA Pools',t:'Fibreglass inground pools · 2026 Ontario price (pool only) · made in Quebec',cat:[
+   {c:'Pool models — 2026 price',items:[{n:'Wading pool',p:'$8,500'},{n:'8×10',p:'$9,200'},{n:'8×16',p:'$14,250'},{n:'9×24',p:'$17,200'},{n:'11×19',p:'$17,300'},{n:'10×20',p:'$17,750'},{n:'12×20',p:'$18,600'},{n:'11×23',p:'$20,375'},{n:'11×25',p:'$20,850'},{n:'12×22',p:'$20,850'},{n:'12×24',p:'$21,950'},{n:'12×24 Slope',p:'$22,250'},{n:'12×25 Sun-ledge "S"',p:'$22,875'},{n:'12×28',p:'$24,650'},{n:'13×27',p:'$24,700'},{n:'14×28 Slope',p:'$28,500'}]},
+   {c:'Sun-ledge — custom',items:[{n:'12×25 (12×20 pool) · Signature',p:'$29,775'},{n:'12×30 (12×24 pool)',p:'$32,775'},{n:'12×34 (12×28 pool)',img:'https://piscinesmova.com/wp-content/uploads/2026/03/Mova-12x34-Jour2_2024-08-04-132349_oehz-1024x768.webp',p:'$36,500'},{n:'12×37 (12×28 pool)',p:'$38,500'}]},
+   {c:'Delivery (2026, est.)',items:[{n:'Toronto / Vaughan / Brampton',p:'$2,100'},{n:'Mississauga',p:'$2,150'},{n:'Hamilton / Guelph',p:'$2,275'},{n:'Barrie',p:'$2,275'},{n:'Kitchener',p:'$2,700'},{n:'Niagara / Collingwood',p:'$3,050'}]},
+   {c:'Standard features',items:[{n:'8 Diamond-finish colours',p:'incl.'},{n:'MOVAMAX vacuum-bag build',p:'incl.'},{n:'1" wall + bottom insulation',p:'incl.'},{n:'Skimmer · drain · 3 returns',p:'incl.'},{n:'Textured contrast steps',p:'incl.'}]}
+ ]},
+ {id:7,n:'Rinox',t:'Pavers, slabs, walls & stone · 2026 GTA-A delivered price',cat:[
+   {c:'Pavers (90–100 mm)',items:[{n:'Proma 90 mm',p:'$4.88–$5.82/sf'},{n:'Proma XL 90 mm',p:'$6.20–$7.40/sf'},{n:'Proma 3XL 90 mm',p:'$7.60–$8.44/sf'},{n:'Proma Quadra 90 mm',p:'$7.10–$8.08/sf'},{n:'Ava Paver 90 mm',p:'$6.73–$7.66/sf'},{n:'Hayden Paver 100 mm',p:'$5.82/sf'},{n:'Proma Barrette 90 mm',p:'$4.67–$5.13 ea'},{n:'Tena Large 12×24',p:'$7.09/sf'},{n:'Tena Square 12×12',p:'$6.12/sf'},{n:'Tena 6×12',p:'$5.77/sf'}]},
+   {c:'Slabs (60 mm)',items:[{n:'Proma 60 mm Slab',p:'$3.03–$4.59/sf'},{n:'Proma XL 60 mm Slab',p:'$3.91–$5.31/sf'},{n:'Proma 3XL 60 mm Slab',p:'$5.23–$6.86/sf'},{n:'Proma Quadra 60 mm Slab',p:'$5.16–$6.64/sf'},{n:'Ava Slab 60 mm',p:'$5.29–$5.85/sf'},{n:'Proma Barrette 60 mm',p:'$3.36–$3.64 ea'}]},
+   {c:'Permeable & flex',items:[{n:'Aspen Flex',p:'$3.66–$4.23/sf'},{n:'Zuko Flex',p:'$3.66–$4.23/sf'},{n:'Venza 70 mm Permeable',p:'$4.10/sf'}]},
+   {c:'Coping',items:[{n:'Proma XL / Pool Coping',p:'$8.70–$11.32/lf'},{n:'Solino 12" Coping',p:'$8.66–$10.29/lf'},{n:'Viva Grande 70 mm Coping',p:'$8.16/lf'}]},
+   {c:'Walls · blocks · steps',items:[{n:'Ora Wall',p:'$15.11–$17.19/sf'},{n:'Solino Wall',p:'$15.35–$17.59/sf'},{n:'Alonso Wall',p:'$17.33/sf'},{n:'Nolita Wall',p:'$18.61–$21.42/sf'},{n:'Striato Wall',p:'$18.61–$21.42/sf'},{n:'Micca Block',p:'$4.77–$5.13 ea'},{n:'Duo-Block',p:'$8.52 ea'},{n:'Multi Block',p:'$10.27 ea'},{n:'Talus 8"',p:'$4.18 ea'},{n:'Ora Step',p:'$74.31–$92.98 ea'}]},
+   {c:'Wall stone & brick (veneer)',items:[{n:'Londana Stone',p:'$8.55–$9.11/sf'},{n:'Londana Grande',p:'$8.55–$9.11/sf'},{n:'Lorado Stone',p:'$8.55–$9.65/sf'},{n:'Lotis Grande',p:'$8.55–$9.65/sf'},{n:'Lima Stone',p:'$9.11/sf'},{n:'Lugano A / B',p:'$8.55–$9.11/sf'},{n:'Lotis Brick',p:'$6.84–$7.51/sf'},{n:'Clayden Brick',p:'$5.53–$6.12/sf'},{n:'Normandie Brick',p:'$4.84–$6.01/sf'},{n:'Oslo Brick',p:'$5.53–$6.12/sf'},{n:'Roxton Brick',p:'$4.46–$5.82/sf'},{n:'Romania Brick',p:'$4.32–$5.55/sf'}]},
+   {c:'Stone veneer crates',items:[{n:'Sirenis Crate',p:'$7.48/sf'},{n:'Kenya Crate',p:'$7.48/sf'},{n:'Lorena Crate',p:'$7.48/sf'},{n:'Campagnard Crate',p:'$7.48/sf'},{n:'Kava Crate',p:'$7.48/sf'},{n:'Corner crates',p:'$9.75/lf'}]},
+   {c:'Stones · sills · accessories',items:[{n:'Oxford Stone',p:'$7.64+/sf'},{n:'Stanford Stone',p:'$6.52–$7.64/sf'},{n:'Okuta Pathstone',p:'$17.57–$19.79 ea'},{n:'Japanese Path Stone',p:'$23.93 ea'},{n:'Architectural 12×24',p:'$15.69–$20.52 ea'},{n:'Smooth Window Sill',p:'$13.46–$16.25 ea'},{n:'G2 Polymeric Sand',p:'$25.10–$33.27 ea'}]}
+ ]},
+ {id:8,n:'Oakville Stone',t:'Premium imported natural stone · limestone, granite & pavers',cat:[{c:'Limestone',items:['Oakville Black Limestone','Hampton Limestone','Blue Ice Limestone','Antique Limestone']},{c:'Granite',items:['Midnight Black Granite slabs','Granite pavers & treads']},{c:'Pavers & treads',items:['Slate Grey pavers','Natural stone treads','Pool coping & surround']},{c:'Steps & accents',items:['Antique Limestone steps','Custom stone steps','Armour & accent stone']}]},
+ {id:9,n:'Select Stone Supply',t:'Burlington · 11-acre natural stone yard since 1993 · in-house fabrication',cat:[{c:'Flagstone & pavers',items:['Flagstone','Patio flagging','Cut & random pavers']},{c:'Wall & building stone',items:['Wallstone','Building stone','Armour stone']},{c:'Steps & slabs',items:['Natural stone steps','Slabs & treads','Cut-to-size slabs']},{c:'Coping & custom',items:['Pool coping','Custom-cut coping','Fabrication-shop pieces']}]},
+ {id:10,n:'Bernardi Building Supply',t:'50+ yrs · masonry, stone & hardscape distributor · GTA',cat:[{c:'Brick & block',items:['Clay brick','Firebrick','Concrete block']},{c:'Stone & veneer',items:['Natural stone','Thin-veneer stone','Manufactured stone']},{c:'Pavers & hardscape',items:['Pavers','Slabs','Retaining wall units']},{c:'Cement & aggregates',items:['Cement & mortar','Sand & gravel','Crushed stone & pea gravel']}]},
+ {id:11,n:'Best Way Stone',t:'Pavers, slabs, walls, steps & coping — 2026 trade pricing',cat:[
+   {c:'Pavers & slabs',items:[{n:'Adelaide 50mm Smooth',p:'$5.35/sf'},{n:'Adelaide 80mm Smooth',p:'$7.53/sf'},{n:'Ashford 60mm Smooth',p:'$4.68/sf'},{n:'Avari 50mm 28×14',p:'$7.41/sf'},{n:'Huntington 70mm',p:'$4.78/sf'},{n:'Lyra 60mm 12×24 Smooth',p:'$6.38/sf'},{n:'Manhattan 80mm Plank',p:'$7.28/sf'},{n:'Trevista 50mm',p:'$5.68/sf'},{n:'Trevista 80mm',p:'$7.53/sf'},{n:'Vanguard 100mm 4×12',p:'$9.56/sf'},{n:'Ventura 60mm Slate',p:'$6.52/sf'},{n:'Standard 60mm 4×8',p:'$3.41/sf'},{n:'Corso 70mm Slate',p:'$7.48/sf'},{n:'Prisma 60mm Hex',p:'$7.00/sf'}]},
+   {c:'Coping',items:[{n:'Garden Lock Coping',p:'$9.41 ea'},{n:'Parkwall 75mm Coping',p:'$10.86 ea'},{n:'Sopra 14×28 Coping',p:'$15.22 ea'},{n:'Barollo 8" Bullnose',p:'$5.18 ea'}]},
+   {c:'Walls & steps',items:[{n:'Antico Stacker Wall',p:'$5.23 ea'},{n:'Parkwall Regular',p:'$5.10 ea'},{n:'Ridgewall Split Face',p:'$41.73 ea'},{n:'Ikon Wall Grey',p:'$46.27 ea'},{n:'Camden Step 48"',p:'$174.22 ea'},{n:'Forma Step 48" #1',p:'$63.98 ea'}]},
+   {c:'Fire',items:[{n:'Rockton Fire Pit Kit',p:'$931.16 ea'},{n:'Soho Fire Pit Kit',p:'$650.25 ea'}]}
+ ]},
+ {id:12,n:'Oaks Landscape Products',t:'Brampton Brick · Oaks — 2026 trade pricing',cat:[
+   {c:'Pavers & slabs',items:[{n:'Nueva 60mm',p:'$5.56/sf'},{n:'Nueva 80mm',p:'$6.75/sf'},{n:'Molina 60mm',p:'$6.94/sf'},{n:'Molina 80mm',p:'$8.47/sf'},{n:'Rialto 60mm Slate',p:'$5.56/sf'},{n:'Rialto 80mm Slate',p:'$6.75/sf'},{n:'Yorkville 60mm',p:'$6.23/sf'},{n:'Ridgefield 70mm',p:'$4.63/sf'},{n:'Colonnade 60mm',p:'$5.79/sf'},{n:'Market Paver 60mm',p:'$6.23/sf'},{n:'Montebello 70mm',p:'$5.88/sf'},{n:'Strassa 60mm Cobble',p:'$7.80/sf'},{n:'Bonaire 60mm',p:'$7.80/sf'},{n:'Everton Random',p:'$3.95/sf'}]},
+   {c:'Walls & coping',items:[{n:'Proterra Split Wall Std',p:'$37.72 ea'},{n:'Laredo Wall Standard',p:'$5.58 ea'},{n:'Ortana Tapered Wall',p:'$5.12 ea'},{n:'Modan Linear Wall',p:'$9.64 ea'},{n:'Nueva Wall 150',p:'$21.37/ff'},{n:'Ortana Coping 12×24',p:'$10.22 ea'},{n:'Nueva Coping',p:'$15.44 ea'},{n:'Cassina 12×12 Coping',p:'$8.06 ea'}]},
+   {c:'Steps',items:[{n:'Nueva Step 6" Rise',p:'$95.00 ea'}]}
+ ]},
+ {id:13,n:'Porcea Stone',t:'Italian outdoor porcelain pavers (20 & 30 mm) · dealer pricing',cat:[
+   {c:'Porcelain pavers (20mm)',items:['Aura White','Greige','Sand','Seashell','Nero']},
+   {c:'Driveway pavers (30mm)',items:['3 cm vehicular pavers']},
+   {c:'Coping & steps',items:['Bullnose coping','Pool coping','Floating block steps']},
+   {c:'Applications',items:['Pool deck','Patio','Driveway','Terrace']}
+ ]},
+ {id:14,n:'Brampton Brick',t:'Clay brick, thin brick & stone veneer · masonry',cat:[
+   {c:'Clay brick',items:['Architectural Series','Designer Series','Smooth Face','Matt Face']},
+   {c:'Thin brick veneer',items:['Thin Brick','Corner units']},
+   {c:'Stone veneer',items:['Manufactured stone','Ledgestone','Universal corners']},
+   {c:'Paving',items:['Clay pavers']}
+ ]},
+ {id:15,n:'Triple H Concrete Products',t:'Highthorn pavers · TrueBond colour technology since 1975 · dealer pricing',cat:[
+   {c:'Highthorn pavers',items:['Highthorn Large 30×45×6cm','Highthorn Medium 30×30×6cm','Highthorn Small 15×30×6cm']},
+   {c:'Highthorn Premium',items:['Platinum — all sizes']},
+   {c:'Colours',items:['Platinum','Sandstone','Limestone','Shale','Cafe']},
+   {c:'Laying patterns',items:['2:2:4','2:2:1','1:2:1','2:2:2']}
+ ]}
+];
+var OPPS=[[5,'Luxury Pool Opportunity','Large lot, no pool · Morrison Rd','$280K–340K','0.4 km'],[4,'Driveway Replacement','Cracked asphalt, 80s build · Lakeshore','$28K–45K','0.8 km'],[4,'Landscape Lighting','Premium home, dark frontage · Watersedge','$12K–22K','1.2 km'],[4,'Commercial Maintenance','Tired plaza landscaping · Speers Rd','$30K/yr','2.1 km'],[5,'Estate Backyard','Ravine lot, no hardscape · Joshua Creek','$200K+','4.6 km'],[3,'Outdated Landscaping','Overgrown beds · Chartwell','$40K–80K','3.0 km']];
+var PROPTYPES=['Luxury homes','Large lots','Older driveways','No pool','Outdated landscaping','Commercial plazas','Golf clubs','Restaurants','Retirement homes','Condo corps','Builders','Property managers','Industrial','Schools','Churches','Municipal'];
+var TERR=[['Oakville','Hot','#43B581','$612K','11','$56K','High','61%'],['Milton','Hot','#43B581','$340K','7','$49K','High','58%'],['Burlington','Warm','#E0A93B','$280K','6','$47K','Medium','52%'],['Mississauga','Warm','#E0A93B','$190K','4','$48K','Medium','47%'],['Hamilton','Warm','#E0A93B','$120K','3','$40K','Low','44%'],['Toronto','Saturated','#E0685F','$95K','2','$48K','Low','33%']];
+var TANYA_CHIPS=['What appointments do I have today?','Where are the best opportunities near me?','Who owes us money?','Draft a contract for a pool','What\'s the weather tomorrow?','What crews are available?'];
+var US={g:[4.9,187],ig:[2400,8],fb:1100,traffic:'900/mo',da:18};
+var CRU=[['CI Director','Heads the out-market unit'],['Recon','Profiles every rival'],['Ad Intel','Their Google & Meta ads'],['Social Intel','Their posts & cadence'],['Counter','Out-publishes them'],['Review War','Wins the review race']];
+var CINTEL=[
+ {n:'Action Home Services',type:'Both',areas:'Oakville · Burlington · GTA',since:'2012',projects:'6,000+ projects',g:[4.8,640],hs:'13 HomeStars awards',ig:[14000,25],fb:9000,channels:'Google · IG · FB · YouTube · Houzz',spend:'$8–12k/mo (est)',promo:'3D design + financing',traffic:'9,000/mo (est)',da:41,ranks:[['interlocking oakville',1],['pool builder oakville',2],['landscaping oakville',3]],str:['40+ industry awards','Heavy paid + content','Pools, interlock & decks breadth'],weak:['Volume brand, less bespoke','Broad GTA focus dilutes local'],threat:95,counter:'Awards page + interlock & pool landing pages + Meta retargeting',agent:'Ad Intel'},
+ {n:'V.I.L. Landscaping',type:'Landscaping',areas:'Oakville · Burlington · Milton',since:'2014',projects:'500+ builds',g:[4.9,210],hs:'9.8/10 HomeStars',ig:[5200,20],fb:3400,channels:'Google · IG · FB · Houzz · HomeStars · Blog',spend:'$4–6k/mo (est)',promo:'Free 3D design consult',traffic:'3,500/mo (est)',da:34,ranks:[['landscaping oakville',1],['landscape design-build oakville',1],['landscaping halton',2]],str:['#1 SEO + content engine','Most-reviewed in Oakville','Systemized "Leanscaper" brand'],weak:['Premium pricing','Books out in peak season'],threat:92,counter:'Out-publish on pillar terms + review-velocity blitz',agent:'Counter'},
+ {n:'GTA Landscaping',type:'Both',areas:'Oakville · GTA',since:'2006',projects:'550+ pools',g:[4.7,180],hs:'9.9/10 HomeStars',ig:[4100,15],fb:2600,channels:'Google · IG · Houzz · HomeStars',spend:'$3–5k/mo (est)',promo:'—',traffic:'4,000/mo (est)',da:33,ranks:[['pool installation oakville',2],['landscaping oakville',4]],str:['9.9/10 HomeStars','550+ pool volume','Brand-name equipment'],weak:['Less luxury positioning','Generic content'],threat:85,counter:'Review velocity + premium pool content + Azoria/MOVA edge',agent:'Review War'},
+ {n:'Cedar Springs',type:'Landscaping',areas:'Oakville · GTA',since:'1999',projects:'25 yrs',g:[4.9,90],hs:'Strong',ig:[3800,8],fb:2200,channels:'Google · Houzz · ThreeBestRated · IG',spend:'<$1k/mo',promo:'—',traffic:'1,800/mo (est)',da:30,ranks:[['best landscaping oakville',1],['design-build oakville',4]],str:['#1 on ThreeBestRated','25-yr premium reputation','Design-build authority'],weak:['Low social cadence','Thin paid presence'],threat:80,counter:'Win directories + design-build portfolio + referrals',agent:'Review War'},
+ {n:'Burloak Landscaping',type:'Both',areas:'Oakville (all pockets)',since:'2015',projects:'Local volume',g:[4.9,230],hs:'9.5/10',ig:[2600,12],fb:1800,channels:'Google · IG · FB',spend:'$1–3k/mo (est)',promo:'Free estimate',traffic:'2,200/mo (est)',da:26,ranks:[['landscaping bronte',1],['landscaping glen abbey',1],['landscaping oakville',5]],str:['Hyper-local neighbourhood pages','230+ reviews','Owner-on-site angle'],weak:['Smaller team','Limited luxury portfolio'],threat:78,counter:'Our own neighbourhood pages + Google Business Profile',agent:'Counter'},
+ {n:'Shoreline Pools & Landscapes',type:'Both',areas:'Oakville · Burlington · GTA',since:'2017 (est.)',projects:'Pool + landscape design-build',g:[4.9,60],hs:'GuildQuality-verified',ig:[1900,10],fb:1200,channels:'Google · IG · Houzz · GuildQuality',spend:'$2–4k/mo (est)',promo:'Free 3D design',traffic:'2,000/mo (est)',da:24,ranks:[['pool builder oakville',3],['pool landscaping burlington',2]],str:['True in-house pool + landscape design-build','Award-winning designer with 3D renders','GuildQuality-verified reviews'],weak:['Newer brand','Thin Google review base'],threat:86,counter:'Lead with deeper portfolio + fibreglass (Azoria/MOVA) edge; own "pool builder Oakville" SEO',agent:'Recon'},
+ {n:'Tall Oaks Landscape Group',type:'Both',areas:'Oakville · GTA',since:'2012',projects:'Luxury pools & landscapes',g:[4.9,55],hs:'—',ig:[2144,6],fb:900,channels:'Google · IG (strong) · Houzz',spend:'$2–3k/mo (est)',promo:'Landscape before move-in',traffic:'1,600/mo (est)',da:22,ranks:[['luxury landscaping oakville',3],['unilock contractor oakville',2]],str:['Unilock Authorized Contractor','Polished luxury IG (2.1k followers)','Custom-home / pre-move-in angle'],weak:['Smaller review base','Mid-size crew'],threat:84,counter:'Match the Unilock authorization, out-publish their reel cadence, pitch builders on pre-move-in landscaping',agent:'Social Intel'},
+ {n:'Bayview Landscape',type:'Both',areas:'Oakville · Burlington · Milton',since:'2010s (est.)',projects:'Award-winning pools & landscapes',g:[4.8,70],hs:'Strong',ig:[2000,8],fb:1300,channels:'Google · IG · Houzz',spend:'$2–4k/mo (est)',promo:'2D/3D design',traffic:'2,200/mo (est)',da:25,ranks:[['inground pool oakville',3],['backyard landscaping oakville',4]],str:['Award-winning landscapes','One-piece pool shell + premium Hayward','2D/3D design service'],weak:['Vinyl-liner focus','Smaller reach than volume players'],threat:80,counter:'Differentiate on fibreglass (Azoria/MOVA) + masonry depth and warranty',agent:'Ad Intel'},
+ {n:"Let's Landscape Together",type:'Both',areas:'Burlington · Oakville',since:'1990s · 30+ yrs',projects:'30 yrs · pools + landscape',g:[4.7,95],hs:'Established',ig:[1500,6],fb:2000,channels:'Google · IG · FB · Showroom',spend:'$2–4k/mo (est)',promo:'Burlington showroom + free consult',traffic:'2,500/mo (est)',da:28,ranks:[['landscaping burlington',2],['swimming pool design burlington',1]],str:['30+ years, one-stop design-build','In-house custom pools','Physical Burlington showroom'],weak:['Aging brand & website','Less modern-luxury positioning'],threat:78,counter:'Win the modern-luxury aesthetic and a superior digital + 3D experience',agent:'Counter'},
+ {n:'Creative Concepts Landscapes',type:'Both',areas:'Burlington · Oakville · Hamilton',since:'2012',projects:'Luxury residential + commercial',g:[4.8,80],hs:'Strong',ig:[2300,9],fb:1700,channels:'Google · IG · Houzz · FB',spend:'$2–4k/mo (est)',promo:'$5M-insured · free consult',traffic:'2,300/mo (est)',da:27,ranks:[['landscaping burlington',3],['luxury landscaping hamilton',2]],str:['Luxury design-build since 2012','$5M liability + WSIB credibility','Broad GTHA reach'],weak:['Splits focus with maintenance/snow','Less pool-specialized'],threat:76,counter:'Position as pure luxury hardscape + pool specialists with fibreglass edge',agent:'Counter'},
+ {n:'Devine Image Landscaping',type:'Both',areas:'Oakville · Burlington · Hamilton',since:'2015 (est.)',projects:'Luxury pools, kitchens & hardscape',g:[4.9,50],hs:'—',ig:[1700,8],fb:800,channels:'Google · IG · Houzz',spend:'$1–3k/mo (est)',promo:'Free site consult',traffic:'1,500/mo (est)',da:21,ranks:[['luxury landscaping oakville',4],['outdoor kitchen oakville',2]],str:['Prestige-neighbourhood focus','Pools + outdoor kitchens + hardscape','Founder oversees every build'],weak:['Smaller crew capacity','Limited paid reach'],threat:75,counter:'Out-scale on crew capacity and faster 3D / AI design turnaround',agent:'Recon'},
+ {n:'Gelderman Landscape Services',type:'Both',areas:'Burlington · Oakville · Golden Horseshoe',since:'1955',projects:'3-generation · commercial + residential',g:[4.6,140],hs:'Established',ig:[2500,5],fb:3000,channels:'Google · IG · FB · Commercial',spend:'$3–5k/mo (est)',promo:'—',traffic:'4,000/mo (est)',da:35,ranks:[['landscaping burlington',4],['commercial landscaping halton',1]],str:['Since 1955, 3 generations','Huge golden-horseshoe footprint','Strong commercial + maintenance base'],weak:['More commercial/maintenance than luxury build','Less bespoke high-end pool work'],threat:72,counter:'Own the high-end residential pool + hardscape niche they under-serve',agent:'Social Intel'}
+];
+CINTEL.sort(function(a,b){return b.threat-a.threat;});
+var PARTNERS=[
+ {cat:'Luxury home builders',why:'They build the house; you build the backyard, pool & hardscape. One referral is often a $100K+ project — and you become their go-to landscape partner.',give:'Insured, on-schedule landscape & pool partner with 3D design',targets:[['Bachly Construction','Oakville · 60+ yrs luxury custom'],['Kennedy + Kenel','Oakville · "bricks to blooms"'],['Chatsworth Fine Homes','Oakville · 40+ yrs estates'],['Cresmark','Oakville · boutique design-build'],['Black Pearl Custom Homes','SE Oakville estates'],['Home Pillars','Oakville · luxury, fast builds'],['Komon Homes','Halton · Renomark builder'],['Eastview Homes','Oakville · 20+ yrs']]},
+ {cat:'Architects & designers',why:'Architects spec the outdoor scope. Get on their preferred-trades list and you win the build before it goes to tender.',give:'Buildable hardscape detailing, renders & accurate budgets',targets:[['Keeren Design','Oakville · 400+ custom homes'],['David Small Designs','Oakville · award-winning'],['Coral Architecture Studio','Oakville custom homes'],['Geometra Design','GTA residential']]},
+ {cat:'Landscape designers',why:'Design-only studios need a builder to execute. You become their install crew on luxury jobs.',scout:6},
+ {cat:'Pool maintenance',why:'They service hundreds of pools and hear about renos & new builds first. You refer their service to your pool clients; they refer builds to you.',give:'New-build & reno referrals + a trusted install partner',targets:[['Pool Ninjas','Oakville · fibreglass specialists'],['Schwimmer Pool Service','Oakville · 19 seasons'],['Crush Pools','Oakville · full-service'],['Aquadam Pool Services','Oakville · store + service'],['Ultimate Pool Service','Oakville'],['Puddle Pools','Oakville · local'],['Pro Active Pool Service','Milton / Oakville']]},
+ {cat:'Pressure washing companies',why:'They are inside hundreds of premium backyards. A cracked patio or tired interlock is a warm referral straight to you.',scout:8},
+ {cat:'Luxury concierge & estate services',why:'Concierge firms manage everything for high-net-worth homeowners. One contract can feed steady high-end work.',scout:5},
+ {cat:'High-end property management',why:'Managers of luxury homes, estates & condo corporations control recurring exterior budgets — hardscape, not lawn-mowing.',scout:7}
+];
+
+/* HELPERS */
+function pill(t,c){return '<span class="pill" style="color:'+c+';background:'+c+'1f">'+t+'</span>';}
+function card(i,cls){return '<div class="card '+(cls||'')+'">'+i+'</div>';}
+function hd(ph,h,sub){return '<div class="ph">'+ph+'</div><div class="h1 sg">'+h+'</div>'+(sub?'<div class="sub">'+sub+'</div>':'<div style="height:18px"></div>');}
+
+/* SIDEBAR */
+var cur='dashboard';
+function buildNav(){
+ $('nav').innerHTML=NAV.map(function(n){return '<div class="nv" data-s="'+n[2]+'"><span class="ic">'+n[1]+'</span>'+n[0]+'</div>';}).join('');
+ bindNav();
+}
+function bindNav(){Array.prototype.forEach.call(document.querySelectorAll('.nv'),function(el){el.onclick=function(){go(el.getAttribute('data-s'));closeSide();};});}
+function go(s){cur=s;Array.prototype.forEach.call(document.querySelectorAll('.nv'),function(el){el.classList.toggle('sel',el.getAttribute('data-s')===s);});$('wrap').innerHTML=(SCREENS[s]||SCREENS.dashboard)();window.scrollTo(0,0);bindWrap();}
+
+/* SCREENS */
+var SCREENS={
+ dashboard:function(){
+  var hero=card('<div style="display:flex;align-items:center;gap:20px"><div class="orb" style="width:70px;height:70px"></div><div style="flex:1"><div class="sg" style="font-size:21px;font-weight:700">Good morning, Francesco</div><div class="s" style="color:var(--muted);font-size:14px;margin-top:3px">Two follow-ups due, one quote needs a look, and I found 6 opportunities near you.</div></div><button class="btn" id="askt">Ask Tanya</button></div>');
+  var weather='<div class="card" data-ask="What is the Oakville forecast this week, and which days are best for concrete pours?" style="cursor:pointer"><div class="ct">Weather · Oakville</div><div style="display:flex;align-items:center;gap:16px"><div style="font-size:46px">⛅</div><div><div class="big">19°</div><div class="s" style="color:var(--muted)">Partly cloudy · wind 14 km/h</div></div></div><div class="s" style="color:var(--muted);margin-top:14px">Rain Friday PM · no snow alerts · good pour conditions Wed–Thu</div></div>';
+  var sched=card('<div class="ct">Today\'s schedule</div>'+[['9:00','Harvey site visit'],['11:30','Okafor design review'],['1:00','Crew → Wong patio'],['3:00','HPB delivery · Van Beek\'s']].map(function(r){return '<div class="li" data-toast="'+r[1]+' · '+r[0]+'" style="cursor:pointer"><div class="n">'+r[1]+'</div><span class="s">'+r[0]+'</span></div>';}).join(''));
+  var leads=card('<div class="ct">New leads <span class="r" data-s="crm">View all</span></div>'+LEADS.slice(0,3).map(function(l){return '<div class="li" data-s="crm" style="cursor:pointer"><div><div class="n">'+l[0]+'</div><div class="s">'+l[1]+'</div></div><div style="text-align:right"><div class="stars">'+l[2]+'</div><div class="s">'+l[3]+'</div></div></div>';}).join('')+'<div class="li" data-s="crm" style="cursor:pointer"><div class="s" style="color:var(--muted)">2 missed calls · auto-texted back ✓</div></div>');
+  var proj=card('<div class="ct">Active projects <span class="r" data-s="projects">All</span></div>'+PROJECTS.slice(0,3).map(function(p){return '<div style="margin-bottom:13px;cursor:pointer" data-s="projects"><div class="li" style="border:none;padding:0 0 4px"><span class="n">'+p[0]+'</span><span class="s">'+p[2]+'%</span></div><div class="bar"><div style="width:'+p[2]+'%"></div></div></div>';}).join(''));
+  var rev='<div class="card" data-s="analytics" style="cursor:pointer"><div class="ct">Revenue snapshot</div><div class="row3"><div class="stat"><div class="l">This month</div><div class="v">$214K</div></div><div class="stat"><div class="l">Outstanding quotes</div><div class="v">$3.8M</div></div><div class="stat"><div class="l">Deposits in</div><div class="v">$96K</div></div></div><div class="s" style="color:var(--muted);margin-top:12px">Cash flow positive · 3 invoices due this week</div></div>';
+  var ai=card('<div class="ct">From Tanya</div>'+[['I noticed a low margin on quote Q-1039','8 pts under target','ask','Why does quote Q-1039 have a low margin, and how do I get it back to target?'],['Two follow-ups are due today','Wong & Okafor','s','crm'],['I drafted the Harvey proposal','Ready to review','s','documents']].map(function(r){var a=r[2]==='ask'?'data-ask="'+r[3].replace(/"/g,'&quot;')+'"':'data-s="'+r[3]+'"';return '<div class="li" '+a+' style="cursor:pointer"><div><div class="n">'+r[0]+'</div><div class="s">'+r[1]+'</div></div><span class="gold">›</span></div>';}).join(''));
+  var tools=card('<div class="ct">Power tools</div><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px"><div class="card tool" data-s="radar" style="background:var(--panel2)"><div class="e">📡</div><div class="t">Opportunity Radar™</div><div class="d">6 nearby now</div></div><div class="card tool" data-s="competitors" style="background:var(--panel2)"><div class="e">🎯</div><div class="t">Competitor Watch™</div><div class="d">12 rivals tracked</div></div><div class="card tool" data-s="heatmap" style="background:var(--panel2)"><div class="e">🗺️</div><div class="t">Territory Heat Map™</div><div class="d">6 markets</div></div><div class="card tool" data-s="drive" style="background:var(--panel2)"><div class="e">🚗</div><div class="t">Drive Mode™</div><div class="d">Hands-free</div></div></div>');
+  return hero+'<div style="height:16px"></div><div class="grid g2">'+weather+sched+leads+proj+rev+ai+'</div><div style="height:16px"></div>'+tools;
+ },
+ crm:function(){
+  return hd('Sales','CRM','Every lead scored and worked by Tanya the moment it lands.')+'<div class="grid g2" style="margin-bottom:16px"><div class="card tool" data-s="partners"><div class="e">🤝</div><div class="t">Partnerships</div><div class="d">Builders, architects, pool service &amp; more</div></div><div class="card tool" data-s="competitors"><div class="e">🎯</div><div class="t">Competitor Watch™</div><div class="d">Rivals, scored & countered</div></div></div>'+'<div class="grid g2">'+card('<div class="ct">Hot leads</div>'+LEADS.map(function(l){return '<div class="li"><div><div class="n">'+l[0]+'</div><div class="s">'+l[1]+'</div></div><div style="text-align:right"><div class="stars">'+l[2]+'</div><div class="s">'+l[3]+'</div></div></div>';}).join(''))+card('<div class="ct">Pipeline</div>'+[['New',2,'$150K'],['Qualified',3,'$480K'],['Consult',2,'$375K'],['Design',1,'$318K'],['Won',2,'$138K']].map(function(s){return '<div class="li"><div class="n">'+s[0]+' <span class="s">· '+s[1]+'</span></div><span class="gold" style="font-weight:600">'+s[2]+'</span></div>';}).join(''))+'</div>';
+ },
+ design:function(){
+  var tools='<div class="grid g3" style="margin-bottom:16px"><div class="card tool" data-s="manufacturers"><div class="e">🏭</div><div class="t">Products by manufacturer</div><div class="d">Techo-Bloc, Azoria & more</div></div><div class="card tool" data-s="suppliers"><div class="e">🏬</div><div class="t">Suppliers & vendors</div><div class="d">Van Beek\'s live pricing</div></div><div class="card tool" data-s="pricelist"><div class="e">🏷️</div><div class="t">Material price list</div><div class="d">Aggregates, mulch, stone</div></div></div>';
+  var grid='<div class="grid g3">'+MATS.map(function(m){return card('<img class="thumb" src="'+m[1]+'" loading="lazy"><div class="n" style="margin-top:10px">'+m[0]+'</div><div class="s" style="color:var(--muted)">Azoria fibreglass shell</div>');}).join('')+'</div>';
+  return hd('Design','Design & Estimate','Pick a model, drop in the size, and Tanya prices it — Good, Better, Best.')+tools+card('<div class="ct">Quick estimate</div><div class="grid g2"><input id="dsq" type="number" value="650" style="background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px;color:var(--ink)" placeholder="Square feet"><button class="btn" id="dgo">Estimate</button></div><div id="dout" style="margin-top:14px"></div>')+'<div style="height:16px"></div>'+grid;
+ },
+ projects:function(){
+  return hd('Operations','Projects','Live jobs, progress and anything that needs you.')+'<div class="grid g2">'+PROJECTS.map(function(p){var c=p[3]==='On track'?'#43B581':p[3]==='Finishing'?'#2E7DFF':'#E0685F';return card('<div class="li" style="border:none;padding:0 0 8px"><span class="n" style="font-size:16px">'+p[0]+'</span>'+pill(p[3],c)+'</div><div class="s" style="color:var(--muted)">'+p[1]+'</div><div class="bar"><div style="width:'+p[2]+'%"></div></div><div class="s" style="color:var(--muted);margin-top:8px">'+p[2]+'% complete</div>');}).join('')+'</div>';
+ },
+ documents:function(){
+  return hd('Documents','Documents','Quotes, proposals and contracts — Tanya writes them, your client signs them.')+'<div class="grid g3" style="margin-bottom:16px"><div class="card tool" data-doc="a proposal"><div class="e">✦</div><div class="t">Write a proposal</div><div class="d">Scope to signature</div></div><div class="card tool" data-doc="a contract"><div class="e">▦</div><div class="t">Draft a contract</div><div class="d">Verified clauses</div></div><div class="card tool" data-doc="a follow-up email"><div class="e">✎</div><div class="t">Write anything</div><div class="d">Emails, letters, more</div></div></div>'+card('<div class="ct">Recent documents</div>'+[['Marcello D. — Pool proposal','Sent · viewed','$318K'],['Wong Family — Contract','Signed','$96.5K'],['Harvey — Change order #2','Pending signature','+$12.4K']].map(function(r){return '<div class="li"><div><div class="n">'+r[0]+'</div><div class="s">'+r[1]+'</div></div><b>'+r[2]+'</b></div>';}).join(''))+'<div id="docout" style="margin-top:16px"></div>';
+ },
+ marketing:function(){
+  return hd('Growth','Marketing','Tanya runs your channels and turns every job into the next three.')+'<div class="grid g2">'+card('<div class="card tool" data-s="neighbor" style="background:var(--panel2);border:none"><div class="e">🏘️</div><div class="t">Neighbor Marketing™</div><div class="d">Auto-campaign the homes around every job</div></div><div style="height:14px"></div><div class="ct">Channels</div>'+[['Google Business','4.9★ · 187 reviews'],['Instagram','2.4k · 8 posts/mo'],['Website','900 visits/mo']].map(function(r){return '<div class="li"><div class="n">'+r[0]+'</div><span class="s">'+r[1]+'</span></div>';}).join(''))+card('<div class="ct">AI content queue</div>'+[['Harvey reveal reel','Instagram · Sat'],['Cost of a pool in Oakville','Blog · draft'],['Spring booking email','240 contacts · ready']].map(function(r){return '<div class="li"><div class="n">'+r[0]+'</div><span class="s">'+r[1]+'</span></div>';}).join(''))+'</div>';
+ },
+ analytics:function(){
+  var bars=[['F',140],['M',210],['A',260],['M',320],['J',300]];var mx=320;
+  return hd('Intelligence','Analytics','The numbers that matter, and how you stack up.')+'<div class="row3" style="margin-bottom:16px"><div class="stat"><div class="l">Revenue YTD</div><div class="v">$1.42M</div></div><div class="stat"><div class="l">Margin</div><div class="v">42%</div></div><div class="stat"><div class="l">Close rate</div><div class="v">58%</div></div></div>'+card('<div class="ct">Revenue by month ($K)</div><div style="display:flex;align-items:flex-end;gap:12px;height:150px;padding-top:8px">'+bars.map(function(b){return '<div style="flex:1;background:linear-gradient(180deg,var(--gold),#1E5FE0);border-radius:8px 8px 0 0;height:'+(b[1]/mx*100)+'%"></div>';}).join('')+'</div>')+'<div style="height:16px"></div>'+'<div style="height:16px"></div><div class="grid g2"><div class="card tool" data-s="heatmap"><div class="e">🗺️</div><div class="t">Territory Heat Map™</div><div class="d">Hot, warm & saturated markets</div></div><div class="card tool" data-s="competitors"><div class="e">🎯</div><div class="t">Competitor Watch™</div><div class="d">Rivals scored & countered</div></div></div>';
+ },
+ team:function(){
+  var hero=card('<div style="display:flex;align-items:center;gap:18px"><div class="orb" style="width:56px;height:56px"></div><div style="flex:1"><div class="sg" style="font-size:19px;font-weight:700">Tanya <span class="gold">·</span> AI Operating System</div><div class="s" style="color:var(--muted);font-size:13.5px;margin-top:3px">She leads the team below and remembers everything across your business.</div></div><button class="btn" onclick="openTanya()">Talk</button></div>');
+  var depts=ORG.map(function(d){return '<div style="margin-top:20px"><div class="ph" style="margin-bottom:10px">'+d[0]+'</div><div class="grid g2">'+d[1].map(function(a){return '<div class="card tool" data-agent="'+d[0]+'~'+a[0]+'~'+a[1]+'" style="cursor:pointer"><div style="display:flex;align-items:center;gap:13px"><div class="orb" style="width:38px;height:38px"></div><div style="flex:1"><div class="n" style="font-size:15px">'+a[0]+'</div><div class="s" style="color:var(--muted)">'+a[1]+'</div></div><div style="color:var(--gold);font-size:18px">›</div></div></div>';}).join('')+'</div></div>';}).join('');
+  return hd('AI','AI Team','Tap any agent to hand them a task — they do the work and hand it back.')+hero+depts;
+ },
+ settings:function(){
+  return hd('Settings','Settings','Keep it simple. Tanya handles the rest.')+'<div class="grid g2">'+card('<div class="ct">Company</div>'+[['Business','Milton Stone'],['Location','Oakville, ON'],['Owner','Francesco']].map(function(r){return '<div class="li"><div class="n">'+r[0]+'</div><span class="s">'+r[1]+'</span></div>';}).join(''))+card('<div class="ct">Tanya</div>'+[['Voice','On'],['Proactive suggestions','On'],['Drive Mode auto-launch','On'],['Opportunity Radar','On']].map(function(r){return '<div class="li"><div class="n">'+r[0]+'</div>'+pill(r[1],'#43B581')+'</div>';}).join(''))+'</div>';
+ },
+ radar:function(){
+  var list=OPPS.map(function(o){return '<div class="li"><div style="flex:1"><div class="n">'+o[1]+'</div><div class="s" style="color:var(--muted)">'+o[2]+'</div><div class="stars" style="margin-top:3px">'+'★★★★★'.slice(0,o[0])+'</div></div><div style="text-align:right"><div class="gold" style="font-weight:700">'+o[3]+'</div><div class="s">'+o[4]+'</div></div></div>';}).join('');
+  return hd('Tanya found these','Opportunity Radar™','Tanya watches the area around you and scores live opportunities by value. Tap scan to refresh from your current location.')+'<div class="card"><div style="display:flex;gap:9px;margin-bottom:6px">'+['1 km','5 km','10 km'].map(function(r,i){return '<button class="'+(i===1?'btn':'ghost')+'" style="flex:1">'+r+'</button>';}).join('')+'</div><button class="ghost" id="scan" style="width:100%;margin:8px 0 4px">📡 Scan around me</button><div id="scanout">'+list+'</div></div><div style="height:16px"></div>'+card('<div class="ct">Property intelligence — what Tanya looks for</div><div>'+PROPTYPES.map(function(p){return '<span class="chip" style="cursor:default">'+p+'</span>';}).join('')+'</div>')+'<div style="height:16px"></div>'+card('<div class="card tool" data-s="route" style="background:var(--panel2);border:none"><div class="e">🧭</div><div class="t">Route Prospecting™</div><div class="d">Waze for contractors — scan opportunities along your drive</div></div>');
+ },
+ route:function(){
+  return hd('On the move','Route Prospecting™','While you drive, Tanya scans your route and surfaces high-value commercial and neighbourhood opportunities — hands-free.')+'<div class="grid g2">'+card('<div class="ct">Along your route → Burlington</div>'+[['Speers Rd plaza','Commercial maintenance · $30K/yr'],['Lakeshore estates','3 large lots, no pools'],['New builder site','Glen Abbey · 12 homes'],['Bronte restaurants','Patio + planters']].map(function(r){return '<div class="li"><div><div class="n">'+r[0]+'</div><div class="s">'+r[1]+'</div></div><span class="gold">›</span></div>';}).join(''))+card('<div class="ct">Quick capture</div><div class="row3"><button class="ghost">🎙️ Voice note</button><button class="ghost">📷 Photo</button><button class="ghost">📍 Pin lead</button></div><div class="s" style="color:var(--muted);margin-top:14px">Tanya logs each one to CRM and follows up automatically.</div>')+'</div>';
+ },
+ neighbor:function(){
+  return hd('Marketing','Neighbor Marketing™','Start a job and Tanya finds the homes around it, then builds the “we\'re in your neighbourhood” campaign automatically.')+'<div class="grid g2">'+card('<div class="ct">Active job → Wong patio, Mississauga</div><div class="s" style="color:var(--muted);margin-bottom:8px">Tanya detected 42 neighbouring homes.</div>'+[['Facebook ads','12 homes targeted · ready'],['Instagram campaign','Local radius · ready'],['Postcards','42 addresses · queued'],['Door hangers','Print pack ready'],['QR codes','Per-campaign tracking'],['Email','Past clients nearby']].map(function(r){return '<div class="li"><div class="n">'+r[0]+'</div><span class="s">'+r[1]+'</span></div>';}).join(''))+card('<div class="ct">Campaign preview</div><div style="background:var(--panel2);border-radius:14px;padding:16px"><div class="sg" style="font-size:16px;font-weight:700">We\'re working in your neighbourhood 👋</div><div class="s" style="color:var(--muted);margin-top:6px">Milton Stone is transforming a backyard on your street. Free design consults for neighbours this month.</div><button class="btn" style="margin-top:12px" onclick="toast(\'Campaign launched\')">Launch campaign</button></div>')+'</div>';
+ },
+ heatmap:function(){
+  var cards=TERR.map(function(t){return card('<div class="li" style="border:none;padding:0 0 8px"><span class="n" style="font-size:17px">'+t[0]+'</span>'+pill(t[1],t[2])+'</div><div class="row3"><div class="stat" style="padding:11px"><div class="l">Revenue</div><div class="v" style="font-size:18px">'+t[3]+'</div></div><div class="stat" style="padding:11px"><div class="l">Jobs</div><div class="v" style="font-size:18px">'+t[4]+'</div></div><div class="stat" style="padding:11px"><div class="l">Avg job</div><div class="v" style="font-size:18px">'+t[5]+'</div></div></div><div class="s" style="color:var(--muted);margin-top:10px">Lead density: '+t[6]+' · Close rate: '+t[7]+'</div>');});
+  return hd('Where to push','Territory Heat Map™','Green is hot, gold is warm, red is saturated. Tanya ranks your markets by revenue, density and close rate.')+'<div class="grid g2">'+cards.join('')+'</div>';
+ },
+ drive:function(){
+  var big=function(e,t,act){return '<button class="card tool" style="align-items:center;text-align:center;padding:26px 14px" onclick="'+act+'"><div class="e" style="font-size:34px">'+e+'</div><div class="t">'+t+'</div></button>';};
+  return '<div class="ph">Hands-free</div><div class="h1 sg">Drive Mode™</div><div class="sub">Big targets, voice-first. Tap the orb and just talk to Tanya.</div><div style="text-align:center;margin:10px 0 22px"><div class="orb" id="dorb" style="width:120px;height:120px;margin:0 auto"></div><div class="s" style="color:var(--muted);margin-top:12px">Tap to talk</div></div><div class="grid g2">'+big('📡','Nearby opportunities','go(\'radar\')')+big('📅','Next appointment','toast(\'Harvey site visit · 9:00\')')+big('📷','Capture photo','toast(\'Photo saved to project\')')+big('🎙️','Quick note','toast(\'Listening…\')')+big('🌤️','Weather','toast(\'19° · clear through Thu\')')+big('💬','Ask Tanya','openTanya()')+'</div>';
+ },
+ suppliers:function(){
+  var list=SUPPLIERS.map(function(s){return '<div class="li"><div><div class="n">'+s[0]+'</div><div class="s">'+s[1]+'</div></div>'+(s[2]?'<button class="ghost" data-s="pricelist">Live pricing</button>':pill('Add sheet','#8A8A93'))+'</div>';}).join('');
+  return hd('Suppliers','Suppliers & vendors','Your supply yards in one place. Van Beek\'s pulls real prices; the rest fill from their sheets.')+card('<div class="ct">Vendors</div>'+list);
+ },
+ pricelist:function(){
+  var body=PRICELIST.map(function(g){return '<div class="ct" style="margin-top:18px">'+g[0]+'</div>'+g[1].map(function(r){return '<div class="li"><div class="n">'+r[0]+'</div><span class="gold" style="font-weight:600">'+r[1]+'</span></div>';}).join('');}).join('');
+  return hd('Van Beek\'s · Oakville','Material price list','Live retail pricing from Van Beek\'s. Ranges run bag → cubic yard; your contractor-program pricing is lower.')+card(body.replace('margin-top:18px','margin-top:0'));
+ },
+ manufacturers:function(){
+  var g='<div class="grid g2">'+MANUFACTURERS.map(function(m){return '<div class="card tool" data-mfr="'+m.id+'"><div class="t">'+m.n+'</div><div class="d">'+m.t+'</div></div>';}).join('')+'</div>';
+  return hd('Catalogue','Products by manufacturer','Every product line with imagery and specs. Azoria shows live renders; Techo-Bloc, Unilock, Permacon, Oaks, Best Way Stone, MOVA & Rinox carry your real 2026 trade pricing.')+g;
+ },
+ competitors:function(){
+  var maxRev=Math.max.apply(null,CINTEL.map(function(c){return c.g[1];}));
+  var maxIg=Math.max.apply(null,CINTEL.map(function(c){return c.ig[0];}));
+  var sb=card('<div class="ct">Where you stand vs the field</div>'+sbar('Google reviews','You '+US.g[1]+' · leader '+maxRev,US.g[1]/maxRev*100)+sbar('Instagram following','You '+kf(US.ig[0])+' · leader '+kf(maxIg),US.ig[0]/maxIg*100)+sbar('Avg SEO rank','You ~#7 · target #1',28)+'<div class="s" style="color:var(--muted);margin-top:14px">'+CINTEL.filter(function(c){return c.spend.indexOf("<")===-1;}).length+' of '+CINTEL.length+' rivals running paid ads · you\'re tied for the top rating at 4.9★</div>');
+  var list=card('<div class="ct">Rivals — Halton & Golden Horseshoe <span class="r">tap a rival</span></div>'+CINTEL.map(function(c,i){return '<div class="li" data-intel="'+i+'" style="cursor:pointer"><div style="flex:1;padding-right:10px"><div class="n">'+c.n+'</div><div class="s">'+c.areas+'</div>'+pbar(c.threat)+'</div><div style="text-align:center;min-width:48px"><div class="sg" style="font-size:20px;font-weight:700;color:'+(c.threat>=85?'var(--gold)':'var(--ink)')+'">'+c.threat+'</div><div class="s" style="font-size:9px">THREAT</div></div></div>';}).join(''));
+  var unit=card('<div class="ct">Competitive Response Unit <span class="r" data-s="team">Full team ›</span></div><div class="s" style="color:var(--muted);margin-bottom:8px">A dedicated department that out-markets every rival.</div>'+CRU.map(function(a){return '<div class="li"><div><div class="n">'+a[0]+'</div><div class="s">'+a[1]+'</div></div><span class="gold">●</span></div>';}).join(''));
+  return hd('Intelligence','Competitor Watch™','Tracking the leading landscape & pool rivals across Halton & the Golden Horseshoe — everything they do, scored and countered. Tap any rival for the full dossier.')+sb+'<div style="height:16px"></div>'+list+'<div style="height:16px"></div>'+unit;
+ },
+ partners:function(){
+  var list=card('<div class="ct">Partner targets <span class="r">tap a category</span></div>'+PARTNERS.map(function(p,i){return '<div class="li" data-partner="'+i+'" style="cursor:pointer"><div style="flex:1"><div class="n">'+p.cat+'</div><div class="s">'+(p.targets?p.targets.length+' targets identified':'Partner Scout sourcing '+p.scout)+'</div></div><span class="gold">›</span></div>';}).join(''));
+  var team=card('<div class="ct">Partnerships team <span class="r" data-s="team">Full team ›</span></div><div class="s" style="color:var(--muted);margin-bottom:8px">The department that finds, qualifies and lands referral partners.</div>'+[['Bridge','BD Director · builders, architects & property managers'],['Scout','Partner Scout · sources & vets new partners']].map(function(a){return '<div class="li"><div><div class="n">'+a[0]+'</div><div class="s">'+a[1]+'</div></div><span class="gold">●</span></div>';}).join(''));
+  return hd('Partnerships','Partnerships','Referral sources that feed you luxury hardscape & pool work — builders, architects, designers, concierge, pressure-washing and pool-service partners. Tap any category for targets.')+list+'<div style="height:16px"></div>'+team;
+ }
+};
+
+/* ESTIMATE + DOC GEN */
+function bindWrap(){
+ Array.prototype.forEach.call(document.querySelectorAll('[data-s]'),function(el){if(!el.classList.contains('nv'))el.onclick=function(){go(el.getAttribute('data-s'));};});
+ if($('askt'))$('askt').onclick=openTanya;
+ if($('dgo'))$('dgo').onclick=function(){var sq=+$('dsq').value||0;if(sq<5){return;}var b=sq*32;$('dout').innerHTML='<div class="row3">'+[['Good',b*.85],['Better',b],['Best',b*1.4]].map(function(x,i){return '<div class="stat" style="text-align:center;'+(i===2?'background:#2E7DFF;color:#FFFFFF':'')+'"><div class="l" style="'+(i===2?'color:#FFFFFF':'')+'">'+x[0]+'</div><div class="v">$'+Math.round(x[1]).toLocaleString()+'</div></div>';}).join('')+'</div>';};
+ if($('dorb'))$('dorb').onclick=openTanya;
+ if($('scan'))$('scan').onclick=function(){var o=$('scanout');o.style.opacity='.4';$('scan').textContent='📡 Scanning…';setTimeout(function(){o.style.opacity='1';$('scan').textContent='📡 Scan around me';toast('6 opportunities found nearby');},900);};
+ Array.prototype.forEach.call(document.querySelectorAll('[data-doc]'),function(el){el.onclick=function(){var what=el.getAttribute('data-doc');openTanya();setTimeout(function(){tanyaAsk('Write '+what+' for a custom pool project in Oakville.');},250);};});
+ Array.prototype.forEach.call(document.querySelectorAll('[data-mfr]'),function(el){el.onclick=function(){openMfr(el.getAttribute('data-mfr'));};});
+ Array.prototype.forEach.call(document.querySelectorAll('[data-intel]'),function(el){el.onclick=function(){openIntel(+el.getAttribute('data-intel'));};});
+ Array.prototype.forEach.call(document.querySelectorAll('[data-partner]'),function(el){el.onclick=function(){openPartner(+el.getAttribute('data-partner'));};});
+ Array.prototype.forEach.call(document.querySelectorAll('[data-ask]'),function(el){el.onclick=function(){var q=el.getAttribute('data-ask');openTanya();setTimeout(function(){tanyaAsk(q);},250);};});
+ Array.prototype.forEach.call(document.querySelectorAll('[data-toast]'),function(el){el.onclick=function(){toast(el.getAttribute('data-toast'));};});
+ Array.prototype.forEach.call(document.querySelectorAll('[data-agent]'),function(el){el.onclick=function(){var p=el.getAttribute('data-agent').split('~');openAgent(p[0],p[1],p[2]);};});
+ if($('brandHome'))$('brandHome').onclick=function(){go('dashboard');closeSide();};
+ if($('brandTop'))$('brandTop').onclick=function(){go('dashboard');closeSide();};
+}
+function toast(t){var e=document.createElement('div');e.textContent=t;e.style.cssText='position:fixed;bottom:96px;left:50%;transform:translateX(-50%);background:#141418;border:1px solid #26262c;color:#F4F3EF;font-size:13px;font-weight:600;padding:12px 18px;border-radius:12px;z-index:120';document.body.appendChild(e);setTimeout(function(){e.style.transition='opacity .3s';e.style.opacity='0';setTimeout(function(){e.remove();},300);},1700);}
+function openSheet(h){$('sheetcard').innerHTML=h;$('sheet').classList.add('on');}
+function closeSheet(){$('sheet').classList.remove('on');}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function mdLite(t){var s=esc(t);s=s.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');s=s.replace(/(^|\n)#{1,6}\s*(.+)/g,'$1<b>$2</b>');s=s.replace(/(^|\n)\s*[-•]\s+/g,'$1• ');s=s.replace(/\n/g,'<br>');return s;}
+function agentChips(dept){var m={'Executive':['Plan my top 3 priorities this week','Where am I losing money?','Summarize the state of the business'],'Sales':['Write a follow-up to a quiet pool lead','Price a 500 sq ft patio with one step','Handle a "you are too expensive" objection'],'Marketing':['Instagram caption for a finished pool','5 post ideas for this month','Draft a Google review request text'],'Partnerships':['Intro email to a luxury home builder','5 referral partners worth targeting'],'Operations':['Build steps for a 600 sq ft patio','Materials for a 14x28 pool deck'],'Intelligence':['What numbers should I track weekly?','Forecast my spring demand'],'Competitive Response':['Counter-play vs Action Home Services','How do I win the local review race?']};return m[dept]||['Draft something I can use today','Give me your best recommendation'];}
+function agentSystem(dept,name,desc){
+ var base="You are "+name+", a specialist AI agent on the Milton Stone team (department: "+dept+"). Your job: "+desc+". You work for Francesco, the owner. Use the Milton Stone knowledge base below as your source of truth for pricing, policy, process, materials, pool models and the sales playbook. Produce real, ready-to-use work: be concrete and specific, use real numbers from the knowledge base, and keep Milton Stone's calm, premium, value-driven voice. If you need a detail you don't have, make a clear professional assumption and label it.";
+ var f='';var key=dept+' '+name+' '+desc;
+ if(/Sales|Closer|Estimator|Appointment|Follow|Dana|Reed|Sully/i.test(key))f=' Write in a warm, confident, no-pressure sales voice. Where it fits, end with a clear next step toward a 15-minute discovery call with Francesco.';
+ else if(/Marketing|Content|Social|SEO|Ads|Review|Pixel|Ranker|Echo|Nova/i.test(key))f=' Produce publish-ready marketing copy with a hook, body and call-to-action. Brand: premium, local to Oakville and the GTA, trustworthy.';
+ else if(/Partnership|Bridge|Scout/i.test(key))f=' Draft concise, high-end B2B outreach to referral partners (luxury builders, architects, designers, property managers). Lead with what Milton Stone offers them.';
+ else if(/Competitive|Recon|Ad Intel|Social Intel|Counter|Review War|CI Director|Watch/i.test(key))f=' Deliver a sharp competitive read plus a concrete counter-play Milton Stone can act on this week.';
+ else if(/Operations|Ops|Tempo|Stock|Guard|Forge/i.test(key))f=' Produce a clear, practical operations plan: steps in sequence, materials and rough quantities, and what to watch for.';
+ else f=' Think like an executive: prioritize, quantify, and give a crisp recommendation with one or two lines of reasoning.';
+ return base+f+"\n"+MS_KB;
+}
+function openAgent(dept,name,desc){
+ var h='<div style="display:flex;align-items:center;gap:13px;margin-bottom:2px"><div class="orb" style="width:46px;height:46px"></div><div><div class="sg" style="font-size:19px;font-weight:700">'+name+'</div><div class="s" style="color:var(--muted);font-size:13px">'+desc+' · '+dept+'</div></div></div>'
+ +'<div id="agentChips" style="display:flex;flex-wrap:wrap;gap:7px;margin-top:12px"></div>'
+ +'<textarea id="agentTask" placeholder="Give '+name+' a task…" style="width:100%;box-sizing:border-box;min-height:84px;background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:13px 15px;color:var(--ink);font-size:14px;outline:none;resize:vertical;margin-top:10px;font-family:inherit"></textarea>'
+ +'<div style="display:flex;gap:8px;margin-top:10px"><button class="btn" id="agentMic" style="flex:0 0 54px;background:var(--panel2);border:1px solid var(--line)">🎤</button><button class="btn" id="agentRun" style="flex:1">Run '+name+'</button></div>'
+ +'<div id="agentOut" style="margin-top:14px;font-size:14px;line-height:1.65;white-space:pre-wrap;color:var(--ink)"></div>';
+ openSheet(h);
+ var chips=agentChips(dept);if($('agentChips'))$('agentChips').innerHTML=chips.map(function(c){return '<span class="chip" data-c="'+c.replace(/"/g,'')+'">'+c+'</span>';}).join('');
+ Array.prototype.forEach.call(document.querySelectorAll('#agentChips .chip'),function(el){el.onclick=function(){$('agentTask').value=el.getAttribute('data-c');$('agentTask').focus();};});
+ var sys=agentSystem(dept,name,desc);
+ $('agentRun').onclick=function(){var task=($('agentTask').value||'').trim();if(!task){$('agentTask').focus();return;}runAgent(name,sys,task);};
+ if($('agentMic'))$('agentMic').onclick=fillAgentTask;
+ setTimeout(function(){var t=$('agentTask');if(t)t.focus();},120);
+}
+function fillAgentTask(){if(!VOICE){toast('Voice input works in Chrome or Safari');return;}try{if('speechSynthesis' in window)speechSynthesis.cancel();}catch(e){}var SR=window.SpeechRecognition||window.webkitSpeechRecognition;var r=new SR();r.lang='en-US';r.interimResults=false;var m=$('agentMic');if(m)m.textContent='…';r.onresult=function(e){var ta=$('agentTask');if(ta)ta.value=(ta.value?ta.value+' ':'')+e.results[0][0].transcript;};r.onend=function(){if($('agentMic'))$('agentMic').textContent='🎤';};r.onerror=function(){if($('agentMic'))$('agentMic').textContent='🎤';};try{r.start();}catch(e){if($('agentMic'))$('agentMic').textContent='🎤';}}
+async function runAgent(name,sys,task){
+ var out=$('agentOut'),btn=$('agentRun');if(!out)return;
+ out.textContent='';btn.disabled=true;btn.textContent=name+' is working…';
+ try{
+  var res=await fetch(TANYA.endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:TANYA.model,max_tokens:1100,messages:[{role:"user",content:sys+"\n\nTASK: "+task}]})});
+  var d=await res.json();var t=(d.content||[]).filter(function(x){return x.type==='text';}).map(function(x){return x.text;}).join("\n");
+  if(t){out.innerHTML=mdLite(t);}else{out.textContent="No response — try rephrasing the task.";}
+ }catch(e){out.textContent=name+" runs live on your hosted site. If you're seeing this, open your live Vercel link and try again.";}
+ btn.disabled=false;btn.textContent='Run '+name;
+}
+$('sheetbg').onclick=closeSheet;
+function mfrInitials(s){var w=s.replace(/[0-9×x"''().\-]/g,' ').trim().split(/\s+/);return (((w[0]||'')[0]||'')+((w[1]||'')[0]||'')).toUpperCase()||'•';}
+function mfrTile(nm){return '<div class="sg" style="width:52px;height:40px;border-radius:8px;flex-shrink:0;background:linear-gradient(135deg,#2E7DFF33,#2E7DFF12);display:flex;align-items:center;justify-content:center;color:#2E7DFF;font-weight:700;font-size:12px">'+mfrInitials(nm)+'</div>';}
+function specFor(m,c){var n=m.n;
+ if(/Azoria/.test(n))return 'Fibreglass inground shell';
+ if(/MOVA/.test(n)){if(/deliver/i.test(c))return 'Shipping · 9–12 ft wide';if(/feature/i.test(c))return 'Standard · factory-installed';return 'Fibreglass inground shell';}
+ if(/Rinox/.test(n)){if(/flex|permeable/i.test(c))return 'Permeable paver';if(/slab/i.test(c))return 'Slab · 60 mm';if(/paver/i.test(c))return 'Concrete paver';if(/coping/i.test(c))return 'Coping';if(/wall|block|step/i.test(c))return 'Wall · block · step';if(/veneer|brick|crate|stone|sill|accessor/i.test(c))return 'Stone / brick veneer';return 'GTA-A delivered';}
+ if(/Porcea/.test(n))return 'Italian porcelain · 20–30 mm';
+ if(/Brampton/.test(n))return 'Masonry · brick & veneer';
+ if(/Triple H/.test(n))return 'Concrete paver · limestone look';
+ if(/Best Way|Oaks/.test(n)){if(/coping/i.test(c))return 'Coping · trade price';if(/wall|step|fire/i.test(c))return 'Wall / step · trade price';return 'Paver / slab · trade price';}
+ if(/Banas/.test(n)){if(/coping|cap/i.test(c))return 'Natural stone coping · calibrated';if(/step|wall|curb/i.test(c))return 'Natural stone · step / wall / curb';if(/paver|slab/i.test(c))return 'Natural stone paver/slab';return 'Natural stone · multiple finishes';}
+ if(/paver|slab/i.test(c))return 'Concrete paver/slab · 60–80mm · multiple colours';
+ if(/wall|step|curb/i.test(c))return 'Segmental wall / step · engineered concrete';
+ if(/coping|cap/i.test(c))return 'Pool & wall coping / cap';
+ if(/fire|edging|masonry|feature/i.test(c))return 'Fire & feature units';
+ if(/permeable/i.test(c))return 'Permeable paver · ICPI-rated';
+ if(/pool type|model/i.test(c))return 'Fibreglass inground pool';
+ if(/finish|option/i.test(c))return 'Finish & add-on option';
+ return 'Product line · dealer spec sheet';}
+function openMfr(id){var m=MANUFACTURERS.filter(function(x){return x.id==id;})[0];if(!m)return;
+ var body=m.cat.map(function(g){var spec=specFor(m,g.c);return '<div class="ph" style="margin-top:16px;margin-bottom:8px">'+g.c+' · '+g.items.length+'</div>'+g.items.map(function(it){var nm,im=null,price=null;if(typeof it==='string'){nm=it;}else if(Array.isArray(it)){nm=it[0];im=it[1]||null;price=(it[2]!=null?it[2]:null);}else{nm=it.n;im=it.img||null;price=(it.p!=null?it.p:null);}var pic=im?('<img src="'+im+'" loading="lazy" style="width:52px;height:40px;border-radius:8px;object-fit:cover;flex-shrink:0;background:linear-gradient(135deg,#2E7DFF30,#2E7DFF0a)">'):mfrTile(nm);var right=(price!=null)?(price===''?'':'<span class="sg" style="color:var(--gold);font-weight:600;white-space:nowrap;font-size:13px">'+price+'</span>'):'<span class="s" style="color:var(--muted);white-space:nowrap">Dealer quote</span>';return '<div class="litem">'+pic+'<div style="flex:1"><div class="n" style="font-size:14px">'+nm+'</div><div class="s" style="color:var(--muted)">'+spec+'</div></div>'+right+'</div>';}).join('');}).join('');
+ openSheet('<div class="sg" style="font-size:22px;font-weight:700">'+m.n+'</div><div class="s" style="color:var(--muted);margin-top:3px">'+m.t+'</div>'+body+'<div style="display:flex;gap:9px;margin-top:18px"><button class="btn" style="flex:1" onclick="toast(\'Price request sent to dealer\')">Get pricing</button><button class="ghost" style="flex:1" onclick="closeSheet()">Done</button></div>');}
+function pbar(p){p=Math.max(4,Math.min(100,Math.round(p)));return '<div class="bar"><div style="width:'+p+'%"></div></div>';}
+function kf(n){return n>=1000?((n/1000).toFixed(n>=10000?0:1)+'k'):(''+n);}
+function sbar(label,sub,pct){return '<div style="margin-top:14px"><div style="display:flex;justify-content:space-between"><span style="font-size:13px;font-weight:600">'+label+'</span><span class="s" style="color:var(--muted)">'+sub+'</span></div>'+pbar(pct)+'</div>';}
+function openIntel(i){var c=CINTEL[i];
+ function h2h(label,them,us){var pct=them?Math.min(100,us/them*100):100;var ahead=us>=them;return '<div style="margin-top:13px"><div style="display:flex;justify-content:space-between"><span style="font-size:12.5px;font-weight:600">'+label+'</span><span class="s" style="color:var(--muted)">Them '+(them>=1000?kf(them):them)+' · You '+(us>=1000?kf(us):us)+'</span></div>'+pbar(pct)+'<div class="s" style="margin-top:4px;color:'+(ahead?'#43B581':'var(--muted)')+'">'+(ahead?'✓ Ahead of them':'Target: overtake — '+Math.max(0,Math.round(them-us))+' to go')+'</div></div>';}
+ function fld(k,v){return '<div style="margin-top:13px"><div class="s" style="color:var(--muted);text-transform:uppercase;font-size:10px;letter-spacing:.05em">'+k+'</div><div style="font-size:14px;margin-top:3px">'+v+'</div></div>';}
+ var ranks=c.ranks.map(function(r){return '<div class="litem"><span style="flex:1;font-size:13px">'+r[0]+'</span><span class="sg" style="font-weight:700;color:'+(r[1]<=3?'var(--gold)':'var(--ink)')+'">#'+r[1]+'</span></div>';}).join('');
+ var sw='<div class="grid g2" style="margin-top:8px"><div style="background:#11201a;border:1px solid #1f5d3a;border-radius:14px;padding:13px"><div style="color:#43B581;font-weight:700;text-transform:uppercase;font-size:10px">Strengths</div>'+c.str.map(function(s){return '<div class="s" style="color:var(--ink);margin-top:5px">• '+s+'</div>';}).join('')+'</div><div style="background:#241719;border:1px solid #5d2b2b;border-radius:14px;padding:13px"><div style="color:#E0685F;font-weight:700;text-transform:uppercase;font-size:10px">Weak spots</div>'+c.weak.map(function(s){return '<div class="s" style="color:var(--ink);margin-top:5px">• '+s+'</div>';}).join('')+'</div></div>';
+ openSheet('<div class="sg" style="font-size:22px;font-weight:700">'+c.n+'</div><div class="s" style="color:var(--muted);margin-top:3px">'+c.type+' · '+c.areas+'</div><div class="grid g2" style="margin-top:14px"><div style="background:#0c0c0e;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center"><div class="sg" style="font-size:30px;font-weight:700;color:'+(c.threat>=85?'var(--gold)':'var(--ink)')+'">'+c.threat+'</div><div class="s" style="color:var(--muted)">THREAT SCORE</div></div><div style="background:var(--panel2);border-radius:14px;padding:13px"><div class="s" style="color:var(--muted)">In business · '+c.since+'</div><div style="font-weight:600">'+c.projects+'</div><div class="s" style="color:var(--muted);margin-top:6px">Google · HomeStars</div><div style="font-weight:600">'+c.g[0]+'★ ('+c.g[1]+') · '+c.hs+'</div></div></div><div class="ph" style="margin-top:18px">Head-to-head vs you</div>'+h2h('Google reviews',c.g[1],US.g[1])+h2h('Instagram followers',c.ig[0],US.ig[0])+h2h('Posts / month',c.ig[1],US.ig[1])+fld('Marketing channels',c.channels)+fld('Advertising (est)',c.spend)+fld('Promotions',c.promo)+fld('Social','IG '+kf(c.ig[0])+' · '+c.ig[1]+' posts/mo · FB '+kf(c.fb))+fld('Website','~'+c.traffic+' visits · domain authority '+c.da)+'<div class="ph" style="margin-top:16px">Keyword rankings</div>'+ranks+'<div class="ph" style="margin-top:16px">SWOT</div>'+sw+fld('Our counter-play',c.counter)+fld('Assigned agent',c.agent)+'<div style="display:flex;gap:9px;margin-top:18px"><button class="btn" style="flex:1" onclick="closeSheet();openTanya();setTimeout(function(){tanyaAsk(\'How do we beat '+c.n.replace(/'/g,'')+' in Oakville?\')},250)">Ask Tanya how to beat them</button><button class="ghost" onclick="closeSheet()">Done</button></div>');}
+function openPartner(i){var p=PARTNERS[i];var pname=p.cat.replace(/'/g,'');
+ var tg=p.targets?('<div class="ph" style="margin-top:18px">Targets · '+p.targets.length+'</div>'+p.targets.map(function(t){return '<div class="li"><div class="sg" style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#2E7DFF33,#2E7DFF12);color:#2E7DFF;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">'+t[0].charAt(0)+'</div><div style="flex:1;padding-left:11px"><div class="n">'+t[0]+'</div><div class="s">'+t[1]+'</div></div></div>';}).join('')):('<div style="background:var(--panel2);border-radius:14px;padding:16px;margin-top:18px"><div class="n">Partner Scout is sourcing '+p.scout+' targets</div><div class="s" style="color:var(--muted);margin-top:4px">Ask Tanya and she\'ll pull a vetted shortlist in this category.</div></div>');
+ openSheet('<div class="sg" style="font-size:22px;font-weight:700">'+p.cat+'</div><div style="margin-top:14px"><div class="s" style="color:var(--muted);text-transform:uppercase;font-size:10px;letter-spacing:.06em">Why partner</div><div style="font-size:14px;margin-top:5px;line-height:1.55">'+p.why+'</div></div>'+(p.give?'<div style="margin-top:14px"><div class="s" style="color:var(--muted);text-transform:uppercase;font-size:10px;letter-spacing:.06em">What you offer them</div><div style="font-size:14px;margin-top:5px">'+p.give+'</div></div>':'')+tg+'<div style="display:flex;gap:9px;margin-top:20px"><button class="btn" style="flex:1" onclick="closeSheet();openTanya();setTimeout(function(){tanyaAsk(\''+(p.targets?'Draft a partnership intro email from Milton Stone (luxury landscaping \\u0026 pools in Oakville) to a '+pname+' company proposing a referral partnership.':'Find and qualify '+p.scout+' '+pname+' in the Oakville and Halton area we could partner with for referrals.')+'\')},250)">'+(p.targets?'Draft intro with Tanya':'Ask Tanya to find them')+'</button><button class="ghost" onclick="closeSheet()">Done</button></div>');}
+
+/* TANYA */
+var rec=null,listening=false,convo=false;
+var VOICE=('webkitSpeechRecognition' in window)||('SpeechRecognition' in window);
+function tstat(s){var e=$('tstatus');if(e)e.textContent=s||'';}
+function orbState(st){var o=$('torb');if(!o)return;if(st==='idle'){o.classList.remove('sp');tstat(VOICE?'Tap the orb, then just talk':'Type below to talk to Tanya');}else{o.classList.add('sp');tstat(st==='listen'?'Listening…':st==='think'?'Thinking…':'Tanya is speaking…');}}
+var VOICE_PREF=null;
+function pickVoice(){var vs=(window.speechSynthesis&&speechSynthesis.getVoices())||[];if(!vs.length)return null;var order=[/aria.*natural/i,/jenny.*natural/i,/emma.*natural/i,/ava.*natural/i,/michelle.*natural/i,/natural/i,/samantha/i,/ava/i,/allison/i,/google us english/i,/jenny/i,/aria/i,/zira/i,/female/i];for(var i=0;i<order.length;i++){var en=vs.filter(function(v){return order[i].test(v.name)&&/^en/i.test(v.lang);});if(en.length)return en[0];var any=vs.filter(function(v){return order[i].test(v.name);});if(any.length)return any[0];}return vs.filter(function(v){return /^en/i.test(v.lang);})[0]||vs[0];}
+if('speechSynthesis' in window){try{speechSynthesis.onvoiceschanged=function(){VOICE_PREF=pickVoice();};}catch(e){}setTimeout(function(){VOICE_PREF=pickVoice();},300);}
+function speak(t){if(!('speechSynthesis' in window)||!t){orbState('idle');return;}try{speechSynthesis.cancel();var clean=String(t).replace(/[#*_`>]/g,'').replace(/\s+/g,' ').trim();var u=new SpeechSynthesisUtterance(clean);if(!VOICE_PREF)VOICE_PREF=pickVoice();if(VOICE_PREF)u.voice=VOICE_PREF;u.rate=.97;u.pitch=1.02;u.volume=1;orbState('speak');u.onend=function(){if(convo){setTimeout(function(){if(convo&&!listening)listen();},350);}else orbState('idle');};speechSynthesis.speak(u);}catch(e){orbState('idle');}}
+function listen(){if(!VOICE){toast('Voice input works in Chrome or Safari');if($('tin'))$('tin').focus();return;}if(listening)return;try{if('speechSynthesis' in window)speechSynthesis.cancel();}catch(e){}var SR=window.SpeechRecognition||window.webkitSpeechRecognition;rec=new SR();rec.lang='en-US';rec.interimResults=false;rec.maxAlternatives=1;listening=true;orbState('listen');rec.onresult=function(e){listening=false;tanyaAsk(e.results[0][0].transcript,true);};rec.onerror=function(ev){listening=false;if(ev&&(ev.error==='not-allowed'||ev.error==='service-not-allowed')){convo=false;orbState('idle');return;}if(convo){setTimeout(function(){if(convo&&!listening)listen();},800);}else orbState('idle');};rec.onend=function(){if(listening){listening=false;if(convo){setTimeout(function(){if(convo&&!listening)listen();},450);}else orbState('idle');}};try{rec.start();}catch(e){listening=false;if(!convo)orbState('idle');}}
+function orbTap(){if(convo){convo=false;try{rec&&rec.stop();}catch(e){}try{if('speechSynthesis' in window)speechSynthesis.cancel();}catch(e){}listening=false;orbState('idle');return;}convo=true;listen();}
+function openTanya(){$('tanya').classList.add('on');if(!$('tchips').innerHTML)$('tchips').innerHTML=TANYA_CHIPS.map(function(c){return '<span class="chip" data-q="'+c.replace(/"/g,'')+'">'+c+'</span>';}).join('');Array.prototype.forEach.call(document.querySelectorAll('#tchips .chip'),function(c){c.onclick=function(){tanyaAsk(c.getAttribute('data-q'));};});orbState('idle');checkConn();}
+function closeTanya(){convo=false;$('tanya').classList.remove('on');try{if('speechSynthesis' in window)speechSynthesis.cancel();}catch(e){}if(listening){try{rec.stop();}catch(e){}listening=false;}}
+$('dock').onclick=openTanya;$('tx').onclick=closeTanya;$('torb').onclick=orbTap;
+$('tsend').onclick=function(){if($('tin').value.trim())tanyaAsk($('tin').value.trim());};
+$('tin').addEventListener('keydown',function(e){if(e.key==='Enter'&&this.value.trim())tanyaAsk(this.value.trim());});
+function addBub(t,who){var d=document.createElement('div');d.className='bub '+who;d.textContent=t;$('feed').appendChild(d);d.scrollIntoView({behavior:'smooth',block:'end'});return d;}
+/* ── Tanya connection config ──────────────────────────────
+   In the Claude preview this works as-is (direct).
+   To go LIVE on your own site: deploy the proxy from the
+   deploy guide, then set endpoint:'/api/tanya' and direct:false
+   so your API key stays on the server, never in this file.     */
+var TANYA={endpoint:"https://api.anthropic.com/v1/messages",model:"claude-sonnet-4-6",direct:true};
+function tconn(state){var e=$('tconn');if(!e)return;if(state==='live'){e.textContent='● Tanya is live';e.style.color='#43B581';}else if(state==='demo'){e.textContent='● Demo mode';e.style.color='#E0A93B';}else{e.textContent='● Connecting…';e.style.color='var(--muted)';}}
+async function checkConn(){tconn('connecting');try{var r=await fetch(TANYA.endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:TANYA.model,max_tokens:8,messages:[{role:"user",content:"Reply with the single word: ready"}]})});var d=await r.json();tconn(d&&d.content?'live':'demo');}catch(e){tconn('demo');}}
+var MS_KB=`
+MILTON STONE KNOWLEDGE BASE (source of truth):
+COMPANY: Premium landscape construction + fibreglass pool builder. Owner Francesco. Serves GTA (Oakville, Burlington, Milton, Mississauga, Toronto) and Spain (Marbella / Costa del Sol). Techo-Pro Certified; meets/exceeds ICPI/NCMA standards. Workmanship warranty tiers 3/5/10-yr and lifetime (premium upgrades).
+PROCESS: Remote ballpark (photos + address) then on-site visit then contract & deposit then build. Always remote ballpark first, then on-site, then deposit to secure the schedule. Deposits are required (non-negotiable).
+POLICIES: $5,000 minimum installed project. Smaller scopes get bundled, phased, or materials-only with managed delivery. Removal/disposal and delivery are separate from install rates unless stated.
+INTERLOCK (installed, from): under 100 sqft $40/sf; 100-500 sqft $35/sf; over 500 sqft $30/sf. Steps about $1,000 each (4ft width). Borders $45-$65 per linear ft. Sealing $4.50/sf. Driveways must use 80mm+ pavers; NEVER recommend 60mm (e.g. Blu 60) for vehicles.
+FIBREGLASS POOLS (installed): compact ~9x14 from $75,000+; mid-size $95,000-$125,000; full-size/resort $175,000+. Integrated spa from $25,000. Certified dealer/installer for MOVA, Azoria and Barrier Reef. Present one brand unless a comparison is requested.
+AZORIA POOL MODELS (size, depth) Aquarino: Diamond 8x10 3ft9; Larimar 10x25 4ft6; Lazuli 12x28 / 12x32 4ft10; Opal 8x16 4ft9 or 12x20 4ft10; Perla 12x24 4ft10; Quartz 14x36 4ft10; Sapphire 14x31 / 14x36 4ft10; Topaze 8x14 / 12x20 / 12x24 / 12x26 4ft10; Zircon 12x22 / 12x27 5ft. Dolphin: Bayfield 13.5x31 / 15x35 5ft; Sandbanks 8.5x17 / 8.5x26 / 12x26 4ft6; Britannia 16x35 5ft; Elora 12.3x17.10 5ft; South Hampton 14x30 6ft; Kelowna 16x36 6ft; Sauble 16x41 6ft; Tofino 16x40 8ft; Oka 13x33 6ft2 or 15.6x36 6ft5; Darlington 12x25 5ft4; Dover 16x38 5ft8; Wasaga 14x32 5ft10; Florencia 15x34 6ft; Leamy 12.6x29 6ft or 15x34 6ft6; Hopewell 15x35 6ft; Roseway 10x24 5ft6. Relaxation modules: Swanson 9x9, Tanza 8x11 (10in deep). Spas (Dolphin only): Hollow, Roslyn, Trent, York. Colours: Sea Salt, Arctic Grey, Ocean, Aqua, Pacific, Galaxy, Lazuli, Opal, Topaze. Pair with Rinox Proma XL coping and slab.
+MATERIALS: Techo-Bloc = modern/contemporary; Porcea Stone = unique/premium; Banas Stones = natural/traditional; Best Way Stone = budget-conscious alternative.
+SERVICES: interlocking driveways/patios/walkways, fibreglass pools, steps, borders, lighting, fire features, retaining walls, masonry. Materials-only sales with managed delivery (from $250, varies).
+EXTRAS: snow removal residential from $1,299, commercial from $3,499. Asphalt sealing guide: $400 (1-car ~400sf), $600 (2-car ~600sf), $700 (4-car ~730sf); upsell crack fill, lines, resurfacing.
+LEAD QUALIFYING: ask project type (pool/interlock/both), city, timeline, budget comfort, access, required features. Mark HOT when timeline is 90 days or less AND budget fits (pools $75k+, interlock over $5k); offer an immediate discovery call.
+SALES STYLE: calm, confident, real, value-driven, premium without pressure, short sentences. Use layered questions and let the prospect talk about 70 percent; diagnose first, prescribe second. Close with high certainty and future-pace the finished result plus social proof.
+OBJECTIONS: Price - Totally fair, where do you want to be all-in? If we are close we tailor materials and features to match. Thinking - What info would make the decision easy? A quick design call answers most of it. Timeline - We are booking the calendar now; align on the discovery call and you get a clear start window. DIY - We can supply materials with managed delivery; installed projects have a $5k minimum. Competitors - If design and longevity matter, our builds and standards make sense after a quick discovery call.
+CLOSE: always close to a 15-minute discovery call with Francesco; offer two specific time options.
+INSTALL STANDARDS (Techo-Bloc): dense- or open-graded base compacted to about 98 percent, base extends 6in beyond pavement, surface pitched about 1.5 percent min for drainage, polymeric or ASTM C33 joint sand, geotextile to stop sand migration; retaining walls per engineer with #57 clean-stone backfill and a drainage pipe.
+`;
+async function tanyaAsk(q,viaVoice){
+ $('tin').value='';$('tchips').style.display='none';addBub(q,'u');orbState('think');
+ var b=addBub('…','t');
+ try{
+  var res=await fetch(TANYA.endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:TANYA.model,max_tokens:700,messages:[{role:"user",content:"You are Tanya (you introduce yourself as 'Tanya with a Y'), the AI operating system and executive assistant for Milton Stone, run by Francesco. You are confident, warm, charismatic, witty, loyal and sharp — genuinely personable and a pleasure to talk to, with easy natural rapport and a light sense of humour. Keep it professional and never romantic: you are Francesco's right-hand AI and his partner in running the business. Speak in short, natural, friendly spoken-style sentences with a bit of personality. You run on the Milton Stone playbook below.\nIMPORTANT: you are speaking with Francesco himself — the owner, your boss — not a customer. Talk candidly and internally, like a trusted COO briefing the owner: direct, strategic, warm, no sales pitch aimed at him. Use the playbook to help HIM win and coach his team, never to sell to him. You also lead a team of agents and can deploy any of them on his word: when he asks an agent to handle something (for example 'have the Estimator price this' or 'get Nova on a caption'), do that work yourself in that agent's role and tell him which agent handled it. TEAM ROSTER: "+ROSTER+".\n"+MS_KB+"\nReply like you are talking to the boss out loud: short, natural, first-person, candid and useful. Quote real numbers from the knowledge base when relevant. If you lack a specific record, give a realistic estimate and say it is an estimate. Don't use markdown headers.\n\nQuestion: "+q}]})});
+  var d=await res.json();var t=(d.content||[]).filter(function(x){return x.type==='text';}).map(function(x){return x.text;}).join("\n");
+  if(t){b.innerHTML=mdLite(t);}else{b.textContent="I didn't catch that — try again?";}tconn('live');
+ }catch(e){b.textContent="When I'm connected on your hosted OS I answer live from your whole business. Here's the idea: ask me about appointments, opportunities nearby, who owes you money, or to draft a proposal — and I handle it.";tconn('demo');}
+ if(viaVoice){speak(b.textContent);}else{orbState('idle');}
+}
+
+/* mobile */
+function closeSide(){$('side').classList.remove('open');$('scrim').classList.remove('show');}
+$('burger').onclick=function(){$('side').classList.toggle('open');$('scrim').classList.toggle('show');};
+$('scrim').onclick=closeSide;
+
+buildNav();go('dashboard');
+</script>
+</body>
+</html>
