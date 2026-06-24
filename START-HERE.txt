@@ -1,0 +1,79 @@
+========================================================
+  CONTRACTORAIPRO — GET TANYA LIVE TONIGHT
+  No coding. About 30 minutes. Just clicking.
+========================================================
+
+You have 3 short jobs. Do them in order.
+
+--------------------------------------------------------
+JOB 1 — Get your API key (the thing that powers Tanya)
+~5 minutes
+--------------------------------------------------------
+1. Go to:  console.anthropic.com
+2. Sign up or log in.
+3. Click "Billing" on the left → add a credit card →
+   add $20 of credit. (Tanya costs a fraction of a cent
+   per question; $20 lasts a long time.)
+4. Click "API keys" → "Create Key" → name it "Tanya".
+5. COPY the key it shows you (it starts with sk-ant-...).
+   Paste it into a notes app for a minute. You'll use it
+   once in Job 2. (If you lose it, just make a new one.)
+
+--------------------------------------------------------
+JOB 2 — Put the website online
+~20 minutes, all in your web browser
+--------------------------------------------------------
+First, GitHub (this just holds the files):
+1. Go to:  github.com  → Sign up (free).
+2. Top-right "+" → "New repository".
+3. Name it:  contractoraipro  → click "Create repository".
+4. On the next page click the link "uploading an existing file".
+5. Drag in EVERYTHING from this folder:
+      - index.html
+      - the "api" folder (with tanya.js inside)
+      - vercel.json
+   (Drag the whole lot together; keep the api folder as-is.)
+6. Click "Commit changes".
+
+Now Vercel (this makes it a real live site):
+7. Go to:  vercel.com  → "Sign Up" → "Continue with GitHub"
+   → click Authorize.
+8. Click "Add New..." → "Project".
+9. Find "contractoraipro" in the list → click "Import".
+10. BEFORE you deploy, click to open "Environment Variables".
+    Add ONE:
+        Name:   ANTHROPIC_API_KEY
+        Value:  (paste your sk-ant-... key from Job 1)
+    Click "Add".
+11. Click "Deploy". Wait about 1 minute.
+12. You'll get a link like  contractoraipro.vercel.app
+    Open it. Tap the glowing orb (bottom-right).
+    The badge at the top should say "● Tanya is live".
+    Ask her: "Ballpark a 600 square foot patio."
+    She answers from your real Milton Stone pricing. 🎉
+
+--------------------------------------------------------
+JOB 3 — Put it on your phone like an app
+~1 minute
+--------------------------------------------------------
+1. Open your Vercel link on your phone (Safari or Chrome).
+2. Tap the Share button → "Add to Home Screen".
+3. It now opens full-screen like a real app. Talk to Tanya
+   with the voice orb (works in Chrome, Safari, or Edge).
+
+--------------------------------------------------------
+IMPORTANT
+--------------------------------------------------------
+• Keep your sk-ant- key private. It's already safe on the
+  server (you put it in the Environment Variable), never in
+  the website itself.
+• The supplier/manufacturer prices in here are your
+  CONFIDENTIAL contractor pricing. Don't share the link
+  with customers. Keep it for you and your team.
+• Stuck? Hand this whole folder + these steps to any web
+  developer (or a Fiverr freelancer, ~$50). It's a
+  30-minute job for them.
+
+Phase 2 (Tanya actually answering the phone, texting leads,
+booking calls, taking deposits) is in the separate
+ContractorAIPro_DEPLOY_GUIDE — that's the next build.
