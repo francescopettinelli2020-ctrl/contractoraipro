@@ -813,7 +813,7 @@ if('speechSynthesis' in window){try{speechSynthesis.onvoiceschanged=function(){V
 function speak(t){if(!('speechSynthesis' in window)||!t){orbState('idle');return;}try{speechSynthesis.cancel();var clean=String(t).replace(/[#*_`>]/g,'').replace(/\s+/g,' ').trim();var u=new SpeechSynthesisUtterance(clean);if(!VOICE_PREF)VOICE_PREF=pickVoice();if(VOICE_PREF)u.voice=VOICE_PREF;u.rate=.92;u.pitch=1.0;u.volume=.92;orbState('speak');u.onend=function(){if(convo){setTimeout(function(){if(convo&&!listening)listen();},350);}else orbState('idle');};speechSynthesis.speak(u);}catch(e){orbState('idle');}}
 var pauseTimer=null,heardText='';
 function listen(){if(!VOICE){toast('Voice input works in Chrome or Safari');if($('tin'))$('tin').focus();return;}if(listening)return;try{if('speechSynthesis' in window)speechSynthesis.cancel();}catch(e){}var SR=window.SpeechRecognition||window.webkitSpeechRecognition;rec=new SR();rec.lang='en-US';rec.interimResults=true;rec.continuous=true;rec.maxAlternatives=1;listening=true;heardText='';orbState('listen');
- rec.onresult=function(e){var txt='';for(var i=0;i<e.results.length;i++){txt+=e.results[i][0].transcript;}heardText=txt.trim();if(pauseTimer)clearTimeout(pauseTimer);pauseTimer=setTimeout(function(){if(heardText){var said=heardText;heardText='';listening=false;try{rec.stop();}catch(e){}tanyaAsk(said,true);}},3000);};
+ rec.onresult=function(e){var txt='';for(var i=0;i<e.results.length;i++){txt+=e.results[i][0].transcript;}heardText=txt.trim();if(pauseTimer)clearTimeout(pauseTimer);pauseTimer=setTimeout(function(){if(heardText){var said=heardText;heardText='';listening=false;try{rec.stop();}catch(e){}tanyaAsk(said,true);}},2000);};
  rec.onerror=function(ev){listening=false;if(pauseTimer)clearTimeout(pauseTimer);if(ev&&(ev.error==='not-allowed'||ev.error==='service-not-allowed')){convo=false;orbState('idle');return;}if(convo){setTimeout(function(){if(convo&&!listening)listen();},800);}else orbState('idle');};
  rec.onend=function(){if(listening){listening=false;if(pauseTimer)clearTimeout(pauseTimer);if(heardText){var said=heardText;heardText='';tanyaAsk(said,true);}else if(convo){setTimeout(function(){if(convo&&!listening)listen();},450);}else orbState('idle');}};
  try{rec.start();}catch(e){listening=false;if(!convo)orbState('idle');}}
@@ -844,7 +844,7 @@ OBJECTIONS: Price - Totally fair, where do you want to be all-in? If we are clos
 CLOSE: always close to a 15-minute discovery call with Francesco; offer two specific time options.
 INSTALL STANDARDS (Techo-Bloc): dense- or open-graded base compacted to about 98 percent, base extends 6in beyond pavement, surface pitched about 1.5 percent min for drainage, polymeric or ASTM C33 joint sand, geotextile to stop sand migration; retaining walls per engineer with #57 clean-stone backfill and a drainage pipe.
 `;
-var TANYA_SYS="You are Tanya (you introduce yourself as 'Tanya with a Y'), the AI operating system and executive assistant for Milton Stone, run by Francesco. You are confident, warm, charismatic, witty, loyal and sharp — genuinely personable and a pleasure to talk to, with easy natural rapport and a light sense of humour. Keep it professional and never romantic: you are Francesco's right-hand AI and his partner in running the business. Speak in short, natural, friendly spoken-style sentences with a bit of personality. You run on the Milton Stone playbook below.\nIMPORTANT: you are speaking with Francesco himself — the owner, your boss — not a customer. Talk candidly and internally, like a trusted COO briefing the owner: direct, strategic, warm, no sales pitch aimed at him. Use the playbook to help HIM win and coach his team, never to sell to him.\nMEMORY: You remember everything said earlier in THIS conversation. Never say you don't know what the boss is talking about if he already told you — read back through the messages above and pick up the thread. If he says 'assign that to another agent' or 'have someone handle it', you already know what 'that' is from the conversation; do not ask him to re-explain.\nYou lead a team of agents and can deploy any of them on his word: when he asks an agent to handle something (for example 'have the Estimator price this' or 'get Nova on a caption'), do that work yourself in that agent's role and tell him which agent handled it. If he asks you to send an email or text, you can't physically send it yourself, but you draft it ready-to-go and tell him it's queued in the Outreach or Text Center for one tap to send. TEAM ROSTER: "+ROSTER+".\n"+MS_KB+"\nReply like you are talking to the boss out loud: short, natural, first-person, candid and useful. Quote real numbers from the knowledge base when relevant. If you lack a specific record, give a realistic estimate and say it is an estimate. Don't use markdown headers.";
+var TANYA_SYS="You are Tanya (you introduce yourself as 'Tanya with a Y'), the AI operating system and executive assistant for Milton Stone, run by Francesco. You are confident, warm, charismatic, witty, loyal and sharp — genuinely personable and a pleasure to talk to, with easy natural rapport and a light sense of humour. Keep it professional and never romantic: you are Francesco's right-hand AI and his partner in running the business. Speak in short, natural, friendly spoken-style sentences with a bit of personality. You run on the Milton Stone playbook below.\nIMPORTANT: you are speaking with Francesco himself — the owner, your boss — not a customer. Talk candidly and internally, like a trusted COO briefing the owner: direct, strategic, warm, no sales pitch aimed at him. Use the playbook to help HIM win and coach his team, never to sell to him.\nMEMORY: You remember everything said earlier in THIS conversation. Never say you don't know what the boss is talking about if he already told you — read back through the messages above and pick up the thread. If he says 'assign that to another agent' or 'have someone handle it', you already know what 'that' is from the conversation; do not ask him to re-explain.\nYou lead a team of agents and can deploy any of them on his word: when he asks an agent to handle something, do that work yourself in that agent's role and tell him which agent handled it.\n\nSENDING EMAILS AND TEXTS — IMPORTANT, follow exactly:\nYou CAN send emails and texts for the boss now, through the Milton Stone send system, but ONLY after he confirms. The flow has two steps:\nSTEP 1 (draft): When he asks you to email or text someone, write the draft and read him the gist out loud, then ask him to confirm — e.g. 'Want me to send it?'. Do NOT emit a send tag yet.\nSTEP 2 (fire): ONLY once he clearly says yes/send it/go ahead, end your reply with a send tag on its very last line, in this EXACT format and nothing after it:\nFor email: [[EMAIL|recipient@email.com|Subject line here|Full body text here]]\nFor text: [[SMS|+1XXXXXXXXXX|Full message text here]]\nRules for tags: put the WHOLE email/text content inside the tag, use a literal pipe character | only as the separator (never inside the content), keep the body on one line (no line breaks inside the tag), and write nothing after the tag. The app turns that tag into a confirm card with a Send button for him to tap. If you don't have the recipient's address or number, ask him for it before sending. Never emit a tag without his explicit go-ahead. When you do emit a tag, also say a short spoken line like 'Done — tap send and it's gone.'\nTEAM ROSTER: "+ROSTER+".\n"+MS_KB+"\nReply like you are talking to the boss out loud: short, natural, first-person, candid and useful. Quote real numbers from the knowledge base when relevant. If you lack a specific record, give a realistic estimate and say it is an estimate. Don't use markdown headers.";
 var tanyaHistory=[];
 async function tanyaAsk(q,viaVoice){
  $('tin').value='';$('tchips').style.display='none';addBub(q,'u');orbState('think');
@@ -854,9 +854,58 @@ async function tanyaAsk(q,viaVoice){
  try{
   var res=await fetch(TANYA.endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:TANYA.model,max_tokens:700,system:TANYA_SYS,messages:tanyaHistory})});
   var d=await res.json();var t=(d.content||[]).filter(function(x){return x.type==='text';}).map(function(x){return x.text;}).join("\n");
-  if(t){b.innerHTML=mdLite(t);tanyaHistory.push({role:"assistant",content:t});}else{b.textContent="I didn't catch that — try again?";tanyaHistory.pop();}tconn('live');
+  if(t){tanyaHistory.push({role:"assistant",content:t});
+   var parsed=extractSendTag(t);
+   if(parsed){b.innerHTML=mdLite(parsed.spoken||'Ready when you are.');renderSendCard(parsed);}
+   else{b.innerHTML=mdLite(t);}
+  }else{b.textContent="I didn't catch that — try again?";tanyaHistory.pop();}tconn('live');
  }catch(e){b.textContent="When I'm connected on your hosted OS I answer live from your whole business. Here's the idea: ask me about appointments, opportunities nearby, who owes you money, or to draft a proposal — and I handle it.";tanyaHistory.pop();tconn('demo');}
  if(viaVoice){speak(b.textContent);}else{orbState('idle');}
+}
+function extractSendTag(t){
+ var m=t.match(/\[\[(EMAIL|SMS)\|([\s\S]+?)\]\]/);
+ if(!m)return null;
+ var spoken=t.replace(m[0],'').trim();
+ var parts=m[2].split('|');
+ if(m[1]==='EMAIL'){if(parts.length<3)return null;return {kind:'email',spoken:spoken,to:parts[0].trim(),subject:parts[1].trim(),body:parts.slice(2).join('|').trim()};}
+ else{if(parts.length<2)return null;return {kind:'sms',spoken:spoken,to:parts[0].trim(),body:parts.slice(1).join('|').trim()};}
+}
+function renderSendCard(p){
+ var id='sc'+Date.now();
+ var head=p.kind==='email'?('✉️ Email to '+esc(p.to)):('💬 Text to '+esc(p.to));
+ var sub=p.kind==='email'?('<div class="s" style="color:var(--muted);margin-top:2px">Subject: '+esc(p.subject)+'</div>'):'';
+ var card='<div id="'+id+'" class="bub t" style="border:1px solid var(--gold);background:#0c0c0e">'
+  +'<div style="font-weight:700;font-size:14px">'+head+'</div>'+sub
+  +'<div style="font-size:13px;color:var(--muted);margin-top:8px;white-space:pre-wrap;line-height:1.5">'+esc(p.body)+'</div>'
+  +'<div style="display:flex;gap:8px;margin-top:12px">'
+  +'<button class="btn" style="flex:1" onclick="confirmSend(\''+id+'\')">Send it</button>'
+  +'<button class="ghost" onclick="cancelSend(\''+id+'\')">Cancel</button></div></div>';
+ var wrap=document.createElement('div');wrap.innerHTML=card;var node=wrap.firstChild;
+ $('feed').appendChild(node);node.scrollIntoView({behavior:'smooth',block:'end'});
+ SEND_QUEUE[id]=p;
+}
+var SEND_QUEUE={};
+function cancelSend(id){var el=$(id);if(el){el.querySelector('div[style*="display:flex"]').innerHTML='<div class="s" style="color:var(--muted)">Cancelled — not sent.</div>';}delete SEND_QUEUE[id];}
+function confirmSend(id){
+ var p=SEND_QUEUE[id];if(!p)return;
+ var el=$(id);var btnRow=el?el.querySelector('div[style*="display:flex"]'):null;
+ if(btnRow)btnRow.innerHTML='<div class="s" style="color:var(--muted)">Sending…</div>';
+ if(p.kind==='email'){
+  var htmlBody='<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.5;color:#222">'+p.body.replace(/\n/g,'<br>')+'</div>';
+  fetch('/api/send-email',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to:p.to,subject:p.subject,html:htmlBody,text:p.body})})
+   .then(function(r){return r.json().then(function(d){return {ok:r.ok,d:d};});})
+   .then(function(res){
+    if(res.ok&&res.d&&res.d.ok){if(btnRow)btnRow.innerHTML='<div class="s" style="color:#43B581">✓ Sent from info@miltonstone.ca</div>';toast('Email sent ✓');}
+    else{var msg=(res.d&&res.d.error)?res.d.error:'Send failed';if(btnRow)btnRow.innerHTML='<div class="s" style="color:#E0A93B">⚠ '+esc(msg)+'</div>';}
+   })
+   .catch(function(){if(btnRow)btnRow.innerHTML='<div class="s" style="color:#E0A93B">⚠ Couldn\u2019t reach the send engine</div>';});
+ }else{
+  // SMS: Twilio auto-send pending brand approval; hand off to phone Messages app for now
+  var sms='sms:'+p.to+'?&body='+encodeURIComponent(p.body);
+  if(btnRow)btnRow.innerHTML='<div class="s" style="color:#43B581">✓ Opening Messages…</div>';
+  setTimeout(function(){window.location.href=sms;},300);
+ }
+ delete SEND_QUEUE[id];
 }
 function closeSide(){$('side').classList.remove('open');$('scrim').classList.remove('show');}
 $('burger').onclick=function(){$('side').classList.toggle('open');$('scrim').classList.toggle('show');};
