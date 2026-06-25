@@ -13,22 +13,18 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--i
 ::-webkit-scrollbar{width:7px;height:7px}::-webkit-scrollbar-thumb{background:#2c2c33;border-radius:8px}
 button{font-family:inherit;cursor:pointer}
 input,textarea,select{font-family:inherit}
-
-/* SIDEBAR */
 .side{width:236px;background:#08080A;border-right:1px solid var(--line);flex-shrink:0;height:100vh;position:fixed;left:0;top:0;transform:translateX(-100%);transition:.25s;display:flex;flex-direction:column;z-index:50}
 .side.open{transform:none}
 .brand{padding:24px 22px 18px;font-size:18px;font-weight:700;letter-spacing:-.01em}
 .logomark{width:26px;height:26px;border-radius:8px;background:radial-gradient(circle at 32% 28%,#CFE2FF,#2E7DFF 55%,#143A78);box-shadow:0 0 16px rgba(46,125,255,.45);flex-shrink:0;display:inline-block}
 .topbrand{display:flex;font-size:15px;font-weight:700;letter-spacing:-.01em;align-items:center;gap:8px;cursor:pointer}
 .brand sup{font-size:8px;color:var(--muted)}
-.nav{flex:1;padding:6px 12px}
+.nav{flex:1;padding:6px 12px;overflow-y:auto}
 .nv{display:flex;align-items:center;gap:13px;padding:12px 14px;border-radius:13px;color:var(--muted);font-size:14px;font-weight:500;cursor:pointer;margin-bottom:3px;transition:.15s}
 .nv .ic{font-size:17px;width:20px;text-align:center}
 .nv:hover{background:var(--panel);color:var(--ink)}
 .nv.sel{background:var(--soft);color:var(--gold);font-weight:600}
 .sfoot{padding:12px}
-
-/* MAIN */
 .main{flex:1;min-width:0;display:flex;flex-direction:column;max-width:720px;margin:0 auto;width:100%}
 .top{height:64px;display:flex;align-items:center;gap:14px;padding:0 26px;position:sticky;top:0;background:rgba(10,10,12,.7);backdrop-filter:blur(12px);z-index:30}
 .burger{display:block;font-size:21px;background:none;border:none;color:var(--ink)}
@@ -39,8 +35,6 @@ input,textarea,select{font-family:inherit}
 .h1{font-size:30px;font-weight:700;letter-spacing:-.02em}
 .ph{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px}
 .sub{color:var(--muted);font-size:14px;margin:4px 0 22px;line-height:1.5;max-width:620px}
-
-/* CARDS */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;transition:.2s}
 .grid{display:grid;gap:16px}.g2{grid-template-columns:1fr}.g3{grid-template-columns:1fr}
 .ct{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
@@ -61,8 +55,40 @@ input,textarea,select{font-family:inherit}
 .chip:hover{border-color:var(--gold);color:var(--gold)}
 .thumb{width:100%;height:120px;border-radius:13px;object-fit:cover;background:linear-gradient(135deg,#2E7DFF30,#2E7DFF0a)}
 .stars{color:var(--gold);font-size:13px;letter-spacing:1px}
-
-/* ORB */
+.brief{background:linear-gradient(150deg,#16223a,#0f1626 70%);border:1px solid #243352;border-radius:20px;padding:20px;cursor:pointer}
+.brief .when{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7fa6e8;font-weight:700}
+.brief .bl{font-size:16px;font-weight:600;line-height:1.45;margin-top:8px}
+.brief .bl b{color:#fff;font-weight:800}
+.brief .bstats{display:flex;gap:10px;margin-top:15px}
+.brief .bst{flex:1;background:rgba(255,255,255,.04);border:1px solid #223150;border-radius:13px;padding:11px;text-align:center}
+.brief .bst .v{font-size:19px;font-weight:800;letter-spacing:-.02em}
+.brief .bst .l{font-size:9.5px;color:#9fb2d4;text-transform:uppercase;letter-spacing:.05em;font-weight:700;margin-top:2px}
+.typ{font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 7px;border-radius:6px}
+.typ.quote{background:#23311f;color:#7fd07a}.typ.reply{background:#1d2740;color:#7fa6e8}.typ.follow{background:#322a1a;color:#e0b964}
+.dbody{font-size:14px;line-height:1.62;color:#F4F3EF;white-space:pre-wrap;background:#0e0e11;border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:6px}
+.emailmeta{font-size:12.5px;color:var(--muted);margin:10px 0;line-height:1.7;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--panel2)}
+.emailmeta b{color:var(--ink)}
+.seg{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.seg button{flex:1;min-width:70px;background:var(--panel2);border:1px solid var(--line);color:var(--muted);border-radius:11px;padding:11px 8px;font-size:13px;font-weight:600}
+.seg button.on{background:var(--soft);border-color:var(--gold);color:var(--gold)}
+.tog{display:flex;background:var(--panel2);border:1px solid var(--line);border-radius:10px;overflow:hidden;width:fit-content;margin-bottom:13px}
+.tog button{padding:8px 14px;font-size:12.5px;font-weight:600;background:none;border:none;color:var(--muted)}
+.tog button.on{background:var(--gold);color:#fff}
+.fin{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:12px;color:var(--ink);font-size:16px;font-weight:600;text-align:center;outline:none}
+.fin:focus{border-color:var(--gold)}
+.matgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.mat{background:var(--panel2);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:left;padding:0}
+.mat.on{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.mat .sw{height:70px;width:100%;position:relative}
+.mat .mtag{position:absolute;top:7px;left:7px;font-size:9px;font-weight:700;text-transform:uppercase;background:rgba(10,10,12,.72);color:#fff;padding:3px 7px;border-radius:6px}
+.mat .mb{padding:9px 11px 11px}
+.mat .mn{font-size:13px;font-weight:700}
+.mat .mp{font-size:12px;color:var(--gold);font-weight:600;margin-top:2px}
+.erow{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #1f1f25}
+.erow:last-child{border:none}
+.eic{width:32px;height:32px;border-radius:9px;background:var(--panel2);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.emid{flex:1;min-width:0}.emid .en{font-size:13.5px;font-weight:600}.emid .eq{font-size:12px;color:var(--muted);margin-top:2px}
+.emid .eq b{color:var(--gold2);font-weight:700}.ert{font-size:13.5px;font-weight:700;white-space:nowrap}
 .orb{border-radius:50%;position:relative;flex-shrink:0;background:radial-gradient(circle at 36% 30%,#CFE2FF,#5C9CFF 34%,#2E7DFF 62%,#143A78 100%);box-shadow:0 0 50px 6px rgba(46,125,255,.4),inset 0 0 40px rgba(210,228,255,.55);animation:breathe 4.2s ease-in-out infinite}
 .orb::before{content:'';position:absolute;inset:-7px;border-radius:50%;background:conic-gradient(from 0deg,#2E7DFF,#CFE2FF,#2E7DFF,#143A78,#2E7DFF);filter:blur(15px);opacity:.5;z-index:-1;animation:spin 9s linear infinite}
 .orb.sp{animation:breathe 1.6s ease-in-out infinite}
@@ -72,8 +98,6 @@ input,textarea,select{font-family:inherit}
 .wave i{width:5px;height:10px;background:var(--gold);border-radius:3px;animation:wv 1s ease-in-out infinite}
 .wave i:nth-child(2){animation-delay:.15s}.wave i:nth-child(3){animation-delay:.3s}.wave i:nth-child(4){animation-delay:.45s}.wave i:nth-child(5){animation-delay:.6s}.wave i:nth-child(6){animation-delay:.2s}.wave i:nth-child(7){animation-delay:.4s}
 @keyframes wv{0%,100%{height:8px;opacity:.5}50%{height:30px;opacity:1}}
-
-/* TANYA DOCK + OVERLAY */
 .dock{position:fixed;right:22px;bottom:22px;width:60px;height:60px;z-index:60;cursor:pointer}
 .dock .orb{width:60px;height:60px}
 .dock .lbl{position:absolute;right:70px;top:50%;transform:translateY(-50%);background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:8px 14px;font-size:12.5px;font-weight:600;white-space:nowrap;opacity:0;transition:.2s;pointer-events:none}
@@ -91,7 +115,6 @@ input,textarea,select{font-family:inherit}
 .tbar{position:sticky;bottom:0;width:100%;max-width:560px;display:flex;gap:9px;padding-top:10px}
 .tbar input{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;color:var(--ink);font-size:14px;outline:none}
 .tchips{max-width:560px;text-align:center}
-
 .sheet{position:fixed;inset:0;z-index:80;display:none}
 .sheet.on{display:block}
 .sheetbg{position:absolute;inset:0;background:rgba(0,0,0,.55)}
@@ -119,7 +142,6 @@ input,textarea,select{font-family:inherit}
   <div class="sfoot"><div class="nv" data-s="settings"><span class="ic">⚙</span>Settings</div></div>
 </aside>
 <div class="scrim" id="scrim"></div>
-
 <div class="main">
   <div class="top">
     <button class="burger" id="burger">☰</button>
@@ -129,11 +151,7 @@ input,textarea,select{font-family:inherit}
   </div>
   <div class="wrap" id="wrap"></div>
 </div>
-
-<!-- Tanya dock -->
 <div class="dock" id="dock"><div class="orb"></div><div class="lbl">Ask Tanya</div></div>
-
-<!-- Tanya overlay -->
 <div class="tanya" id="tanya">
   <button class="x" id="tx">✕</button>
   <div id="tconn" style="position:absolute;top:24px;left:24px;font-size:11px;font-weight:700;color:var(--muted)">● Connecting…</div>
@@ -145,18 +163,12 @@ input,textarea,select{font-family:inherit}
   <div class="tchips" id="tchips"></div>
   <div class="tbar"><input id="tin" placeholder="Ask Tanya anything…"><button class="btn" id="tsend">Ask</button></div>
 </div>
-
-<!-- Detail sheet -->
 <div class="sheet" id="sheet"><div class="sheetbg" id="sheetbg"></div><div class="sheetcard" id="sheetcard"></div></div>
-
 <script>
 var GOLD='#2E7DFF';
 function $(id){return document.getElementById(id);}
 $('date').textContent=new Date().toLocaleDateString('en-CA',{weekday:'long',month:'long',day:'numeric'});
-
-var NAV=[['Dashboard','🏠','dashboard'],['CRM','👥','crm'],['Design & Estimate','🎨','design'],['Projects','🏗','projects'],['Documents','📄','documents'],['Marketing','📈','marketing'],['Analytics','📊','analytics'],['AI Team','🤖','team']];
-
-/* DATA */
+var NAV=[['Dashboard','🏠','dashboard'],['CRM','👥','crm'],['Design & Estimate','🎨','design'],['Estimate Studio','🧮','estimator'],['Projects','🏗','projects'],['Outreach','✉️','outreach'],['Documents','📄','documents'],['Marketing','📈','marketing'],['Analytics','📊','analytics'],['AI Team','🤖','team']];
 var LEADS=[['Marcello D.','Custom pool + cabana · Oakville','★★★★★','$300K+'],['The Harveys','Backyard + pool · Oakville','★★★★★','$300K+'],['Priya S.','Interlock driveway · Burlington','★★★★','$25–75K'],['T. Okafor','Pool + landscape · Toronto','★★★★','$150–300K']];
 var PROJECTS=[['Wong patio + kitchen','Mississauga',72,'On track'],['Singh pool deck','Oakville',45,'Material delay'],['Andlauer estate','Oakville',20,'On track'],['Bianchi brick wall','Oakville',90,'Finishing']];
 var ORG=[
@@ -171,7 +183,15 @@ var ORG=[
 var ROSTER=ORG.map(function(d){return d[0]+': '+d[1].map(function(a){return a[0]+' ('+a[1]+')';}).join('; ');}).join(' | ');
 var AZ='https://www.azoria.ca/craft-assets/products/MODELES_3D/_small/';
 var MATS=[['Bayfield 15×35',AZ+'97331/DOLPHIN_Bayfield_1535_15x35_RGB-PINK_low.webp'],['Kelowna 16×36',AZ+'97355/DOLPHIN_Kelowna_1636_16x36_RGB-PINK_low.webp'],['Sapphire 14×36',AZ+'92482/AQUARINO_Saphir_1436_14x36_RGB-Pink-low.webp'],['Tofino 16×40',AZ+'97378/DOLPHIN_Tofino_1640_16x40_RGB-PINK_low.webp'],['Oka 13×33',AZ+'97360/DOLPHIN_Oka_1333_13x33_RGB-PINK_low.webp'],['Florencia 15×34',AZ+'97346/DOLPHIN_Florencia_1534_15x34_RGB-PINK_low.webp']];
-var SUPPLIERS=[['Van Beek\'s Landscape Supply','Oakville · 905-842-5053 · live pricing',true],['Legends Landscape Supply','Burlington · pavers & natural stone',false],['Landscape Depot Supply','GTA · aggregates, soil & sod',false],['Acorn Landscape Supply','GTA · Unilock dealer',false],['Sid\'s Ponds','GTA · ponds, water features & aquatics',false],['Peel Landscape Depot','Peel · aggregates, stone & pavers',false]];
+var VENDORS=[
+ {id:'vanbeeks',n:"Van Beek's Landscape Supply",cat:'Soil · mulch · stone · aggregates',live:true,what:"Family-run landscape supply yard since 1962. Bulk soil, mulch, decorative stone, aggregates, sod, firewood and artificial turf, plus custom soil mixes. Drive-in truck loading and GTA-wide bulk delivery.",phone:'9058425053',phoneLabel:'(905) 842-5053',web:'vanbeeks.com',locs:[['Oakville','2410 Lower Base Line Rd, Oakville, ON L6M 4G1'],['Mississauga','758 Southdown Rd, Mississauga, ON L5J 2Y4']],social:[['Instagram','@vanbeeksls']],note:'60+ years · serves Oakville, Burlington, Milton & GTA'},
+ {id:'sids',n:"Sid's Ponds & Gardenscapes",cat:'Water features · hardscape',live:false,what:"Water-garden and hardscape specialist since 1999. Pond supplies, pumps and filters (Aquascape, Laguna), fish and aquatic plants, interlock and natural stone, aggregates, fire features and synthetic grass. Authorized Techo-Bloc dealer.",phone:'9058245104',phoneLabel:'(905) 824-5104',email:'Online@SidsPonds.com',web:'sids-ponds.com',locs:[['Store','6000 Ninth Line, Mississauga, ON L5N 0C1']],social:[],note:'Serves Mississauga, Oakville, Milton & the GTA'},
+ {id:'legends',n:'Legends Landscape Supply',cat:'Pavers · natural stone',live:false,what:"Burlington landscaping hub for Halton. Interlock and pavers, flagstone, aggregates, quarry products, natural stone, outdoor kitchens, water features and drainage at wholesale pricing, with free landscape coaching. Authorized Techo-Bloc & Permacon dealer.",phone:'9053363369',phoneLabel:'(905) 336-3369 (call/text)',web:'landscapestore.ca',locs:[['Showroom','1150 Heritage Rd, Burlington, ON L7L 4X9']],social:[['Instagram','@legends_landscape_supply']],note:'Wholesale yard · also 1-888-976-3790'},
+ {id:'selectstone',n:'Select Stone Supply',cat:'Natural stone specialist',live:false,what:"Natural stone specialist with an 11-acre Burlington yard, supplying landscapers and builders since 1993. Flagstone, steps, coping, armourstone and building stone, plus in-house custom fabrication and surface finishes.",phone:'9053354900',phoneLabel:'905-335-4900',email:'info@selectstonesupply.com',web:'selectstonesupply.com',locs:[['Yard','3095 Harrison Court, Burlington, ON L7M 0W4']],social:[['Facebook','SelectStoneSupply']],note:'Since 1993 · custom fabrication shop'},
+ {id:'landscapedepot',n:'Landscape Depot Supply',cat:'Aggregates · soil · sod',live:false,what:"GTA landscape supply yard carrying aggregates, soils, mulch and sod for residential and contractor projects.",web:'',locs:[],social:[],note:'Full profile being added'},
+ {id:'acorn',n:'Acorn Landscape Supply',cat:'Unilock dealer',live:false,what:"GTA landscape supply and authorized Unilock dealer carrying pavers, walls and hardscape products.",web:'',locs:[],social:[],note:'Full profile being added'},
+ {id:'peel',n:'Peel Landscape Depot',cat:'Aggregates · stone · pavers',live:false,what:"Peel-region landscape depot carrying aggregates, natural stone and pavers for contractors and homeowners.",web:'',locs:[],social:[],note:'Full profile being added'}
+];
 var PRICELIST=[
  ['Aggregates',[['Limestone Screening','$5.15–$140'],['3/4" Clear Gravel','$5.15–$148'],['HPB Bedding','$5.15–$148'],['Recycled Crush','$4.50–$135'],['Brick Sand','$4.85–$155'],['Concrete Sand','$4.85–$155'],['Limestone Crush','$4.99–$148']]],
  ['Mulch',[['Black / Brown / Red / Pine','$4.95–$145'],['Cedar','$5.40–$159'],['Hemlock','$5.65–$165'],['Maple Wood Chips','$4.65–$140'],['Playground','$5.45–$158']]],
@@ -214,7 +234,7 @@ var MANUFACTURERS=[
    {c:'Delivery (2026, est.)',items:[{n:'Toronto / Vaughan / Brampton',p:'$2,100'},{n:'Mississauga',p:'$2,150'},{n:'Hamilton / Guelph',p:'$2,275'},{n:'Barrie',p:'$2,275'},{n:'Kitchener',p:'$2,700'},{n:'Niagara / Collingwood',p:'$3,050'}]},
    {c:'Standard features',items:[{n:'8 Diamond-finish colours',p:'incl.'},{n:'MOVAMAX vacuum-bag build',p:'incl.'},{n:'1" wall + bottom insulation',p:'incl.'},{n:'Skimmer · drain · 3 returns',p:'incl.'},{n:'Textured contrast steps',p:'incl.'}]}
  ]},
- {id:7,n:'Rinox',t:'Pavers, slabs, walls & stone · 2026 GTA-A delivered price',cat:[
+ {id:7,n:'Rinox',t:'Pavers, slabs, walls & stone · 2026 GTA-A delivered price · buy-direct dealer',cat:[
    {c:'Pavers (90–100 mm)',items:[{n:'Proma 90 mm',p:'$4.88–$5.82/sf'},{n:'Proma XL 90 mm',p:'$6.20–$7.40/sf'},{n:'Proma 3XL 90 mm',p:'$7.60–$8.44/sf'},{n:'Proma Quadra 90 mm',p:'$7.10–$8.08/sf'},{n:'Ava Paver 90 mm',p:'$6.73–$7.66/sf'},{n:'Hayden Paver 100 mm',p:'$5.82/sf'},{n:'Proma Barrette 90 mm',p:'$4.67–$5.13 ea'},{n:'Tena Large 12×24',p:'$7.09/sf'},{n:'Tena Square 12×12',p:'$6.12/sf'},{n:'Tena 6×12',p:'$5.77/sf'}]},
    {c:'Slabs (60 mm)',items:[{n:'Proma 60 mm Slab',p:'$3.03–$4.59/sf'},{n:'Proma XL 60 mm Slab',p:'$3.91–$5.31/sf'},{n:'Proma 3XL 60 mm Slab',p:'$5.23–$6.86/sf'},{n:'Proma Quadra 60 mm Slab',p:'$5.16–$6.64/sf'},{n:'Ava Slab 60 mm',p:'$5.29–$5.85/sf'},{n:'Proma Barrette 60 mm',p:'$3.36–$3.64 ea'}]},
    {c:'Permeable & flex',items:[{n:'Aspen Flex',p:'$3.66–$4.23/sf'},{n:'Zuko Flex',p:'$3.66–$4.23/sf'},{n:'Venza 70 mm Permeable',p:'$4.10/sf'}]},
@@ -222,7 +242,8 @@ var MANUFACTURERS=[
    {c:'Walls · blocks · steps',items:[{n:'Ora Wall',p:'$15.11–$17.19/sf'},{n:'Solino Wall',p:'$15.35–$17.59/sf'},{n:'Alonso Wall',p:'$17.33/sf'},{n:'Nolita Wall',p:'$18.61–$21.42/sf'},{n:'Striato Wall',p:'$18.61–$21.42/sf'},{n:'Micca Block',p:'$4.77–$5.13 ea'},{n:'Duo-Block',p:'$8.52 ea'},{n:'Multi Block',p:'$10.27 ea'},{n:'Talus 8"',p:'$4.18 ea'},{n:'Ora Step',p:'$74.31–$92.98 ea'}]},
    {c:'Wall stone & brick (veneer)',items:[{n:'Londana Stone',p:'$8.55–$9.11/sf'},{n:'Londana Grande',p:'$8.55–$9.11/sf'},{n:'Lorado Stone',p:'$8.55–$9.65/sf'},{n:'Lotis Grande',p:'$8.55–$9.65/sf'},{n:'Lima Stone',p:'$9.11/sf'},{n:'Lugano A / B',p:'$8.55–$9.11/sf'},{n:'Lotis Brick',p:'$6.84–$7.51/sf'},{n:'Clayden Brick',p:'$5.53–$6.12/sf'},{n:'Normandie Brick',p:'$4.84–$6.01/sf'},{n:'Oslo Brick',p:'$5.53–$6.12/sf'},{n:'Roxton Brick',p:'$4.46–$5.82/sf'},{n:'Romania Brick',p:'$4.32–$5.55/sf'}]},
    {c:'Stone veneer crates',items:[{n:'Sirenis Crate',p:'$7.48/sf'},{n:'Kenya Crate',p:'$7.48/sf'},{n:'Lorena Crate',p:'$7.48/sf'},{n:'Campagnard Crate',p:'$7.48/sf'},{n:'Kava Crate',p:'$7.48/sf'},{n:'Corner crates',p:'$9.75/lf'}]},
-   {c:'Stones · sills · accessories',items:[{n:'Oxford Stone',p:'$7.64+/sf'},{n:'Stanford Stone',p:'$6.52–$7.64/sf'},{n:'Okuta Pathstone',p:'$17.57–$19.79 ea'},{n:'Japanese Path Stone',p:'$23.93 ea'},{n:'Architectural 12×24',p:'$15.69–$20.52 ea'},{n:'Smooth Window Sill',p:'$13.46–$16.25 ea'},{n:'G2 Polymeric Sand',p:'$25.10–$33.27 ea'}]}
+   {c:'Stones · sills · accessories',items:[{n:'Oxford Stone',p:'$7.64+/sf'},{n:'Stanford Stone',p:'$6.52–$7.64/sf'},{n:'Okuta Pathstone',p:'$17.57–$19.79 ea'},{n:'Japanese Path Stone',p:'$23.93 ea'},{n:'Architectural 12×24',p:'$15.69–$20.52 ea'},{n:'Smooth Window Sill',p:'$13.46–$16.25 ea'},{n:'G2 Polymeric Sand',p:'$25.10–$33.27 ea'}]},
+   {c:'Buy-direct & rep',items:[{n:'Parent company of Azoria Pools',p:'—'},{n:'Order through authorized dealer account',p:'rinox.com'},{n:'Ask your regional Rinox rep to set up a dealer account',p:'direct'}]}
  ]},
  {id:8,n:'Oakville Stone',t:'Premium imported natural stone · limestone, granite & pavers',cat:[{c:'Limestone',items:['Oakville Black Limestone','Hampton Limestone','Blue Ice Limestone','Antique Limestone']},{c:'Granite',items:['Midnight Black Granite slabs','Granite pavers & treads']},{c:'Pavers & treads',items:['Slate Grey pavers','Natural stone treads','Pool coping & surround']},{c:'Steps & accents',items:['Antique Limestone steps','Custom stone steps','Armour & accent stone']}]},
  {id:9,n:'Select Stone Supply',t:'Burlington · 11-acre natural stone yard since 1993 · in-house fabrication',cat:[{c:'Flagstone & pavers',items:['Flagstone','Patio flagging','Cut & random pavers']},{c:'Wall & building stone',items:['Wallstone','Building stone','Armour stone']},{c:'Steps & slabs',items:['Natural stone steps','Slabs & treads','Cut-to-size slabs']},{c:'Coping & custom',items:['Pool coping','Custom-cut coping','Fabrication-shop pieces']}]},
@@ -287,13 +308,93 @@ var PARTNERS=[
  {cat:'Luxury concierge & estate services',why:'Concierge firms manage everything for high-net-worth homeowners. One contract can feed steady high-end work.',scout:5},
  {cat:'High-end property management',why:'Managers of luxury homes, estates & condo corporations control recurring exterior budgets — hardscape, not lawn-mowing.',scout:7}
 ];
-
-/* HELPERS */
+var DRAFTS=[
+ {id:1,type:'reply',agent:'Closer',to:'John Paul',email:'jpaul@example.com',subject:'Your Mova pool + backyard — next steps',about:'New lead reply — Mova pool + custom hardscape',vlabel:'$150K+',mins:8,
+  body:"Hello John Paul,\n\nThank you for reaching out to Milton Stone regarding your backyard transformation, including a beautiful Mova pool and custom hardscape.\n\nMy name is Francesco Pettinelli, and I'll be personally assisting you throughout the planning process.\n\nI currently have availability on Monday between 11:00 AM and 12:00 PM, or 4:00 PM and 5:00 PM. Would either of those windows work for a quick 15-minute discovery call? On it, I'll learn what you're picturing and give you a clear ballpark before we book a site visit.\n\nLooking forward to it.\n\nWarm regards,\nFrancesco Pettinelli\nMilton Stone"},
+ {id:2,type:'quote',agent:'Estimator',to:'Marcello D.',email:'marcello.d@example.com',subject:'Your custom pool + cabana estimate',about:'Quote — 16x40 Tofino pool, cabana + travertine patio',vlabel:'$318K',mins:21,
+  body:"Hi Marcello,\n\nGreat speaking with you. Here's the estimate for your Oakville backyard:\n\n- Azoria 16x40 Tofino fibreglass pool, installed\n- Custom cabana with outdoor kitchen rough-in\n- ~1,200 sq ft travertine patio and pool surround\n- Glass railing, lighting and automation\n\nInvestment: $318,000 (Better tier), with a 10-year workmanship warranty. A 50% deposit secures your 2026 build window.\n\nI'd love to walk you through it. Are you free Tuesday at 2:00 PM, or Wednesday at 10:00 AM?\n\nBest,\nFrancesco\nMilton Stone"},
+ {id:3,type:'follow',agent:'Sully',to:'The Harveys',email:'harvey.family@example.com',subject:'Still here when you are ready',about:'Follow-up — no reply in 3 days · backyard + pool',vlabel:'$300K+',mins:46,
+  body:"Hi Sarah and Tom,\n\nJust circling back on your backyard and pool project. No pressure at all, I know these are big decisions.\n\nIf it's helpful, I can put together a quick 3D concept so you can actually see the space before committing to anything. Would that move things along?\n\nHappy to find a time that suits you.\n\nWarm regards,\nFrancesco\nMilton Stone"},
+ {id:4,type:'reply',agent:'Closer',to:'Priya S.',email:'priya.s@example.com',subject:'Your Burlington driveway — quick ballpark',about:'New lead reply — interlock driveway, Burlington',vlabel:'$25-75K',mins:62,
+  body:"Hi Priya,\n\nThanks for reaching out about your interlock driveway in Burlington.\n\nFor a driveway we'd use 80mm pavers built on a properly compacted base. That's what keeps it flat and crack-free for decades. Depending on size and material, most driveways land in the $25K to $75K range installed.\n\nCould you send a photo and rough dimensions? I'll give you a tighter ballpark, then we can book a site visit. Would Thursday afternoon work for a quick call?\n\nBest,\nFrancesco\nMilton Stone"},
+ {id:5,type:'quote',agent:'Estimator',to:'T. Okafor',email:'t.okafor@example.com',subject:'Your pool + landscape estimate',about:'Quote — fibreglass pool + full landscape, Toronto',vlabel:'$150-300K',mins:95,
+  body:"Hi Tunde,\n\nHere's the estimate for your Toronto pool and landscape project:\n\n- Azoria 14x30 fibreglass pool, installed\n- Full backyard hardscape, planting and lighting\n- Privacy screening and irrigation\n\nInvestment: $225,000 (Better tier), 10-year workmanship warranty, 50% deposit to lock your build date.\n\nWant to review it together? I'm open Monday at 1:00 PM or Tuesday at 4:00 PM.\n\nBest,\nFrancesco\nMilton Stone"}
+];
+var sentDrafts={};
+var TEXTS=[
+ {id:1,type:'reply',to:'John Paul',phone:'',about:'New lead · replied to your ad',vlabel:'$150K+',mins:5,consent:true,
+  body:"Hi John Paul, it's Francesco at Milton Stone — thanks for reaching out about your pool & backyard! I'd love to set up a quick 15-min call. Are you free Mon between 11–12 or 4–5? Reply STOP to opt out."},
+ {id:2,type:'follow',to:'Priya S.',phone:'',about:'Follow-up · quoted 4 days ago, no reply',vlabel:'$25–75K',mins:38,consent:true,
+  body:"Hi Priya, Francesco from Milton Stone checking in on your interlock driveway. Happy to tweak the quote or answer anything — want me to hold a spring install slot for you? Reply STOP to opt out."},
+ {id:3,type:'reminder',to:'The Harveys',phone:'',about:'Appointment reminder · site visit tomorrow 9 AM',vlabel:'Booked',mins:60,consent:true,
+  body:"Hi Sarah & Tom, friendly reminder: Francesco from Milton Stone will be by tomorrow at 9:00 AM for your backyard site visit. See you then! Reply R to reschedule."},
+ {id:4,type:'reply',to:'T. Okafor',phone:'',about:'New lead · pool + landscape inquiry',vlabel:'$150–300K',mins:88,consent:true,
+  body:"Hi Tunde, it's Francesco at Milton Stone — got your note about the pool & landscape project. Can I send over a quick design concept? When's a good time for a 15-min call this week? Reply STOP to opt out."}
+];
+var sentTexts={};
+var SMS_SEQ=[
+ ['Day 0 · instant','Lead texts or fills the form','Auto-reply within 60 seconds: greeting + offer two call times'],
+ ['Day 1','No reply yet','Soft nudge: "Still happy to help — want a ballpark first?"'],
+ ['Day 3','Still no reply','Value text: link to a recent build + review'],
+ ['Day 7','Cold','Last touch: "I\'ll close your file for now — reply anytime"'],
+ ['Booked','Appointment set','Reminder 24h before + morning-of confirmation']
+];
+// ===== OUTREACH =====
+var OUTLISTS=[
+ {id:'past',name:'Past Clients',ic:'🏡',desc:'Completed projects — referrals, maintenance, reviews',count:0,tone:'warm',
+  sample:'Hi [First], it\'s Francesco at Milton Stone. Hope you\'re still loving your [project]! We\'re booking spring projects now — if you (or a neighbour) are thinking about anything, I\'d love to help. And if you have 30 seconds, a quick Google review means the world to a local business like ours.'},
+ {id:'leads',name:'Cold Leads / Prospects',ic:'❄️',desc:'Inquiries & quotes that went quiet',count:0,tone:'nudge',
+  sample:'Hi [First], following up on your [project] estimate. Spring slots are filling fast — happy to hold one for you or adjust anything on the quote. Want me to pencil you in?'},
+ {id:'trade',name:'Realtors & Builders',ic:'🤝',desc:'Referral partners — agents, custom builders, developers',count:0,tone:'pro',
+  sample:'Hi [First], Francesco here from Milton Stone (premium landscaping & fibreglass pools, Oakville/Halton). We help agents close faster with fast curb-appeal packages and reliable builder timelines. Worth a quick coffee to see if we\'re a fit for your projects?'}
+];
+var OUTTEMPLATES=[
+ {id:'spring','name':'Spring Booking Push','for':'past','subj':'Spring projects are filling up — want a slot?','body':'Hi [First],\n\nHope you\'re still loving your [project]! We\'re booking spring projects now and slots are going fast.\n\nIf you or a neighbour are thinking about anything — landscaping, a pool, an outdoor space — I\'d love to help. Just reply and I\'ll get you on the calendar.\n\nFrancesco\nMilton Stone'},
+ {id:'review','name':'Review Request','for':'past','subj':'A quick favour?','body':'Hi [First],\n\nIt was a pleasure building your [project]. If you have 30 seconds, a quick Google review would mean a lot to a local business like ours — it genuinely helps other families find us.\n\n[Review link]\n\nThank you!\nFrancesco · Milton Stone'},
+ {id:'revive','name':'Quote Revival','for':'leads','subj':'Still thinking about your project?','body':'Hi [First],\n\nFollowing up on your [project] estimate. Spring slots are filling fast — I\'d hate for you to miss the window.\n\nHappy to hold a slot or adjust anything on the quote. Want me to pencil you in?\n\nFrancesco · Milton Stone'},
+ {id:'partner','name':'Partner Intro','for':'trade','subj':'Curb appeal that helps you close','body':'Hi [First],\n\nFrancesco here from Milton Stone — premium landscaping & fibreglass pools across Oakville and Halton.\n\nWe help agents close faster with quick curb-appeal packages, and give builders reliable timelines on outdoor scopes. Worth a quick coffee to see if we\'re a fit?\n\nFrancesco · Milton Stone'}
+];
+var sentCampaigns=[
+ {name:'Winter check-in',list:'Past Clients',sent:42,opened:28,replied:6,when:'Feb 2026'},
+ {name:'New year — book early',list:'Cold Leads',sent:31,opened:14,replied:3,when:'Jan 2026'}
+];
+var GBP_STATUS={connected:false,note:'API access applied for — pending Google approval (~2 weeks)'};
+var GBP_POSTS=[
+ {t:'Project reveal',body:'Another Oakville backyard transformed 🌿 Fibreglass pool, natural stone patio, and custom landscaping — all by the Milton Stone crew. Booking spring installs now.',cta:'Call now',img:'Backyard reveal photo',status:'ready'},
+ {t:'Offer',body:'Spring is filling up fast! Book your landscape or pool consultation this month and lock in 2026 pricing before it rises.',cta:'Learn more',img:'Crew on site',status:'ready'},
+ {t:'Tip / authority',body:'Thinking fibreglass vs. concrete pool? Fibreglass installs faster, needs less maintenance, and is gentler underfoot. Happy to walk you through both — no pressure.',cta:'Book',img:'Pool close-up',status:'draft'}
+];
+var SOCIALS=[
+ {id:'ig',p:'Instagram',ic:'📸',h:'@miltonstone_landscapinggroup',url:'https://www.instagram.com/miltonstone_landscapinggroup/',f:'4,072',fl:'followers',sub:'261 posts · 2,234 following',newC:7,newM:3,on:true,
+  plan:[['Mon','Carousel','5 interlock patterns we love','scheduled'],['Wed','Reel','Harvey backyard reveal','ready'],['Fri','Story','Crew spotlight','auto'],['Sat','Reel','Tofino pool time-lapse','ready']]},
+ {id:'tt',p:'TikTok',ic:'🎵',h:'@miltonstone_landscaping',url:'https://www.tiktok.com/@miltonstone_landscaping',f:'1,140',fl:'followers',sub:'Short-form · GTA reach',newC:12,newM:1,on:true,
+  plan:[['Wed','Video','Harvey reveal (cross-post)','ready'],['Thu','Video','Satisfying paver cut','draft'],['Sun','Video','Tofino pool time-lapse','ready']]},
+ {id:'yt',p:'YouTube',ic:'▶️',h:'@miltonstone_landscapesandpools',url:'https://www.youtube.com/@miltonstone_landscapesandpools',f:'640',fl:'subscribers',sub:'Long-form + Shorts',newC:4,newM:0,on:true,
+  plan:[['Sat','Long-form','Backyard transformation walkthrough','scheduled'],['Sat','Short','Pool reveal teaser','ready']]},
+ {id:'fb',p:'Facebook',ic:'📘',h:'Milton Stone',url:'https://www.facebook.com/miltonstone',f:'1,100',fl:'followers',sub:'Local community + reviews',newC:2,newM:2,on:true,
+  plan:[['Mon','Post','5 interlock patterns we love','scheduled'],['Thu','Link','Cost of a pool in Oakville (blog)','draft'],['Sat','Post','Harvey backyard reveal','ready']]},
+ {id:'gbp',p:'Google Business',ic:'🔵',h:'Milton Stone · Oakville',url:'https://share.google/zjM8CCKKqIyWaGdYf',f:'4.9★',fl:'· 187 reviews',sub:'(289) 856-9735 · North Service Rd W',newC:3,newM:0,clabel:'new reviews',on:true,
+  plan:[['Tue','Update','New project photos post','scheduled'],['Fri','Push','Review request to recent clients','auto'],['—','Reply','2 reviews awaiting your reply','ready']]}
+];
+var EPTYPES=[['Patio',6,'🪨'],['Walkway',4,'🚶'],['Driveway',10,'🚗'],['Pool deck',6,'🏊']];
+var ESURF=[
+ {id:'paver',n:'Concrete paver',g:1,price:5.50,d:'Rinox Proma · 90mm',sw:'linear-gradient(135deg,#8d8f93,#6f7175 55%,#5c5e62)'},
+ {id:'std60',n:'Standard slab 60mm',g:1,price:4.80,d:'Best Way · smooth',sw:'linear-gradient(135deg,#9a9aa0,#787a80 60%,#646469)'},
+ {id:'blu',n:'Premium smooth slab',g:2,price:6.71,d:'Techo-Bloc Blu · 60mm',sw:'linear-gradient(135deg,#5b5f66,#3f434a 60%,#2c2f35)'},
+ {id:'large',n:'Large-format slab',g:2,price:7.40,d:'Rinox Proma XL',sw:'linear-gradient(135deg,#b9b3a7,#938c7e 58%,#736c5e)'},
+ {id:'porcelain',n:'Porcelain plank',g:3,price:8.00,d:'Porcea · 20mm',sw:'linear-gradient(135deg,#d7d4cd,#b4b1a9 55%,#94928b)'},
+ {id:'flag',n:'Natural flagstone',g:3,price:9.50,d:'Banas · sandstone',sw:'linear-gradient(135deg,#cdb197,#b09576 55%,#8f7657)'}
+];
+var EP={base:52,hpb:62,poly:41.81,polyCov:75,edge:3.50,fabric:0.40};
+var ELABOR={1:22,2:28,3:36};
+var EGRADESURF={1:'paver',2:'blu',3:'porcelain'};
+var EWARR={1:'3-year workmanship warranty',2:'5-year workmanship warranty',3:'10-year + lifetime-eligible workmanship warranty'};
+var EST={ptype:0,mode:'dim',len:30,wid:20,sf:600,grade:2,surface:'blu'};
 function pill(t,c){return '<span class="pill" style="color:'+c+';background:'+c+'1f">'+t+'</span>';}
 function card(i,cls){return '<div class="card '+(cls||'')+'">'+i+'</div>';}
 function hd(ph,h,sub){return '<div class="ph">'+ph+'</div><div class="h1 sg">'+h+'</div>'+(sub?'<div class="sub">'+sub+'</div>':'<div style="height:18px"></div>');}
-
-/* SIDEBAR */
+function money(n){return '$'+Math.round(n).toLocaleString('en-US');}
+function money2(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
 var cur='dashboard';
 function buildNav(){
  $('nav').innerHTML=NAV.map(function(n){return '<div class="nv" data-s="'+n[2]+'"><span class="ic">'+n[1]+'</span>'+n[0]+'</div>';}).join('');
@@ -301,8 +402,21 @@ function buildNav(){
 }
 function bindNav(){Array.prototype.forEach.call(document.querySelectorAll('.nv'),function(el){el.onclick=function(){go(el.getAttribute('data-s'));closeSide();};});}
 function go(s){cur=s;Array.prototype.forEach.call(document.querySelectorAll('.nv'),function(el){el.classList.toggle('sel',el.getAttribute('data-s')===s);});$('wrap').innerHTML=(SCREENS[s]||SCREENS.dashboard)();window.scrollTo(0,0);bindWrap();}
-
-/* SCREENS */
+function pendingDrafts(){return DRAFTS.filter(function(d){return !sentDrafts[d.id];});}
+function briefCard(){
+ var p=pendingDrafts();
+ var replies=p.filter(function(d){return d.type==='reply';}).length;
+ var quotes=p.filter(function(d){return d.type==='quote';}).length;
+ var follows=p.filter(function(d){return d.type==='follow';}).length;
+ var oldest=p.length?Math.max.apply(null,p.map(function(d){return d.mins;})):0;
+ if(!p.length){return '<div class="brief" data-s="outbox"><div class="when">CEO Briefing</div><div class="bl">All clear, boss. Every reply is sent — nothing waiting on you.</div></div>';}
+ var parts=[];
+ if(replies)parts.push('<b>'+replies+'</b> '+(replies>1?'replies':'reply'));
+ if(quotes)parts.push('<b>'+quotes+'</b> '+(quotes>1?'quotes':'quote'));
+ if(follows)parts.push('<b>'+follows+'</b> follow-up'+(follows>1?'s':''));
+ var sentence=parts.join(', ').replace(/,([^,]*)$/,' and$1');
+ return '<div class="brief" data-s="outbox"><div class="when">CEO Briefing · ready to send</div><div class="bl">'+sentence+' are written and waiting on you. Oldest has been sitting <b>'+oldest+' min</b>.</div><div class="bstats"><div class="bst"><div class="v">'+p.length+'</div><div class="l">To send</div></div><div class="bst"><div class="v">'+replies+'</div><div class="l">Replies</div></div><div class="bst"><div class="v">'+quotes+'</div><div class="l">Quotes</div></div></div></div>';
+}
 var SCREENS={
  dashboard:function(){
   var hero=card('<div style="display:flex;align-items:center;gap:20px"><div class="orb" style="width:70px;height:70px"></div><div style="flex:1"><div class="sg" style="font-size:21px;font-weight:700">Good morning, Francesco</div><div class="s" style="color:var(--muted);font-size:14px;margin-top:3px">Two follow-ups due, one quote needs a look, and I found 6 opportunities near you.</div></div><button class="btn" id="askt">Ask Tanya</button></div>');
@@ -313,24 +427,90 @@ var SCREENS={
   var rev='<div class="card" data-s="analytics" style="cursor:pointer"><div class="ct">Revenue snapshot</div><div class="row3"><div class="stat"><div class="l">This month</div><div class="v">$214K</div></div><div class="stat"><div class="l">Outstanding quotes</div><div class="v">$3.8M</div></div><div class="stat"><div class="l">Deposits in</div><div class="v">$96K</div></div></div><div class="s" style="color:var(--muted);margin-top:12px">Cash flow positive · 3 invoices due this week</div></div>';
   var ai=card('<div class="ct">From Tanya</div>'+[['I noticed a low margin on quote Q-1039','8 pts under target','ask','Why does quote Q-1039 have a low margin, and how do I get it back to target?'],['Two follow-ups are due today','Wong & Okafor','s','crm'],['I drafted the Harvey proposal','Ready to review','s','documents']].map(function(r){var a=r[2]==='ask'?'data-ask="'+r[3].replace(/"/g,'&quot;')+'"':'data-s="'+r[3]+'"';return '<div class="li" '+a+' style="cursor:pointer"><div><div class="n">'+r[0]+'</div><div class="s">'+r[1]+'</div></div><span class="gold">›</span></div>';}).join(''));
   var tools=card('<div class="ct">Power tools</div><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px"><div class="card tool" data-s="radar" style="background:var(--panel2)"><div class="e">📡</div><div class="t">Opportunity Radar™</div><div class="d">6 nearby now</div></div><div class="card tool" data-s="competitors" style="background:var(--panel2)"><div class="e">🎯</div><div class="t">Competitor Watch™</div><div class="d">12 rivals tracked</div></div><div class="card tool" data-s="heatmap" style="background:var(--panel2)"><div class="e">🗺️</div><div class="t">Territory Heat Map™</div><div class="d">6 markets</div></div><div class="card tool" data-s="drive" style="background:var(--panel2)"><div class="e">🚗</div><div class="t">Drive Mode™</div><div class="d">Hands-free</div></div></div>');
-  return hero+'<div style="height:16px"></div><div class="grid g2">'+weather+sched+leads+proj+rev+ai+'</div><div style="height:16px"></div>'+tools;
+  return hero+'<div style="height:16px"></div>'+briefCard()+'<div style="height:16px"></div><div class="grid g2">'+weather+sched+leads+proj+rev+ai+'</div><div style="height:16px"></div>'+tools;
+ },
+ outbox:function(){
+  var p=pendingDrafts();
+  var list;
+  if(!p.length){
+   list='<div class="card"><div class="s" style="color:var(--muted);text-align:center;padding:20px">Nothing waiting — every reply is sent. Nice work, boss.</div></div>';
+  }else{
+   list=card('<div class="ct">Waiting on you · '+p.length+'</div>'+p.map(function(d){var tcls=d.type==='quote'?'quote':d.type==='follow'?'follow':'reply';var tlbl=d.type==='quote'?'Quote':d.type==='follow'?'Follow-up':'Reply';return '<div class="li" data-draft="'+d.id+'" style="cursor:pointer"><div style="display:flex;align-items:center;gap:12px;flex:1"><div class="sg" style="width:38px;height:38px;border-radius:10px;flex-shrink:0;background:linear-gradient(135deg,var(--gold),#1E5FE0);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700">'+d.to.charAt(0)+'</div><div style="min-width:0"><div class="n">'+d.to+' <span class="typ '+tcls+'">'+tlbl+'</span></div><div class="s">'+d.about+'</div><div class="s" style="margin-top:3px">Written by '+d.agent+' · '+d.mins+' min ago</div></div></div><div style="text-align:right"><div class="gold" style="font-weight:700;font-size:13px">'+d.vlabel+'</div><div class="s">Review ›</div></div></div>';}).join(''));
+  }
+  return hd('Dashboard · CEO Briefing','Ready for your send-off','Your team wrote the replies and quotes. You don\'t write them — you clear them. Tap any one to review, then send from info@miltonstone.ca.')+list+'<div style="height:14px"></div><div class="s" style="color:var(--muted);font-size:12.5px;line-height:1.55">These are drafted by your agents and sent with your tap. Once the always-on email engine is connected, this same briefing fills straight from your live inbox.</div>';
+ },
+ outreach:function(){
+  var liveBadge='<span class="typ" style="background:#7fd07a22;color:#7fd07a">✓ Email connected</span>';
+  var quick='<div class="grid g2" style="margin-bottom:16px">'
+   +'<div class="card tool" data-out="compose"><div class="e">✏️</div><div class="t">Send an Email</div><div class="d">One-off email or quote from info@miltonstone.ca</div></div>'
+   +'<div class="card tool" data-out="campaign"><div class="e">📣</div><div class="t">New Campaign</div><div class="d">Email a whole list at once</div></div>'
+   +'</div>';
+  var lists=card('<div class="ct">Your Lists</div>'+OUTLISTS.map(function(l){return '<div class="li" data-outlist="'+l.id+'" style="cursor:pointer"><div style="display:flex;align-items:center;gap:12px;flex:1"><div class="sg" style="width:38px;height:38px;border-radius:10px;flex-shrink:0;background:#1a2336;display:flex;align-items:center;justify-content:center;font-size:18px">'+l.ic+'</div><div style="min-width:0"><div class="n">'+l.name+'</div><div class="s">'+l.desc+'</div></div></div><div style="text-align:right"><div class="gold" style="font-weight:700;font-size:13px">'+l.count+'</div><div class="s">contacts ›</div></div></div>';}).join('')+'<div class="s" style="color:var(--muted);margin-top:8px;font-size:12px">Lists are empty for now — import your contacts (CSV) or add them as deals close. I\'ll wire CSV import when we connect the backend.</div>');
+  var perf=card('<div class="ct">Recent Campaigns</div>'+sentCampaigns.map(function(c){var rate=Math.round(c.opened/c.sent*100);return '<div class="li"><div style="flex:1"><div class="n">'+c.name+'</div><div class="s">'+c.list+' · '+c.when+'</div></div><div style="text-align:right"><div class="gold" style="font-weight:700;font-size:13px">'+rate+'% opened</div><div class="s">'+c.sent+' sent · '+c.replied+' replied</div></div></div>';}).join(''));
+  return hd('Growth','Outreach '+liveBadge,'Send quotes, one-off emails, and campaigns to your lists — all from info@miltonstone.ca.')
+   +quick
+   +'<div class="grid g2">'+lists+perf+'</div>'
+   +'<div style="height:14px"></div><div class="s" style="color:var(--muted);font-size:12.5px;line-height:1.55">Your domain is verified, so emails land in inboxes, not spam. Right now you compose and send; once we drop the send-engine into your app, campaigns and follow-ups can go out automatically (respecting CASL consent).</div>';
  },
  crm:function(){
-  return hd('Sales','CRM','Every lead scored and worked by Tanya the moment it lands.')+'<div class="grid g2" style="margin-bottom:16px"><div class="card tool" data-s="partners"><div class="e">🤝</div><div class="t">Partnerships</div><div class="d">Builders, architects, pool service &amp; more</div></div><div class="card tool" data-s="competitors"><div class="e">🎯</div><div class="t">Competitor Watch™</div><div class="d">Rivals, scored & countered</div></div></div>'+'<div class="grid g2">'+card('<div class="ct">Hot leads</div>'+LEADS.map(function(l){return '<div class="li"><div><div class="n">'+l[0]+'</div><div class="s">'+l[1]+'</div></div><div style="text-align:right"><div class="stars">'+l[2]+'</div><div class="s">'+l[3]+'</div></div></div>';}).join(''))+card('<div class="ct">Pipeline</div>'+[['New',2,'$150K'],['Qualified',3,'$480K'],['Consult',2,'$375K'],['Design',1,'$318K'],['Won',2,'$138K']].map(function(s){return '<div class="li"><div class="n">'+s[0]+' <span class="s">· '+s[1]+'</span></div><span class="gold" style="font-weight:600">'+s[2]+'</span></div>';}).join(''))+'</div>';
+  var pt=TEXTS.filter(function(t){return !sentTexts[t.id];}).length;
+  var smsCard='<div class="card tool" data-s="texts"><div class="e">💬</div><div class="t">Text Center</div><div class="d">'+(pt>0?pt+' replies &amp; follow-ups ready to send':'Reply &amp; follow up by text')+'</div></div>';
+  return hd('Sales','CRM','Every lead scored and worked by Tanya the moment it lands.')+'<div class="grid g3" style="margin-bottom:16px">'+smsCard+'<div class="card tool" data-s="partners"><div class="e">🤝</div><div class="t">Partnerships</div><div class="d">Builders, architects, pool service &amp; more</div></div><div class="card tool" data-s="competitors"><div class="e">🎯</div><div class="t">Competitor Watch™</div><div class="d">Rivals, scored & countered</div></div></div>'+'<div class="grid g2">'+card('<div class="ct">Hot leads</div>'+LEADS.map(function(l){return '<div class="li"><div><div class="n">'+l[0]+'</div><div class="s">'+l[1]+'</div></div><div style="text-align:right"><div class="stars">'+l[2]+'</div><div class="s">'+l[3]+'</div></div></div>';}).join(''))+card('<div class="ct">Pipeline</div>'+[['New',2,'$150K'],['Qualified',3,'$480K'],['Consult',2,'$375K'],['Design',1,'$318K'],['Won',2,'$138K']].map(function(s){return '<div class="li"><div class="n">'+s[0]+' <span class="s">· '+s[1]+'</span></div><span class="gold" style="font-weight:600">'+s[2]+'</span></div>';}).join(''))+'</div>';
+ },
+ texts:function(){
+  var p=TEXTS.filter(function(t){return !sentTexts[t.id];});
+  var typeLabel={reply:['Reply','#7fa6e8'],follow:['Follow-up','#e0b964'],reminder:['Reminder','#7fd07a']};
+  var list;
+  if(!p.length){
+   list='<div class="card"><div class="s" style="color:var(--muted);text-align:center;padding:20px">All caught up — every text is sent.</div></div>';
+  }else{
+   list=card('<div class="ct">Ready to send · '+p.length+'</div>'+p.map(function(t){var tl=typeLabel[t.type]||typeLabel.reply;return '<div class="li" data-text="'+t.id+'" style="cursor:pointer"><div style="display:flex;align-items:center;gap:12px;flex:1"><div class="sg" style="width:38px;height:38px;border-radius:10px;flex-shrink:0;background:linear-gradient(135deg,var(--gold),#1E5FE0);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700">'+t.to.charAt(0)+'</div><div style="min-width:0"><div class="n">'+t.to+' <span class="typ" style="background:'+tl[1]+'22;color:'+tl[1]+'">'+tl[0]+'</span></div><div class="s">'+t.about+'</div></div></div><div style="text-align:right"><div class="gold" style="font-weight:700;font-size:13px">'+t.vlabel+'</div><div class="s">'+t.mins+'m ago ›</div></div></div>';}).join(''));
+  }
+  var seq=card('<div class="ct">Auto follow-up sequence <span class="r" data-toast="This is the cadence your texts follow once auto-send is on">how it works</span></div><div class="s" style="color:var(--muted);margin-bottom:6px">When a lead goes quiet, this is the rhythm Tanya keeps — so nobody slips through.</div>'+SMS_SEQ.map(function(r){return '<div class="li"><div style="flex:1"><div class="n">'+r[0]+'</div><div class="s">'+r[2]+'</div></div><span class="s" style="color:var(--muted);max-width:90px;text-align:right">'+r[1]+'</span></div>';}).join(''));
+  return hd('Sales','Text Center','Your team writes the texts — replies, follow-ups and reminders. You tap send. Real auto-send turns on once we connect texting (plan below).')+list+'<div style="height:14px"></div>'+seq+'<div style="height:14px"></div><div class="s" style="color:var(--muted);font-size:12.5px;line-height:1.55">Texts open in your phone\u2019s messaging app, pre-filled — one tap to send. Only contacts who opted in are texted. Auto-send + the timed sequence go live when we wire up Twilio (your setup checklist is ready).</div>';
  },
  design:function(){
-  var tools='<div class="grid g3" style="margin-bottom:16px"><div class="card tool" data-s="manufacturers"><div class="e">🏭</div><div class="t">Products by manufacturer</div><div class="d">Techo-Bloc, Azoria & more</div></div><div class="card tool" data-s="suppliers"><div class="e">🏬</div><div class="t">Suppliers & vendors</div><div class="d">Van Beek\'s live pricing</div></div><div class="card tool" data-s="pricelist"><div class="e">🏷️</div><div class="t">Material price list</div><div class="d">Aggregates, mulch, stone</div></div></div>';
+  var tools='<div class="grid g3" style="margin-bottom:16px"><div class="card tool" data-s="estimator"><div class="e">🧮</div><div class="t">Estimating Studio</div><div class="d">Visual takeoff → proposal & order</div></div><div class="card tool" data-s="manufacturers"><div class="e">🏭</div><div class="t">Products by manufacturer</div><div class="d">Techo-Bloc, Azoria & more</div></div><div class="card tool" data-s="suppliers"><div class="e">🏬</div><div class="t">Vendors & suppliers</div><div class="d">Tappable profiles</div></div><div class="card tool" data-s="pricelist"><div class="e">🏷️</div><div class="t">Material price list</div><div class="d">Aggregates, mulch, stone</div></div></div>';
   var grid='<div class="grid g3">'+MATS.map(function(m){return card('<img class="thumb" src="'+m[1]+'" loading="lazy"><div class="n" style="margin-top:10px">'+m[0]+'</div><div class="s" style="color:var(--muted)">Azoria fibreglass shell</div>');}).join('')+'</div>';
   return hd('Design','Design & Estimate','Pick a model, drop in the size, and Tanya prices it — Good, Better, Best.')+tools+card('<div class="ct">Quick estimate</div><div class="grid g2"><input id="dsq" type="number" value="650" style="background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px;color:var(--ink)" placeholder="Square feet"><button class="btn" id="dgo">Estimate</button></div><div id="dout" style="margin-top:14px"></div>')+'<div style="height:16px"></div>'+grid;
  },
+ estimator:function(){
+  var setup=card('<div class="ct">1 · Project</div><div class="seg" id="eptype"></div><div class="tog" id="emode"><button data-m="dim" class="on">Length × Width</button><button data-m="sf">Total ft²</button></div><div id="edim"><div style="display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:end"><div><label class="s" style="color:var(--muted)">Length (ft)</label><input id="elen" class="fin" type="number" inputmode="decimal" value="30"></div><div style="padding-bottom:12px;color:var(--muted)">×</div><div><label class="s" style="color:var(--muted)">Width (ft)</label><input id="ewid" class="fin" type="number" inputmode="decimal" value="20"></div></div></div><div id="esfw" style="display:none"><label class="s" style="color:var(--muted)">Total area (ft²)</label><input id="esf" class="fin" type="number" inputmode="decimal" value="600"></div><div style="height:12px"></div><div class="stat" style="text-align:center"><span class="l">Area</span> · <span class="v" id="earea" style="font-size:18px">600 ft²</span> <span class="s" id="eperim" style="color:var(--muted)"></span></div>');
+  var grades=card('<div class="ct">2 · Tier</div><div class="seg" id="egrade"></div>');
+  var surface=card('<div class="ct">3 · Surface material</div><div class="matgrid" id="esurf"></div>');
+  var takeoff=card('<div class="ct">4 · Takeoff — calculated for you</div><div id="etake"></div>');
+  var totals=card('<div class="ct">5 · Estimate</div><div id="etot"></div><div class="s" id="ewarr" style="color:var(--muted);margin-top:12px;line-height:1.5"></div>');
+  var acts='<div style="display:flex;gap:10px;margin-top:4px"><button class="ghost" style="flex:1" id="epo">Vendor order</button><button class="btn" style="flex:1" id="eprop">Client proposal</button></div>';
+  return hd('Design','Estimating Studio','Pick materials, enter the size, and the takeoff builds itself — every quantity in the right unit, priced from your trade rates. Then send it out as a proposal or a vendor order.')+setup+grades+surface+takeoff+totals+acts;
+ },
  projects:function(){
-  return hd('Operations','Projects','Live jobs, progress and anything that needs you.')+'<div class="grid g2">'+PROJECTS.map(function(p){var c=p[3]==='On track'?'#43B581':p[3]==='Finishing'?'#2E7DFF':'#E0685F';return card('<div class="li" style="border:none;padding:0 0 8px"><span class="n" style="font-size:16px">'+p[0]+'</span>'+pill(p[3],c)+'</div><div class="s" style="color:var(--muted)">'+p[1]+'</div><div class="bar"><div style="width:'+p[2]+'%"></div></div><div class="s" style="color:var(--muted);margin-top:8px">'+p[2]+'% complete</div>');}).join('')+'</div>';
+  var MAP_MID='11vkkW0BfFzk719qSS3huKKZUapUgJQA';
+  var cities=[['Oakville',38],['Burlington',21],['Mississauga',14],['Milton',9],['Toronto',7]];
+  var totalDone=cities.reduce(function(a,b){return a+b[1];},0);
+  var mapCard=card('<div class="ct">Completed Projects map <span class="r" data-toast="Live from your Google Work Map">live · Google My Maps</span></div><div style="border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--panel2)"><iframe src="https://www.google.com/maps/d/u/0/embed?mid='+MAP_MID+'&ehbc=2E312F" width="100%" height="340" style="border:0;display:block" loading="lazy"></iframe></div><div style="display:flex;gap:9px;margin-top:12px"><a class="ghost" style="flex:1;text-align:center;text-decoration:none" href="https://www.google.com/maps/d/u/0/edit?mid='+MAP_MID+'" target="_blank" rel="noopener">Open Work Map</a><button class="btn" style="flex:1" data-ask="Where are most of our completed projects clustered, and which nearby neighbourhoods should we target next?">Ask Tanya where to push</button></div>');
+  var done=card('<div class="ct">Projects completed · by city</div><div class="row3" style="margin-bottom:6px"><div class="stat" style="text-align:center"><div class="v">'+totalDone+'</div><div class="l">Total built</div></div><div class="stat" style="text-align:center"><div class="v">5</div><div class="l">Cities</div></div><div class="stat" style="text-align:center"><div class="v">100+</div><div class="l">Yrs experience</div></div></div>'+cities.map(function(c){return '<div class="li"><div class="n">'+c[0]+'</div><div style="display:flex;align-items:center;gap:10px;flex:1;max-width:200px;margin-left:auto"><div class="bar" style="flex:1;margin:0"><div style="width:'+Math.round(c[1]/cities[0][1]*100)+'%"></div></div><span class="gold" style="font-weight:700;min-width:24px;text-align:right">'+c[1]+'</span></div></div>';}).join(''));
+  return hd('Operations','Projects','Every job you\u2019ve built, mapped — plus live jobs and anything that needs you.')+mapCard+'<div style="height:16px"></div>'+done+'<div style="height:16px"></div><div class="ph">Active</div>'+'<div class="grid g2">'+PROJECTS.map(function(p){var c=p[3]==='On track'?'#43B581':p[3]==='Finishing'?'#2E7DFF':'#E0685F';return card('<div class="li" style="border:none;padding:0 0 8px"><span class="n" style="font-size:16px">'+p[0]+'</span>'+pill(p[3],c)+'</div><div class="s" style="color:var(--muted)">'+p[1]+'</div><div class="bar"><div style="width:'+p[2]+'%"></div></div><div class="s" style="color:var(--muted);margin-top:8px">'+p[2]+'% complete</div>');}).join('')+'</div>';
  },
  documents:function(){
   return hd('Documents','Documents','Quotes, proposals and contracts — Tanya writes them, your client signs them.')+'<div class="grid g3" style="margin-bottom:16px"><div class="card tool" data-doc="a proposal"><div class="e">✦</div><div class="t">Write a proposal</div><div class="d">Scope to signature</div></div><div class="card tool" data-doc="a contract"><div class="e">▦</div><div class="t">Draft a contract</div><div class="d">Verified clauses</div></div><div class="card tool" data-doc="a follow-up email"><div class="e">✎</div><div class="t">Write anything</div><div class="d">Emails, letters, more</div></div></div>'+card('<div class="ct">Recent documents</div>'+[['Marcello D. — Pool proposal','Sent · viewed','$318K'],['Wong Family — Contract','Signed','$96.5K'],['Harvey — Change order #2','Pending signature','+$12.4K']].map(function(r){return '<div class="li"><div><div class="n">'+r[0]+'</div><div class="s">'+r[1]+'</div></div><b>'+r[2]+'</b></div>';}).join(''))+'<div id="docout" style="margin-top:16px"></div>';
  },
  marketing:function(){
-  return hd('Growth','Marketing','Tanya runs your channels and turns every job into the next three.')+'<div class="grid g2">'+card('<div class="card tool" data-s="neighbor" style="background:var(--panel2);border:none"><div class="e">🏘️</div><div class="t">Neighbor Marketing™</div><div class="d">Auto-campaign the homes around every job</div></div><div style="height:14px"></div><div class="ct">Channels</div>'+[['Google Business','4.9★ · 187 reviews'],['Instagram','2.4k · 8 posts/mo'],['Website','900 visits/mo']].map(function(r){return '<div class="li"><div class="n">'+r[0]+'</div><span class="s">'+r[1]+'</span></div>';}).join(''))+card('<div class="ct">AI content queue</div>'+[['Harvey reveal reel','Instagram · Sat'],['Cost of a pool in Oakville','Blog · draft'],['Spring booking email','240 contacts · ready']].map(function(r){return '<div class="li"><div class="n">'+r[0]+'</div><span class="s">'+r[1]+'</span></div>';}).join(''))+'</div>';
+  var totalC=SOCIALS.reduce(function(a,b){return a+(b.newC||0);},0);
+  var totalM=SOCIALS.reduce(function(a,b){return a+(b.newM||0);},0);
+  var accounts=SOCIALS.map(function(a){var badge='';var inbox=(a.newC||0)+(a.newM||0);if(inbox>0)badge='<span class="pill" style="color:#fff;background:var(--gold)">'+inbox+' new</span>';return '<div class="li" data-soc="'+a.id+'" style="cursor:pointer"><div style="display:flex;align-items:center;gap:11px;flex:1"><div style="font-size:22px">'+a.ic+'</div><div style="min-width:0"><div class="n">'+a.p+'</div><div class="s">'+a.h+'</div><div class="s" style="color:var(--gold2);font-weight:600;margin-top:1px">'+a.f+' '+a.fl+'</div></div></div><div style="text-align:right;display:flex;flex-direction:column;gap:5px;align-items:flex-end">'+(badge||pill('Connected','#43B581'))+'<span class="gold" style="font-size:13px">Open ›</span></div></div>';}).join('');
+  var inboxLine=(totalC+totalM>0)?'<div class="s" style="color:var(--muted);margin-bottom:8px"><b style="color:var(--gold)">'+totalC+' comments</b> and <b style="color:var(--gold)">'+totalM+' messages</b> waiting across your accounts. Tap any account to review and let your Social agent reply.</div>':'<div class="s" style="color:var(--muted);margin-bottom:8px">All your accounts connected. Tap any one for its plan, inbox and agent.</div>';
+  var hub=card('<div class="ct">Social Media Hub <span class="r" data-ask="Plan this week\u2019s social content across Instagram, TikTok, YouTube, Facebook and Google Business for Milton Stone, and write the first post.">plan the week ›</span></div>'+inboxLine+accounts);
+  var agent=card('<div class="card tool" data-agent="Marketing~Pixel~Content &amp; Social · posts, reels, blogs &amp; replies" style="background:var(--panel2);border:none"><div class="e">🤖</div><div class="t">Pixel — your Social agent</div><div class="d">Writes posts, schedules them, and drafts replies to every comment &amp; DM</div></div>');
+  var neighbor=card('<div class="card tool" data-s="neighbor" style="background:var(--panel2);border:none"><div class="e">🏘️</div><div class="t">Neighbor Marketing™</div><div class="d">Auto-campaign the homes around every job</div></div>');
+  var gbpBadge=GBP_STATUS.connected?'<span class="typ" style="background:#7fd07a22;color:#7fd07a">✓ Connected</span>':'<span class="typ" style="background:#e0b96422;color:#e0b964">⏳ Pending approval</span>';
+  var gbp=card('<div class="card tool" data-s="gbp" style="background:var(--panel2);border:none"><div class="e">🔵</div><div class="t">Google Business Posts '+gbpBadge+'</div><div class="d">Auto-post offers, photos &amp; updates straight to your Google profile</div></div>');
+  return hd('Growth','Marketing','Tanya runs your channels and turns every job into the next three.')+hub+'<div style="height:16px"></div>'+gbp+'<div style="height:16px"></div>'+agent+'<div style="height:16px"></div>'+neighbor;
+ },
+ gbp:function(){
+  var badge=GBP_STATUS.connected?'<span class="typ" style="background:#7fd07a22;color:#7fd07a">✓ Connected</span>':'<span class="typ" style="background:#e0b96422;color:#e0b964">⏳ Pending Google approval</span>';
+  var statusCard=card('<div class="ct">Connection status</div><div class="li"><div style="flex:1"><div class="n">Google Business Profile '+badge+'</div><div class="s">'+GBP_STATUS.note+'</div></div></div><div class="s" style="color:var(--muted);margin-top:8px;font-size:12.5px;line-height:1.5">Google requires a one-time API approval before apps can post on your behalf. Your application steps are saved in your email. Once approved, the posts below publish with one tap — or fully automatically.</div>');
+  var posts=card('<div class="ct">Ready to post · '+GBP_POSTS.filter(function(p){return p.status==='ready';}).length+'</div>'+GBP_POSTS.map(function(p){var sc=p.status==='ready'?'#7fd07a':'#e0b964';var sl=p.status==='ready'?'Ready':'Draft';return '<div class="li" style="align-items:flex-start"><div style="flex:1"><div class="n">'+p.t+' <span class="typ" style="background:'+sc+'22;color:'+sc+'">'+sl+'</span></div><div class="s" style="margin-top:3px;line-height:1.45">'+esc(p.body)+'</div><div class="s" style="color:var(--muted);margin-top:4px">🖼 '+p.img+' · Button: '+p.cta+'</div></div></div>';}).join(''));
+  return hd('Growth','Google Business Posts','Posts, offers and photos that publish straight to your Google profile — where customers find you on Search and Maps.')+statusCard+'<div style="height:14px"></div>'+posts+'<div style="height:14px"></div>'+card('<div class="card tool" data-agent="Marketing~Pixel~Content &amp; Social · posts, reels, blogs &amp; replies" style="background:var(--panel2);border:none"><div class="e">🤖</div><div class="t">Have Pixel write the next post</div><div class="d">Fresh Google post from your latest job photos</div></div>')+'<div style="height:14px"></div><div class="s" style="color:var(--muted);font-size:12.5px;line-height:1.55">Once Google approves your API access, we connect your profile once (a quick sign-in) and these posts go live — on a schedule you set, or auto-published by Pixel from each finished job.</div>';
  },
  analytics:function(){
   var bars=[['F',140],['M',210],['A',260],['M',320],['J',300]];var mx=320;
@@ -363,8 +543,8 @@ var SCREENS={
   return '<div class="ph">Hands-free</div><div class="h1 sg">Drive Mode™</div><div class="sub">Big targets, voice-first. Tap the orb and just talk to Tanya.</div><div style="text-align:center;margin:10px 0 22px"><div class="orb" id="dorb" style="width:120px;height:120px;margin:0 auto"></div><div class="s" style="color:var(--muted);margin-top:12px">Tap to talk</div></div><div class="grid g2">'+big('📡','Nearby opportunities','go(\'radar\')')+big('📅','Next appointment','toast(\'Harvey site visit · 9:00\')')+big('📷','Capture photo','toast(\'Photo saved to project\')')+big('🎙️','Quick note','toast(\'Listening…\')')+big('🌤️','Weather','toast(\'19° · clear through Thu\')')+big('💬','Ask Tanya','openTanya()')+'</div>';
  },
  suppliers:function(){
-  var list=SUPPLIERS.map(function(s){return '<div class="li"><div><div class="n">'+s[0]+'</div><div class="s">'+s[1]+'</div></div>'+(s[2]?'<button class="ghost" data-s="pricelist">Live pricing</button>':pill('Add sheet','#8A8A93'))+'</div>';}).join('');
-  return hd('Suppliers','Suppliers & vendors','Your supply yards in one place. Van Beek\'s pulls real prices; the rest fill from their sheets.')+card('<div class="ct">Vendors</div>'+list);
+  var list=VENDORS.map(function(v){return '<div class="li" data-vendor="'+v.id+'" style="cursor:pointer"><div style="display:flex;align-items:center;gap:12px;flex:1"><div class="sg" style="width:40px;height:40px;border-radius:10px;flex-shrink:0;background:linear-gradient(135deg,#2E7DFF33,#2E7DFF12);display:flex;align-items:center;justify-content:center;color:#2E7DFF;font-weight:700;font-size:13px">'+mfrInitials(v.n)+'</div><div style="min-width:0"><div class="n">'+v.n+'</div><div class="s">'+v.cat+'</div></div></div>'+(v.live?pill('Live pricing','#2E7DFF'):'')+'<span class="gold" style="margin-left:8px">›</span></div>';}).join('');
+  return hd('Vendors','Vendors & suppliers','Your supply yards and vendors — tap any one for the full profile: contact, website, locations and socials.')+card('<div class="ct">Vendors · '+VENDORS.length+'</div>'+list);
  },
  pricelist:function(){
   var body=PRICELIST.map(function(g){return '<div class="ct" style="margin-top:18px">'+g[0]+'</div>'+g[1].map(function(r){return '<div class="li"><div class="n">'+r[0]+'</div><span class="gold" style="font-weight:600">'+r[1]+'</span></div>';}).join('');}).join('');
@@ -388,8 +568,6 @@ var SCREENS={
   return hd('Partnerships','Partnerships','Referral sources that feed you luxury hardscape & pool work — builders, architects, designers, concierge, pressure-washing and pool-service partners. Tap any category for targets.')+list+'<div style="height:16px"></div>'+team;
  }
 };
-
-/* ESTIMATE + DOC GEN */
 function bindWrap(){
  Array.prototype.forEach.call(document.querySelectorAll('[data-s]'),function(el){if(!el.classList.contains('nv'))el.onclick=function(){go(el.getAttribute('data-s'));};});
  if($('askt'))$('askt').onclick=openTanya;
@@ -400,9 +578,16 @@ function bindWrap(){
  Array.prototype.forEach.call(document.querySelectorAll('[data-mfr]'),function(el){el.onclick=function(){openMfr(el.getAttribute('data-mfr'));};});
  Array.prototype.forEach.call(document.querySelectorAll('[data-intel]'),function(el){el.onclick=function(){openIntel(+el.getAttribute('data-intel'));};});
  Array.prototype.forEach.call(document.querySelectorAll('[data-partner]'),function(el){el.onclick=function(){openPartner(+el.getAttribute('data-partner'));};});
+ Array.prototype.forEach.call(document.querySelectorAll('[data-vendor]'),function(el){el.onclick=function(){openVendor(el.getAttribute('data-vendor'));};});
+ Array.prototype.forEach.call(document.querySelectorAll('[data-draft]'),function(el){el.onclick=function(){openDraft(+el.getAttribute('data-draft'));};});
+ Array.prototype.forEach.call(document.querySelectorAll('[data-soc]'),function(el){el.onclick=function(){openSocial(el.getAttribute('data-soc'));};});
+ Array.prototype.forEach.call(document.querySelectorAll('[data-text]'),function(el){el.onclick=function(){openText(+el.getAttribute('data-text'));};});
+ Array.prototype.forEach.call(document.querySelectorAll('[data-out]'),function(el){el.onclick=function(){openOut(el.getAttribute('data-out'));};});
+ Array.prototype.forEach.call(document.querySelectorAll('[data-outlist]'),function(el){el.onclick=function(){openOutList(el.getAttribute('data-outlist'));};});
  Array.prototype.forEach.call(document.querySelectorAll('[data-ask]'),function(el){el.onclick=function(){var q=el.getAttribute('data-ask');openTanya();setTimeout(function(){tanyaAsk(q);},250);};});
  Array.prototype.forEach.call(document.querySelectorAll('[data-toast]'),function(el){el.onclick=function(){toast(el.getAttribute('data-toast'));};});
  Array.prototype.forEach.call(document.querySelectorAll('[data-agent]'),function(el){el.onclick=function(){var p=el.getAttribute('data-agent').split('~');openAgent(p[0],p[1],p[2]);};});
+ if($('etake'))estimatorInit();
  if($('brandHome'))$('brandHome').onclick=function(){go('dashboard');closeSide();};
  if($('brandTop'))$('brandTop').onclick=function(){go('dashboard');closeSide();};
 }
@@ -411,6 +596,141 @@ function openSheet(h){$('sheetcard').innerHTML=h;$('sheet').classList.add('on');
 function closeSheet(){$('sheet').classList.remove('on');}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function mdLite(t){var s=esc(t);s=s.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');s=s.replace(/(^|\n)#{1,6}\s*(.+)/g,'$1<b>$2</b>');s=s.replace(/(^|\n)\s*[-•]\s+/g,'$1• ');s=s.replace(/\n/g,'<br>');return s;}
+function openText(id){var t=TEXTS.filter(function(x){return x.id===id;})[0];if(!t)return;
+ var sms='sms:'+(t.phone||'')+'?&body='+encodeURIComponent(t.body);
+ var consent=t.consent?'<div class="s" style="color:#7fd07a;margin-top:10px">✓ Opted in to texts — OK to send</div>':'<div class="s" style="color:#e0b964;margin-top:10px">⚠ No texting consent on file — confirm before sending</div>';
+ openSheet('<div class="sg" style="font-size:20px;font-weight:700">Text '+t.to+'</div><div class="s" style="color:var(--muted);margin-top:3px">'+t.about+'</div><div class="dbody" style="margin-top:12px">'+esc(t.body)+'</div><div class="s" style="color:var(--muted);margin-top:8px">'+(t.body.length)+' characters · '+Math.ceil(t.body.length/160)+' SMS segment(s)</div>'+consent+'<div style="display:flex;gap:9px;margin-top:16px"><button class="ghost" style="flex:1" onclick="closeSheet();openTanya();setTimeout(function(){tanyaAsk(\'Rewrite this text to '+t.to.replace(/'/g,"")+' shorter and warmer: '+t.body.replace(/'/g,"").replace(/\n/g,' ')+'\')},250)">Ask Tanya to tweak</button><a class="btn" style="flex:1;text-align:center;text-decoration:none" href="'+sms+'" onclick="markTextSent('+t.id+')">Open in Messages</a></div>');
+}
+function markTextSent(id){sentTexts[id]=true;setTimeout(function(){closeSheet();if(cur==='texts'||cur==='crm')go(cur);toast('Marked sent ✓');},400);}
+function openOut(mode){
+ if(mode==='compose'){
+  openSheet('<div class="sg" style="font-size:20px;font-weight:700">Send an Email</div><div class="s" style="color:var(--muted);margin-top:3px">From info@miltonstone.ca</div>'
+   +'<div style="margin-top:14px"><div class="s" style="margin-bottom:4px">To</div><input id="oTo" placeholder="client@email.com" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#0e1626;color:#fff;font-size:14px"></div>'
+   +'<div style="margin-top:10px"><div class="s" style="margin-bottom:4px">Subject</div><input id="oSubj" placeholder="Your Milton Stone estimate" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#0e1626;color:#fff;font-size:14px"></div>'
+   +'<div style="margin-top:10px"><div class="s" style="margin-bottom:4px">Message</div><textarea id="oBody" rows="6" placeholder="Hi there," style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#0e1626;color:#fff;font-size:14px;resize:vertical"></textarea></div>'
+   +'<div style="display:flex;gap:9px;margin-top:14px"><button class="ghost" style="flex:1" onclick="outAskTanya()">Ask Tanya to draft</button><button class="btn" style="flex:1" onclick="outSend()">Send email</button></div>'
+   +'<div class="s" style="color:var(--muted);margin-top:10px;font-size:12px">Live sending turns on once the send-engine is wired into your app. Until then this opens in your mail app, pre-filled.</div>');
+ }else if(mode==='campaign'){
+  var opts=OUTLISTS.map(function(l){return '<option value="'+l.id+'">'+l.name+' ('+l.count+')</option>';}).join('');
+  var tmpls=OUTTEMPLATES.map(function(t){return '<div class="li" data-tmpl="'+t.id+'" style="cursor:pointer"><div style="flex:1"><div class="n">'+t.name+'</div><div class="s">'+t.subj+'</div></div><div class="s">use ›</div></div>';}).join('');
+  openSheet('<div class="sg" style="font-size:20px;font-weight:700">New Campaign</div><div class="s" style="color:var(--muted);margin-top:3px">Email a whole list at once</div>'
+   +'<div style="margin-top:14px"><div class="s" style="margin-bottom:4px">Send to list</div><select id="cList" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#0e1626;color:#fff;font-size:14px">'+opts+'</select></div>'
+   +'<div style="margin-top:14px"><div class="ct" style="margin-bottom:6px">Start from a template</div>'+tmpls+'</div>'
+   +'<div class="s" style="color:#e0b964;margin-top:12px;font-size:12.5px;line-height:1.5">⚠ CASL: campaigns only go to contacts who opted in or are existing clients. Every email includes an unsubscribe. I\'ll enforce this automatically when the engine is wired.</div>');
+  setTimeout(function(){Array.prototype.forEach.call(document.querySelectorAll('[data-tmpl]'),function(el){el.onclick=function(){outUseTemplate(el.getAttribute('data-tmpl'));};});},60);
+ }
+}
+function outUseTemplate(id){var t=OUTTEMPLATES.filter(function(x){return x.id===id;})[0];if(!t)return;
+ openSheet('<div class="sg" style="font-size:20px;font-weight:700">'+t.name+'</div><div class="s" style="color:var(--muted);margin-top:3px">Campaign preview</div>'
+  +'<div style="margin-top:12px"><div class="s" style="margin-bottom:4px">Subject</div><input id="cSubj" value="'+t.subj.replace(/"/g,'&quot;')+'" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#0e1626;color:#fff;font-size:14px"></div>'
+  +'<div style="margin-top:10px"><div class="s" style="margin-bottom:4px">Body</div><textarea id="cBody" rows="9" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#0e1626;color:#fff;font-size:13.5px;resize:vertical">'+esc(t.body)+'</textarea></div>'
+  +'<div class="s" style="color:var(--muted);margin-top:6px;font-size:12px">[First] and [project] auto-fill per contact when the engine is wired.</div>'
+  +'<div style="display:flex;gap:9px;margin-top:14px"><button class="ghost" style="flex:1" onclick="closeSheet();openOut(\'campaign\')">Back</button><button class="btn" style="flex:1" onclick="outQueueCampaign()">Queue campaign</button></div>');
+}
+function outQueueCampaign(){closeSheet();toast('Campaign queued — goes live when the engine is wired ✓');}
+function outSend(){var to=(document.getElementById('oTo')||{}).value||'';var subj=(document.getElementById('oSubj')||{}).value||'';var body=(document.getElementById('oBody')||{}).value||'';
+ if(!to||!subj||!body){toast('Add a recipient, subject and message first');return;}
+ var btn=event&&event.target;if(btn){btn.textContent='Sending…';btn.disabled=true;}
+ var htmlBody='<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.5;color:#222">'+body.replace(/\n/g,'<br>')+'</div>';
+ fetch('/api/send-email',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({to:to,subject:subj,html:htmlBody,text:body})})
+  .then(function(r){return r.json().then(function(d){return {ok:r.ok,d:d};});})
+  .then(function(res){
+   if(res.ok&&res.d&&res.d.ok){closeSheet();toast('Email sent from info@miltonstone.ca ✓');}
+   else{var msg=(res.d&&res.d.error)?res.d.error:'Send failed';toast('⚠ '+msg+' — opening mail app');setTimeout(function(){window.location.href='mailto:'+encodeURIComponent(to)+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);},600);}
+  })
+  .catch(function(){toast('⚠ Couldn\u2019t reach the send engine — opening mail app');setTimeout(function(){window.location.href='mailto:'+encodeURIComponent(to)+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);},600);});
+}
+function outAskTanya(){var subj=(document.getElementById('oSubj')||{}).value||'a client email';closeSheet();openTanya();setTimeout(function(){tanyaAsk('Draft a warm, professional email from Milton Stone about: '+subj.replace(/'/g,''));},250);}
+function openOutList(id){var l=OUTLISTS.filter(function(x){return x.id===id;})[0];if(!l)return;
+ openSheet('<div class="sg" style="font-size:20px;font-weight:700">'+l.ic+' '+l.name+'</div><div class="s" style="color:var(--muted);margin-top:3px">'+l.desc+'</div>'
+  +'<div class="dbody" style="margin-top:12px">'+esc(l.sample)+'</div>'
+  +'<div class="s" style="color:var(--muted);margin-top:10px;font-size:12.5px;line-height:1.5">This list has <b>'+l.count+'</b> contacts. When we wire the backend I\'ll add one-tap CSV import so you can drop in your whole client list at once.</div>'
+  +'<div style="display:flex;gap:9px;margin-top:14px"><button class="ghost" style="flex:1" onclick="closeSheet()">Close</button><button class="btn" style="flex:1" onclick="closeSheet();openOut(\'campaign\')">Email this list</button></div>');
+}
+function openSocial(id){var a=SOCIALS.filter(function(x){return x.id===id;})[0];if(!a)return;
+ var statusPill=function(s){var m={ready:['Ready','#43B581'],draft:['Draft','#8A8A93'],scheduled:['Scheduled','#2E7DFF'],auto:['Auto','#E0A93B']};var x=m[s]||m.draft;return pill(x[0],x[1]);};
+ var clabel=a.clabel||'new comments';
+ var stats='<div class="grid g2" style="margin-top:14px"><div style="background:var(--panel2);border-radius:14px;padding:14px;text-align:center"><div class="sg" style="font-size:24px;font-weight:800">'+a.f+'</div><div class="s" style="color:var(--muted)">'+a.fl+'</div></div><div style="background:var(--panel2);border-radius:14px;padding:14px;text-align:center"><div class="sg" style="font-size:24px;font-weight:800;color:'+((a.newC||a.newM)?'var(--gold)':'var(--ink)')+'">'+(a.newC||0)+(a.newM?' · '+a.newM:'')+'</div><div class="s" style="color:var(--muted)">'+clabel+(a.newM?' & DMs':'')+'</div></div></div>';
+ var plan='<div class="ph" style="margin-top:18px">This week\u2019s plan · '+a.p+'</div>'+a.plan.map(function(r){return '<div class="li"><div style="flex:1"><div class="n">'+r[2]+'</div><div class="s">'+r[0]+' · '+r[1]+'</div></div>'+statusPill(r[3])+'</div>';}).join('');
+ var inbox=(a.newC||0)+(a.newM||0);
+ var agentTask=(a.id==='gbp')
+   ?'Act as Pixel, our Social agent. Draft warm, professional replies to our '+(a.newC||0)+' new Google reviews for Milton Stone, and write a short post to publish on our Google Business profile this week.'
+   :'Act as Pixel, our Social agent. We have '+(a.newC||0)+' new comments and '+(a.newM||0)+' new messages on '+a.p+' ('+a.h+'). Draft friendly on-brand replies to the comments and DMs, and write this week\u2019s '+a.p+' posts from our plan.';
+ var actAgent='<button class="btn" style="flex:1" onclick="closeSheet();openTanya();setTimeout(function(){tanyaAsk(\''+agentTask.replace(/'/g,"\\'")+'\')},250)">Have Pixel handle '+(inbox>0?'replies':'this')+'</button>';
+ var actOpen='<a class="ghost" style="flex:1;text-align:center;text-decoration:none" href="'+a.url+'" target="_blank" rel="noopener">Open '+a.p+'</a>';
+ openSheet('<div style="display:flex;align-items:center;gap:13px"><div style="font-size:30px">'+a.ic+'</div><div><div class="sg" style="font-size:20px;font-weight:700">'+a.p+'</div><a href="'+a.url+'" target="_blank" rel="noopener" style="color:var(--gold);font-size:13px;text-decoration:none">'+a.h+' ›</a></div></div><div class="s" style="color:var(--muted);margin-top:6px">'+a.sub+'</div>'+stats+(inbox>0?'<div class="s" style="color:var(--ink);margin-top:14px;background:var(--soft);border:1px solid #243352;border-radius:12px;padding:12px"><b style="color:var(--gold)">'+inbox+' waiting</b> — '+(a.newC||0)+' '+clabel+(a.newM?' and '+a.newM+' messages':'')+'. Your Social agent can draft every reply in your voice.</div>':'')+plan+'<div style="display:flex;gap:9px;margin-top:20px">'+actAgent+actOpen+'</div><button class="ghost" style="width:100%;margin-top:9px" onclick="closeSheet()">Done</button>');
+}
+function openVendor(id){var v=VENDORS.filter(function(x){return x.id==id;})[0];if(!v)return;
+ var acts=[];
+ if(v.phone)acts.push('<a class="btn" style="flex:1;text-align:center;text-decoration:none" href="tel:'+v.phone+'">Call</a>');
+ if(v.web)acts.push('<a class="ghost" style="flex:1;text-align:center;text-decoration:none" href="https://'+v.web+'" target="_blank" rel="noopener">Website</a>');
+ if(v.locs&&v.locs[0])acts.push('<a class="ghost" style="flex:1;text-align:center;text-decoration:none" href="https://maps.google.com/?q='+encodeURIComponent(v.locs[0][1])+'" target="_blank" rel="noopener">Directions</a>');
+ var contact='';
+ if(v.phoneLabel||v.web||v.email){contact='<div class="ph" style="margin-top:18px">Contact</div>'+(v.phoneLabel?'<div class="litem"><span class="s" style="color:var(--muted);width:74px;flex-shrink:0">Phone</span><a href="tel:'+v.phone+'" style="color:var(--gold);font-weight:600;text-decoration:none">'+v.phoneLabel+'</a></div>':'')+(v.email?'<div class="litem"><span class="s" style="color:var(--muted);width:74px;flex-shrink:0">Email</span><a href="mailto:'+v.email+'" style="color:var(--gold);font-weight:600;text-decoration:none">'+v.email+'</a></div>':'')+(v.web?'<div class="litem"><span class="s" style="color:var(--muted);width:74px;flex-shrink:0">Website</span><a href="https://'+v.web+'" target="_blank" rel="noopener" style="color:var(--gold);font-weight:600;text-decoration:none">'+v.web+'</a></div>':'');}
+ var locs=(v.locs&&v.locs.length)?('<div class="ph" style="margin-top:18px">Locations</div>'+v.locs.map(function(l){return '<div class="litem"><span class="s" style="color:var(--muted);width:74px;flex-shrink:0">'+l[0]+'</span><a href="https://maps.google.com/?q='+encodeURIComponent(l[1])+'" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;flex:1">'+l[1]+'</a></div>';}).join('')):'';
+ var soc=(v.social&&v.social.length)?('<div class="ph" style="margin-top:18px">Social</div><div>'+v.social.map(function(s){return '<span class="chip" style="cursor:default">'+s[0]+' · '+s[1]+'</span>';}).join('')+'</div>'):'';
+ var liveBtn=v.live?'<button class="btn" style="flex:1" onclick="closeSheet();go(\'pricelist\')">Live pricing</button>':'';
+ openSheet('<div style="display:flex;align-items:center;gap:13px">'+mfrTile(v.n)+'<div><div class="sg" style="font-size:20px;font-weight:700">'+v.n+'</div><div class="s" style="color:var(--muted);font-size:13px">'+v.cat+'</div></div></div><div style="display:flex;gap:9px;margin-top:16px">'+acts.join('')+'</div>'+(v.what?'<div class="ph" style="margin-top:18px">What they supply</div><div style="font-size:14px;line-height:1.55">'+v.what+'</div>':'')+contact+locs+soc+(v.note?'<div class="s" style="color:var(--muted);margin-top:16px">★ '+v.note+'</div>':'')+'<div style="display:flex;gap:9px;margin-top:20px">'+liveBtn+'<button class="ghost" style="flex:1" onclick="closeSheet()">Done</button></div>');
+}
+function openDraft(id){var d=DRAFTS.filter(function(x){return x.id===id;})[0];if(!d)return;
+ var mailto='mailto:'+encodeURIComponent(d.email)+'?subject='+encodeURIComponent(d.subject)+'&body='+encodeURIComponent(d.body);
+ openSheet('<div class="sg" style="font-size:20px;font-weight:700">'+d.to+'</div><div class="emailmeta"><b>From:</b> info@miltonstone.ca<br><b>To:</b> '+d.email+'<br><b>Subject:</b> '+d.subject+'</div><div class="dbody">'+esc(d.body)+'</div><div class="s" style="color:var(--muted);margin-top:12px">Drafted by your '+d.agent+' agent · review before sending.</div><div style="display:flex;gap:9px;margin-top:16px"><button class="ghost" style="flex:1" onclick="toast(\'Opening editor…\')">Edit</button><a class="btn" style="flex:1;text-align:center;text-decoration:none" href="'+mailto+'" onclick="markSent('+d.id+')">Send from your mail</a></div>');
+}
+function markSent(id){sentDrafts[id]=true;setTimeout(function(){closeSheet();if(cur==='outbox'||cur==='dashboard')go(cur);toast('Marked sent ✓');},400);}
+function eArea(){if(EST.mode==='sf'){return Math.max(0,+EST.sf||0);}return Math.max(0,(+EST.len||0)*(+EST.wid||0));}
+function ePerim(){if(EST.mode==='dim'&&EST.len&&EST.wid){return 2*((+EST.len)+(+EST.wid));}var a=eArea();return a>0?4*Math.sqrt(a):0;}
+function eSurfObj(){return ESURF.filter(function(s){return s.id===EST.surface;})[0]||ESURF[0];}
+function eLines(){
+ var a=eArea(),pr=ePerim(),depth=EPTYPES[EST.ptype][1],surf=eSurfObj(),out=[];
+ var sf=a*1.05;out.push({ic:'▦',n:surf.n,qty:Math.round(sf),unit:'ft²',note:'incl. 5% cut waste',price:surf.price,total:sf*surf.price,mat:true});
+ var baseYd=a*(depth/12)/27*1.1;out.push({ic:'⛰',n:'Granular base ¾"',qty:Math.round(baseYd*10)/10,unit:'yd³',note:depth+'" depth + compaction',price:EP.base,total:baseYd*EP.base,mat:true});
+ var hpbYd=a*(1/12)/27*1.05;out.push({ic:'◍',n:'HPB bedding',qty:Math.round(hpbYd*10)/10,unit:'yd³',note:'1" setting bed',price:EP.hpb,total:hpbYd*EP.hpb,mat:true});
+ var bags=Math.ceil(a/EP.polyCov);out.push({ic:'⌗',n:'Polymeric joint sand',qty:bags,unit:'bags',note:'≈'+EP.polyCov+' ft²/bag',price:EP.poly,total:bags*EP.poly,mat:true});
+ var edge=pr*1.05;out.push({ic:'⊏',n:'Edge restraint',qty:Math.round(edge),unit:'lin ft',note:'perimeter + 5%',price:EP.edge,total:edge*EP.edge,mat:true});
+ out.push({ic:'▤',n:'Geotextile fabric',qty:Math.round(a),unit:'ft²',note:'base separation',price:EP.fabric,total:a*EP.fabric,mat:true});
+ var lr=ELABOR[EST.grade];out.push({ic:'🛠',n:'Installation labour',qty:Math.round(a),unit:'ft²',note:'excavation, base, lay, finish',price:lr,total:a*lr,mat:false});
+ return out;
+}
+function estimatorData(){var L=eLines();var mat=L.filter(function(r){return r.mat;}).reduce(function(a,b){return a+b.total;},0);var lab=L.filter(function(r){return !r.mat;}).reduce(function(a,b){return a+b.total;},0);return {L:L,mat:mat,lab:lab,total:mat+lab};}
+function estimatorRender(){
+ if(!$('etake'))return;
+ if($('earea'))$('earea').textContent=Math.round(eArea()).toLocaleString()+' ft²';
+ if($('eperim'))$('eperim').textContent=' · perimeter ≈ '+Math.round(ePerim())+' ft';
+ var d=estimatorData();
+ $('etake').innerHTML=d.L.map(function(r){return '<div class="erow"><div class="eic">'+r.ic+'</div><div class="emid"><div class="en">'+r.n+'</div><div class="eq"><b>'+r.qty.toLocaleString()+' '+r.unit+'</b> · '+r.note+'</div></div><div class="ert">'+money(r.total)+'</div></div>';}).join('');
+ if($('etot'))$('etot').innerHTML='<div class="erow"><div class="emid"><div class="en" style="color:var(--muted);font-weight:600">Materials</div></div><div class="ert">'+money(d.mat)+'</div></div><div class="erow"><div class="emid"><div class="en" style="color:var(--muted);font-weight:600">Installation</div></div><div class="ert">'+money(d.lab)+'</div></div><div class="erow" style="border:none;padding-top:14px"><div class="emid"><div class="en" style="font-weight:700;font-size:15px">Project total</div></div><div class="ert" style="font-size:22px;color:var(--gold)">'+money(d.total)+'</div></div>';
+ if($('ewarr'))$('ewarr').textContent='Includes '+EWARR[EST.grade]+'. Quantities are calculated estimates from standard coverage rates — confirm on site before ordering. Pricing is editable to your live trade rates.';
+}
+function estimatorInit(){
+ if($('eptype'))$('eptype').innerHTML=EPTYPES.map(function(p,i){return '<button class="'+(i===EST.ptype?'on':'')+'" data-ept="'+i+'">'+p[2]+' '+p[0]+'</button>';}).join('');
+ Array.prototype.forEach.call(document.querySelectorAll('[data-ept]'),function(b){b.onclick=function(){EST.ptype=+b.getAttribute('data-ept');Array.prototype.forEach.call(document.querySelectorAll('[data-ept]'),function(x){x.classList.toggle('on',x===b);});estimatorRender();};});
+ var gl=[[1,'Good'],[2,'Better'],[3,'Best']];
+ if($('egrade'))$('egrade').innerHTML=gl.map(function(g){return '<button class="'+(EST.grade===g[0]?'on':'')+'" data-eg="'+g[0]+'">'+g[1]+'</button>';}).join('');
+ Array.prototype.forEach.call(document.querySelectorAll('[data-eg]'),function(b){b.onclick=function(){EST.grade=+b.getAttribute('data-eg');EST.surface=EGRADESURF[EST.grade];estimatorInit();estimatorRender();};});
+ if($('esurf'))$('esurf').innerHTML=ESURF.map(function(s){var gl=['','Good','Better','Best'][s.g];return '<button class="mat '+(EST.surface===s.id?'on':'')+'" data-es="'+s.id+'"><div class="sw" style="background:'+s.sw+'"><span class="mtag">'+gl+'</span></div><div class="mb"><div class="mn">'+s.n+'</div><div class="mp">'+money2(s.price)+' / ft²</div><div class="s" style="color:var(--muted);margin-top:2px">'+s.d+'</div></div></button>';}).join('');
+ Array.prototype.forEach.call(document.querySelectorAll('[data-es]'),function(b){b.onclick=function(){EST.surface=b.getAttribute('data-es');estimatorInit();estimatorRender();};});
+ Array.prototype.forEach.call(document.querySelectorAll('#emode button'),function(b){b.onclick=function(){EST.mode=b.getAttribute('data-m');Array.prototype.forEach.call(document.querySelectorAll('#emode button'),function(x){x.classList.toggle('on',x===b);});if($('edim'))$('edim').style.display=EST.mode==='dim'?'block':'none';if($('esfw'))$('esfw').style.display=EST.mode==='sf'?'block':'none';estimatorRender();};});
+ if($('elen'))$('elen').oninput=function(){EST.len=this.value;estimatorRender();};
+ if($('ewid'))$('ewid').oninput=function(){EST.wid=this.value;estimatorRender();};
+ if($('esf'))$('esf').oninput=function(){EST.sf=this.value;estimatorRender();};
+ if($('eprop'))$('eprop').onclick=estimatorProposal;
+ if($('epo'))$('epo').onclick=estimatorPO;
+ estimatorRender();
+}
+function estimatorProposal(){
+ var d=estimatorData(),surf=eSurfObj(),a=Math.round(eArea());
+ var rows=d.L.map(function(r){return '<div class="li"><div class="n">'+r.n+' <span class="s">('+r.qty.toLocaleString()+' '+r.unit+')</span></div><span>'+money(r.total)+'</span></div>';}).join('');
+ openSheet('<div class="sg" style="font-size:20px;font-weight:700">Client proposal</div><div class="s" style="color:var(--muted);margin-top:3px">Milton Stone · '+EPTYPES[EST.ptype][0]+' · '+a+' ft² · '+surf.n+'</div><div style="margin-top:14px">'+rows+'<div class="li" style="border:none;padding-top:14px"><div class="n" style="font-size:15px">Investment</div><span class="sg" style="font-size:22px;font-weight:800;color:var(--gold)">'+money(d.total)+'</span></div></div><div class="s" style="color:var(--muted);margin-top:8px">'+EWARR[EST.grade]+' · valid 30 days · 50% deposit secures your build date.</div><div style="display:flex;gap:9px;margin-top:18px"><button class="btn" style="flex:1" onclick="closeSheet();openTanya();setTimeout(function(){tanyaAsk(\'Write a full client proposal for a '+EPTYPES[EST.ptype][0]+' of '+a+' square feet in '+surf.n+', total '+money(d.total)+', '+EWARR[EST.grade]+'.\')},250)">Send to Tanya to write</button><button class="ghost" onclick="closeSheet()">Done</button></div>');
+}
+function estimatorPO(){
+ var d=estimatorData(),a=Math.round(eArea()),mats=d.L.filter(function(r){return r.mat;});
+ var body='PURCHASE ORDER — Milton Stone\nProject: '+EPTYPES[EST.ptype][0]+' · '+a+' ft²\n\n';
+ mats.forEach(function(r){body+='- '+r.n+' — '+r.qty.toLocaleString()+' '+r.unit+'\n';});
+ body+='\nDeliver to: job site (address on file)\nContact: Francesco · Milton Stone';
+ var rows=mats.map(function(r){return '<div class="li"><div class="n">'+r.n+'</div><span class="gold" style="font-weight:700">'+r.qty.toLocaleString()+' '+r.unit+'</span></div>';}).join('');
+ var mailto='mailto:?subject='+encodeURIComponent('Purchase order — Milton Stone')+'&body='+encodeURIComponent(body);
+ openSheet('<div class="sg" style="font-size:20px;font-weight:700">Vendor order</div><div class="s" style="color:var(--muted);margin-top:3px">Materials only, in their units — ready to send to your yard.</div><div style="margin-top:14px">'+rows+'</div><div style="display:flex;gap:9px;margin-top:18px"><a class="btn" style="flex:1;text-align:center;text-decoration:none" href="'+mailto+'">Email this order</a><button class="ghost" onclick="closeSheet()">Done</button></div><div class="s" style="color:var(--muted);margin-top:12px">Opens your mail pre-filled. Pick the vendor from your directory and send.</div>');
+}
 function agentChips(dept){var m={'Executive':['Plan my top 3 priorities this week','Where am I losing money?','Summarize the state of the business'],'Sales':['Write a follow-up to a quiet pool lead','Price a 500 sq ft patio with one step','Handle a "you are too expensive" objection'],'Marketing':['Instagram caption for a finished pool','5 post ideas for this month','Draft a Google review request text'],'Partnerships':['Intro email to a luxury home builder','5 referral partners worth targeting'],'Operations':['Build steps for a 600 sq ft patio','Materials for a 14x28 pool deck'],'Intelligence':['What numbers should I track weekly?','Forecast my spring demand'],'Competitive Response':['Counter-play vs Action Home Services','How do I win the local review race?']};return m[dept]||['Draft something I can use today','Give me your best recommendation'];}
 function agentSystem(dept,name,desc){
  var base="You are "+name+", a specialist AI agent on the Milton Stone team (department: "+dept+"). Your job: "+desc+". You work for Francesco, the owner. Use the Milton Stone knowledge base below as your source of truth for pricing, policy, process, materials, pool models and the sales playbook. Produce real, ready-to-use work: be concrete and specific, use real numbers from the knowledge base, and keep Milton Stone's calm, premium, value-driven voice. If you need a detail you don't have, make a clear professional assumption and label it.";
@@ -454,7 +774,7 @@ function mfrTile(nm){return '<div class="sg" style="width:52px;height:40px;borde
 function specFor(m,c){var n=m.n;
  if(/Azoria/.test(n))return 'Fibreglass inground shell';
  if(/MOVA/.test(n)){if(/deliver/i.test(c))return 'Shipping · 9–12 ft wide';if(/feature/i.test(c))return 'Standard · factory-installed';return 'Fibreglass inground shell';}
- if(/Rinox/.test(n)){if(/flex|permeable/i.test(c))return 'Permeable paver';if(/slab/i.test(c))return 'Slab · 60 mm';if(/paver/i.test(c))return 'Concrete paver';if(/coping/i.test(c))return 'Coping';if(/wall|block|step/i.test(c))return 'Wall · block · step';if(/veneer|brick|crate|stone|sill|accessor/i.test(c))return 'Stone / brick veneer';return 'GTA-A delivered';}
+ if(/Rinox/.test(n)){if(/buy-direct|rep/i.test(c))return 'Buy direct · ask your rep';if(/flex|permeable/i.test(c))return 'Permeable paver';if(/slab/i.test(c))return 'Slab · 60 mm';if(/paver/i.test(c))return 'Concrete paver';if(/coping/i.test(c))return 'Coping';if(/wall|block|step/i.test(c))return 'Wall · block · step';if(/veneer|brick|crate|stone|sill|accessor/i.test(c))return 'Stone / brick veneer';return 'GTA-A delivered';}
  if(/Porcea/.test(n))return 'Italian porcelain · 20–30 mm';
  if(/Brampton/.test(n))return 'Masonry · brick & veneer';
  if(/Triple H/.test(n))return 'Concrete paver · limestone look';
@@ -483,8 +803,6 @@ function openIntel(i){var c=CINTEL[i];
 function openPartner(i){var p=PARTNERS[i];var pname=p.cat.replace(/'/g,'');
  var tg=p.targets?('<div class="ph" style="margin-top:18px">Targets · '+p.targets.length+'</div>'+p.targets.map(function(t){return '<div class="li"><div class="sg" style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#2E7DFF33,#2E7DFF12);color:#2E7DFF;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">'+t[0].charAt(0)+'</div><div style="flex:1;padding-left:11px"><div class="n">'+t[0]+'</div><div class="s">'+t[1]+'</div></div></div>';}).join('')):('<div style="background:var(--panel2);border-radius:14px;padding:16px;margin-top:18px"><div class="n">Partner Scout is sourcing '+p.scout+' targets</div><div class="s" style="color:var(--muted);margin-top:4px">Ask Tanya and she\'ll pull a vetted shortlist in this category.</div></div>');
  openSheet('<div class="sg" style="font-size:22px;font-weight:700">'+p.cat+'</div><div style="margin-top:14px"><div class="s" style="color:var(--muted);text-transform:uppercase;font-size:10px;letter-spacing:.06em">Why partner</div><div style="font-size:14px;margin-top:5px;line-height:1.55">'+p.why+'</div></div>'+(p.give?'<div style="margin-top:14px"><div class="s" style="color:var(--muted);text-transform:uppercase;font-size:10px;letter-spacing:.06em">What you offer them</div><div style="font-size:14px;margin-top:5px">'+p.give+'</div></div>':'')+tg+'<div style="display:flex;gap:9px;margin-top:20px"><button class="btn" style="flex:1" onclick="closeSheet();openTanya();setTimeout(function(){tanyaAsk(\''+(p.targets?'Draft a partnership intro email from Milton Stone (luxury landscaping \\u0026 pools in Oakville) to a '+pname+' company proposing a referral partnership.':'Find and qualify '+p.scout+' '+pname+' in the Oakville and Halton area we could partner with for referrals.')+'\')},250)">'+(p.targets?'Draft intro with Tanya':'Ask Tanya to find them')+'</button><button class="ghost" onclick="closeSheet()">Done</button></div>');}
-
-/* TANYA */
 var rec=null,listening=false,convo=false;
 var VOICE=('webkitSpeechRecognition' in window)||('SpeechRecognition' in window);
 function tstat(s){var e=$('tstatus');if(e)e.textContent=s||'';}
@@ -501,11 +819,6 @@ $('dock').onclick=openTanya;$('tx').onclick=closeTanya;$('torb').onclick=orbTap;
 $('tsend').onclick=function(){if($('tin').value.trim())tanyaAsk($('tin').value.trim());};
 $('tin').addEventListener('keydown',function(e){if(e.key==='Enter'&&this.value.trim())tanyaAsk(this.value.trim());});
 function addBub(t,who){var d=document.createElement('div');d.className='bub '+who;d.textContent=t;$('feed').appendChild(d);d.scrollIntoView({behavior:'smooth',block:'end'});return d;}
-/* ── Tanya connection config ──────────────────────────────
-   In the Claude preview this works as-is (direct).
-   To go LIVE on your own site: deploy the proxy from the
-   deploy guide, then set endpoint:'/api/tanya' and direct:false
-   so your API key stays on the server, never in this file.     */
 var TANYA={endpoint:"/api/tanya",model:"claude-sonnet-4-6",direct:false};
 function tconn(state){var e=$('tconn');if(!e)return;if(state==='live'){e.textContent='● Tanya is live';e.style.color='#43B581';}else if(state==='demo'){e.textContent='● Demo mode';e.style.color='#E0A93B';}else{e.textContent='● Connecting…';e.style.color='var(--muted)';}}
 async function checkConn(){tconn('connecting');try{var r=await fetch(TANYA.endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:TANYA.model,max_tokens:8,messages:[{role:"user",content:"Reply with the single word: ready"}]})});var d=await r.json();tconn(d&&d.content?'live':'demo');}catch(e){tconn('demo');}}
@@ -536,12 +849,9 @@ async function tanyaAsk(q,viaVoice){
  }catch(e){b.textContent="When I'm connected on your hosted OS I answer live from your whole business. Here's the idea: ask me about appointments, opportunities nearby, who owes you money, or to draft a proposal — and I handle it.";tconn('demo');}
  if(viaVoice){speak(b.textContent);}else{orbState('idle');}
 }
-
-/* mobile */
 function closeSide(){$('side').classList.remove('open');$('scrim').classList.remove('show');}
 $('burger').onclick=function(){$('side').classList.toggle('open');$('scrim').classList.toggle('show');};
 $('scrim').onclick=closeSide;
-
 buildNav();go('dashboard');
 </script>
 </body>
